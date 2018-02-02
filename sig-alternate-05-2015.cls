@@ -178,8 +178,6 @@
 
 
 
-\def\doi#1{\def\@doi{#1}}
-\doi{http://dx.doi.org/10.1145/0000000.0000000}
 
 \oddsidemargin 4.5pc
 \evensidemargin 4.5pc
@@ -735,7 +733,7 @@
  \let\maketitle\relax
  \let\@maketitle\relax
  \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\gdef\@subtitle{}\let\thanks\relax
- \@copyrightspace}
+ }
 
 %% CHANGES ON NEXT LINES
 \newif\if@ll % to record which version of LaTeX is in use
@@ -1619,26 +1617,15 @@
 \newtoks\copyrtyr
 \newtoks\acmcopyr
 \newtoks\boilerplate
-\global\acmcopyr={X-XXXXX-XX-X/XX/XX}  % Default - 5/11/2001 *** Gerry
+ % Default - 5/11/2001 *** Gerry
 \global\copyrtyr={\the\year}                % Default - 3/3/2003 *** Gerry
 \def\acmPrice#1{\gdef\@acmPrice{#1}}
 \acmPrice{} %article price  % Changed to 15 - June 2012 - Gerry
 
 
-\def\CopyrightYear#1{\global\copyrtyr{#1}}
-\def\crdata#1{\global\acmcopyr{#1}}
-\def\permission#1{\global\boilerplate{#1}}
 
-% ISBN
-%
-\def\isbn#1{\global\acmcopyr={#1}}
-\isbn{978-1-4503-2138-9}
 
-\RequirePackage{url}
-\urlstyle{rm}
-\def\doi#1{\def\@doi{#1}}
-\doi{10.1145/1235}
-\def\printdoi#1{\url{#1}}
+
 
 
 

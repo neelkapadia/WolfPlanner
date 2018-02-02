@@ -1,121 +1,14 @@
-% This is "sig-alternate.tex" V2.1 April 2013
-% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
-%
-% This example file demonstrates the use of the 'sig-alternate.cls'
-% V2.5 LaTeX2e document class file. It is for those submitting
-% articles to ACM Conference Proceedings WHO DO NOT WISH TO
-% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
-% The 'sig-alternate.cls' file will produce a similar-looking,
-% albeit, 'tighter' paper resulting in, invariably, fewer pages.
-%
-% ----------------------------------------------------------------------------------------------------------------
-% This .tex file (and associated .cls V2.5) produces:
-%       1) The Permission Statement
-%       2) The Conference (location) Info information
-%       3) The Copyright Line with ACM data
-%       4) NO page numbers
-%
-% as against the acm_proc_article-sp.cls file which
-% DOES NOT produce 1) thru' 3) above.
-%
-% Using 'sig-alternate.cls' you have control, however, from within
-% the source .tex file, over both the CopyrightYear
-% (defaulted to 200X) and the ACM Copyright Data
-% (defaulted to X-XXXXX-XX-X/XX/XX).
-% e.g.
-% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
-% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
-%
-% ---------------------------------------------------------------------------------------------------------------
-% This .tex source is an example which *does* use
-% the .bib file (from which the .bbl file % is produced).
-% REMEMBER HOWEVER: After having produced the .bbl file,
-% and prior to final submission, you *NEED* to 'insert'
-% your .bbl file into your source .tex file so as to provide
-% ONE 'self-contained' source file.
-%
-% ================= IF YOU HAVE QUESTIONS =======================
-% Questions regarding the SIGS styles, SIGS policies and
-% procedures, Conferences etc. should be sent to
-% Adrienne Griscti (griscti@acm.org)
-%
-% Technical questions _only_ to
-% Gerald Murray (murray@hq.acm.org)
-% ===============================================================
-%
-% For tracking purposes - this is V2.0 - May 2012
 
 \documentclass{sig-alternate-05-2015}
+\usepackage{placeins}
+\usepackage{hyperref}
 
 
 \begin{document}
 
-% Copyright
-\setcopyright{acmcopyright}
-%\setcopyright{acmlicensed}
-%\setcopyright{rightsretained}
-%\setcopyright{usgov}
-%\setcopyright{usgovmixed}
-%\setcopyright{cagov}
-%\setcopyright{cagovmixed}
+\title{WolfPlanner: Personalized Task Scheduling Bot}
 
-
-% DOI
-\doi{10.475/123_4}
-
-% ISBN
-\isbn{123-4567-24-567/08/06}
-
-%Conference
-\conferenceinfo{PLDI '13}{June 16--19, 2013, Seattle, WA, USA}
-
-\acmPrice{\$15.00}
-
-%
-% --- Author Metadata here ---
-\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
-%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
-%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
-% --- End of Author Metadata ---
-
-\title{Alternate {\ttlit ACM} SIG Proceedings Paper in LaTeX
-Format\titlenote{(Produces the permission block, and
-copyright information). For use with
-SIG-ALTERNATE.CLS. Supported by ACM.}}
-\subtitle{[Extended Abstract]
-\titlenote{A full version of this paper is available as
-\textit{Author's Guide to Preparing ACM SIG Proceedings Using
-\LaTeX$2_\epsilon$\ and BibTeX} at
-\texttt{www.acm.org/eaddress.htm}}}
-%
-% You need the command \numberofauthors to handle the 'placement
-% and alignment' of the authors beneath the title.
-%
-% For aesthetic reasons, we recommend 'three authors at a time'
-% i.e. three 'name/affiliation blocks' be placed beneath the title.
-%
-% NOTE: You are NOT restricted in how many 'rows' of
-% "name/affiliations" may appear. We just ask that you restrict
-% the number of 'columns' to three.
-%
-% Because of the available 'opening page real-estate'
-% we ask you to refrain from putting more than six authors
-% (two rows with three columns) beneath the article title.
-% More than six makes the first-page appear very cluttered indeed.
-%
-% Use the \alignauthor commands to handle the names
-% and affiliations for an 'aesthetic maximum' of six authors.
-% Add names, affiliations, addresses for
-% the seventh etc. author(s) as the argument for the
-% \additionalauthors command.
-% These 'additional authors' will be output/set for you
-% without further effort on your part as the last section in
-% the body of your article BEFORE References or any Appendices.
-
-\numberofauthors{8} %  in this sample file, there are a *total*
-% of EIGHT authors. SIX appear on the 'first-page' (for formatting
-% reasons) and the remaining two appear in the \additionalauthors section.
-%
+\numberofauthors{4} 
 \author{
 % You can go ahead and credit any number of authors here,
 % e.g. one 'row of three' or two rows (consisting of one row of three
@@ -129,82 +22,40 @@ SIG-ALTERNATE.CLS. Supported by ACM.}}
 %
 % 1st. author
 \alignauthor
-Ben Trovato\titlenote{Dr.~Trovato insisted his name be first.}\\
-       \affaddr{Institute for Clarity in Documentation}\\
-       \affaddr{1932 Wallamaloo Lane}\\
-       \affaddr{Wallamaloo, New Zealand}\\
-       \email{trovato@corporation.com}
+Neel Kapadia\\
+       \affaddr{North Carolina State University}\\
+       \affaddr{Raleigh, NC, US}\\
+       \email{ntkapadi@ncsu.edu}
 % 2nd. author
 \alignauthor
-G.K.M. Tobin\titlenote{The secretary disavows
-any knowledge of this author's actions.}\\
-       \affaddr{Institute for Clarity in Documentation}\\
-       \affaddr{P.O. Box 1212}\\
-       \affaddr{Dublin, Ohio 43017-6221}\\
-       \email{webmaster@marysville-ohio.com}
+Rohan Chandavarkar\\
+       \affaddr{North Carolina State University}\\
+       \affaddr{Raleigh, NC, US}\\
+       \email{rgchanda@ncsu.edu}
 % 3rd. author
-\alignauthor Lars Th{\o}rv{\"a}ld\titlenote{This author is the
-one who did all the really hard work.}\\
-       \affaddr{The Th{\o}rv{\"a}ld Group}\\
-       \affaddr{1 Th{\o}rv{\"a}ld Circle}\\
-       \affaddr{Hekla, Iceland}\\
-       \email{larst@affiliation.org}
+\alignauthor 
+Sainag Shetty\\
+       \affaddr{North Carolina State University}\\
+       \affaddr{Raleigh, NC, US}\\
+       \email{sgshetty@ncsu.edu}
 \and  % use '\and' if you need 'another row' of author names
 % 4th. author
-\alignauthor Lawrence P. Leipuner\\
-       \affaddr{Brookhaven Laboratories}\\
-       \affaddr{Brookhaven National Lab}\\
-       \affaddr{P.O. Box 5000}\\
-       \email{lleipuner@researchlabs.org}
-% 5th. author
-\alignauthor Sean Fogarty\\
-       \affaddr{NASA Ames Research Center}\\
-       \affaddr{Moffett Field}\\
-       \affaddr{California 94035}\\
-       \email{fogartys@amesres.org}
-% 6th. author
-\alignauthor Charles Palmer\\
-       \affaddr{Palmer Research Laboratories}\\
-       \affaddr{8600 Datapoint Drive}\\
-       \affaddr{San Antonio, Texas 78229}\\
-       \email{cpalmer@prl.com}
+\alignauthor 
+Rohit Naik\\
+       \affaddr{North Carolina State University}\\
+       \affaddr{Raleigh, NC, US}\\
+       \email{rtnaik@ncsu.edu}
 }
-% There's nothing stopping you putting the seventh, eighth, etc.
-% author on the opening page (as the 'third row') but we ask,
-% for aesthetic reasons that you place these 'additional authors'
-% in the \additional authors block, viz.
-\additionalauthors{Additional authors: John Smith (The Th{\o}rv{\"a}ld Group,
-email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
-(The Kumquat Consortium, email: {\texttt{jpkumquat@consortium.net}}).}
-\date{30 July 1999}
+\date{01 Feb 2018}
 % Just remember to make sure that the TOTAL number of authors
 % is the number that will appear on the first page PLUS the
 % number that will appear in the \additionalauthors section.
 
 \maketitle
 \begin{abstract}
-This paper provides a sample of a \LaTeX\ document which conforms,
-somewhat loosely, to the formatting guidelines for
-ACM SIG Proceedings. It is an {\em alternate} style which produces
-a {\em tighter-looking} paper and was designed in response to
-concerns expressed, by authors, over page-budgets.
-It complements the document \textit{Author's (Alternate) Guide to
-Preparing ACM SIG Proceedings Using \LaTeX$2_\epsilon$\ and Bib\TeX}.
-This source file has been written with the intention of being
-compiled under \LaTeX$2_\epsilon$\ and BibTeX.
-
-The developers have tried to include every imaginable sort
-of ``bells and whistles", such as a subtitle, footnotes on
-title, subtitle and authors, as well as in the text, and
-every optional component (e.g. Acknowledgments, Additional
-Authors, Appendices), not to mention examples of
-equations, theorems, tables and figures.
-
-To make best use of this sample document, run it through \LaTeX\
-and BibTeX, and compare this source code with the printed
-output produced by the dvi file. A compiled PDF version
-is available on the web page to help you with the
-`look and feel'.
+With the number of tasks increasing day-by-day, it is becoming difficult for individuals to manage so many tasks considering the varying amount of time available and required to complete them. It requires continuous and active effort to create weekly/bi-weekly schedules. This leads to wastage of valuable time, and poor planning might lead to excessive workloads. In such situations, an application that makes a schedule (time-table) for the individuals taking into account their deadlines and dependencies between tasks will be a great asset. 
+\par
+In this paper, we intend to develop an application which will generate a schedule for users based on their upcoming tasks such as assignments, projects, interviews, other events, etc (information about which will be given to the system by them). On conduting a user survey, we found that many users face an issue in scheduling team meetings. Hemce, we plan to develop an algorithm which will match the availability of the team and suggest possible timings to schedule the meeting. Furthermore, to keep up with the current technology trend of interactive assistants, we plan to integrate this service with a Slack chatbot thereby avoiding downloading of a stand-alone application. For now, we restrict our domain of users to university students for ease of data collection and implementation.
 \end{abstract}
 
 
@@ -213,35 +64,8 @@ is available on the web page to help you with the
 % http://dl.acm.org/ccs.cfm
 % Please copy and paste the code instead of the example below. 
 %
-\begin{CCSXML}
-<ccs2012>
- <concept>
-  <concept_id>10010520.10010553.10010562</concept_id>
-  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
-  <concept_significance>500</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010575.10010755</concept_id>
-  <concept_desc>Computer systems organization~Redundancy</concept_desc>
-  <concept_significance>300</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010553.10010554</concept_id>
-  <concept_desc>Computer systems organization~Robotics</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
- <concept>
-  <concept_id>10003033.10003083.10003095</concept_id>
-  <concept_desc>Networks~Network reliability</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
-</ccs2012>  
-\end{CCSXML}
 
-\ccsdesc[500]{Computer systems organization~Embedded systems}
-\ccsdesc[300]{Computer systems organization~Redundancy}
-\ccsdesc{Computer systems organization~Robotics}
-\ccsdesc[100]{Networks~Network reliability}
+
 
 
 %
@@ -256,413 +80,262 @@ is available on the web page to help you with the
 % We no longer use \terms command
 %\terms{Theory}
 
-\keywords{ACM proceedings; \LaTeX; text tagging}
+\keywords{Scheduler, Chatbot, Calendar, Meeting, Time-table, Planner}
 
 \section{Introduction}
-The \textit{proceedings} are the records of a conference.
-ACM seeks to give these conference by-products a uniform,
-high-quality appearance.  To do this, ACM has some rigid
-requirements for the format of the proceedings documents: there
-is a specified format (balanced  double columns), a specified
-set of fonts (Arial or Helvetica and Times Roman) in
-certain specified sizes (for instance, 9 point for body copy),
-a specified live area (18 $\times$ 23.5 cm [7" $\times$ 9.25"]) centered on
-the page, specified size of margins (1.9 cm [0.75"]) top, (2.54 cm [1"]) bottom
-and (1.9 cm [.75"]) left and right; specified column width
-(8.45 cm [3.33"]) and gutter size (.83 cm [.33"]).
-
-The good news is, with only a handful of manual
-settings\footnote{Two of these, the {\texttt{\char'134 numberofauthors}}
-and {\texttt{\char'134 alignauthor}} commands, you have
-already used; another, {\texttt{\char'134 balancecolumns}}, will
-be used in your very last run of \LaTeX\ to ensure
-balanced column heights on the last page.}, the \LaTeX\ document
-class file handles all of this for you.
-
-The remainder of this document is concerned with showing, in
-the context of an ``actual'' document, the \LaTeX\ commands
-specifically available for denoting the structure of a
-proceedings paper, rather than with giving rigorous descriptions
-or explanations of such commands.
-
-\section{The {\secit Body} of The Paper}
-Typically, the body of a paper is organized
-into a hierarchical structure, with numbered or unnumbered
-headings for sections, subsections, sub-subsections, and even
-smaller sections.  The command \texttt{{\char'134}section} that
-precedes this paragraph is part of such a
-hierarchy.\footnote{This is the second footnote.  It
-starts a series of three footnotes that add nothing
-informational, but just give an idea of how footnotes work
-and look. It is a wordy one, just so you see
-how a longish one plays out.} \LaTeX\ handles the numbering
-and placement of these headings for you, when you use
-the appropriate heading commands around the titles
-of the headings.  If you want a sub-subsection or
-smaller part to be unnumbered in your output, simply append an
-asterisk to the command name.  Examples of both
-numbered and unnumbered headings will appear throughout the
-balance of this sample document.
-
-Because the entire article is contained in
-the \textbf{document} environment, you can indicate the
-start of a new paragraph with a blank line in your
-input file; that is why this sentence forms a separate paragraph.
-
-\subsection{Type Changes and {\subsecit Special} Characters}
-We have already seen several typeface changes in this sample.  You
-can indicate italicized words or phrases in your text with
-the command \texttt{{\char'134}textit}; emboldening with the
-command \texttt{{\char'134}textbf}
-and typewriter-style (for instance, for computer code) with
-\texttt{{\char'134}texttt}.  But remember, you do not
-have to indicate typestyle changes when such changes are
-part of the \textit{structural} elements of your
-article; for instance, the heading of this subsection will
-be in a sans serif\footnote{A third footnote, here.
-Let's make this a rather short one to
-see how it looks.} typeface, but that is handled by the
-document class file. Take care with the use
-of\footnote{A fourth, and last, footnote.}
-the curly braces in typeface changes; they mark
-the beginning and end of
-the text that is to be in the different typeface.
-
-You can use whatever symbols, accented characters, or
-non-English characters you need anywhere in your document;
-you can find a complete list of what is
-available in the \textit{\LaTeX\
-User's Guide}\cite{Lamport:LaTeX}.
-
-\subsection{Math Equations}
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of
-the three are discussed in the next sections.
-
-\subsubsection{Inline (In-text) Equations}
-A formula that appears in the running text is called an
-inline or in-text formula.  It is produced by the
-\textbf{math} environment, which can be
-invoked with the usual \texttt{{\char'134}begin. . .{\char'134}end}
-construction or with the short form \texttt{\$. . .\$}. You
-can use any of the symbols and structures,
-from $\alpha$ to $\omega$, available in
-\LaTeX\cite{Lamport:LaTeX}; this section will simply show a
-few examples of in-text equations in context. Notice how
-this equation: \begin{math}\lim_{n\rightarrow \infty}x=0\end{math},
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsubsection{Display Equations}
-A numbered display equation -- one set off by vertical space
-from the text and centered horizontally -- is produced
-by the \textbf{equation} environment. An unnumbered display
-equation is produced by the \textbf{displaymath} environment.
-
-Again, in either environment, you can use any of the symbols
-and structures available in \LaTeX; this section will just
-give a couple of examples of display equations in context.
-First, consider the equation, shown as an inline equation above:
-\begin{equation}\lim_{n\rightarrow \infty}x=0\end{equation}
-Notice how it is formatted somewhat differently in
-the \textbf{displaymath}
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}\sum_{i=0}^{\infty} x + 1\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}\sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\subsection{Citations}
-Citations to articles \cite{bowman:reasoning,
-clark:pct, braams:babel, herlihy:methodology},
-conference proceedings \cite{clark:pct} or
-books \cite{salas:calculus, Lamport:LaTeX} listed
-in the Bibliography section of your
-article will occur throughout the text of your article.
-You should use BibTeX to automatically produce this bibliography;
-you simply need to insert one of several citation commands with
-a key of the item cited in the proper location in
-the \texttt{.tex} file \cite{Lamport:LaTeX}.
-The key is a short reference you invent to uniquely
-identify each work; in this sample document, the key is
-the first author's surname and a
-word from the title.  This identifying key is included
-with each item in the \texttt{.bib} file for your article.
-
-The details of the construction of the \texttt{.bib} file
-are beyond the scope of this sample document, but more
-information can be found in the \textit{Author's Guide},
-and exhaustive details in the \textit{\LaTeX\ User's
-Guide}\cite{Lamport:LaTeX}.
-
-This article shows only the plainest form
-of the citation command, using \texttt{{\char'134}cite}.
-This is what is stipulated in the SIGS style specifications.
-No other citation format is endorsed or supported.
-
-\subsection{Tables}
-Because tables cannot be split across pages, the best
-placement for them is typically the top of the page
-nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \textbf{table} to enclose the table's contents and
-the table caption.  The contents of the table itself must go
-in the \textbf{tabular} environment, to
-be aligned properly in rows and columns, with the desired
-horizontal and vertical rules.  Again, detailed instructions
-on \textbf{tabular} material
-is found in the \textit{\LaTeX\ User's Guide}.
-
-Immediately following this sentence is the point at which
-Table 1 is included in the input file; compare the
-placement of the table here with the table in the printed
-dvi output of this document.
-
-\begin{table}
-\centering
-\caption{Frequency of Special Characters}
-\begin{tabular}{|c|c|l|} \hline
-Non-English or Math&Frequency&Comments\\ \hline
-\O & 1 in 1,000& For Swedish names\\ \hline
-$\pi$ & 1 in 5& Common in math\\ \hline
-\$ & 4 in 5 & Used in business\\ \hline
-$\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-\hline\end{tabular}
-\end{table}
-
-To set a wider table, which takes up the whole width of
-the page's live area, use the environment
-\textbf{table*} to enclose the table's contents and
-the table caption.  As with a single-column table, this wide
-table will ``float" to a location deemed more desirable.
-Immediately following this sentence is the point at which
-Table 2 is included in the input file; again, it is
-instructive to compare the placement of the
-table here with the table in the printed dvi
-output of this document.
-
-
-\begin{table*}
-\centering
-\caption{Some Typical Commands}
-\begin{tabular}{|c|c|l|} \hline
-Command&A Number&Comments\\ \hline
-\texttt{{\char'134}alignauthor} & 100& Author alignment\\ \hline
-\texttt{{\char'134}numberofauthors}& 200& Author enumeration\\ \hline
-\texttt{{\char'134}table}& 300 & For tables\\ \hline
-\texttt{{\char'134}table*}& 400& For wider tables\\ \hline\end{tabular}
-\end{table*}
-% end the environment with {table*}, NOTE not {table}!
-
-\subsection{Figures}
-Like tables, figures cannot be split across pages; the
-best placement for them
-is typically the top or the bottom of the page nearest
-their initial cite.  To ensure this proper ``floating'' placement
-of figures, use the environment
-\textbf{figure} to enclose the figure and its caption.
-
-This sample document contains examples of \textbf{.eps} files to be
-displayable with \LaTeX.  If you work with pdf\LaTeX, use files in the
-\textbf{.pdf} format.  Note that most modern \TeX\ system will convert
-\textbf{.eps} to \textbf{.pdf} for you on the fly.  More details on
-each of these is found in the \textit{Author's Guide}.
-
+\par
+In this paper, we propose a personalized time management bot for students.
+\par
+Students need to focus on important tasks such as their coursework and studies and leave the lesser menial tasks such as making daily time-tables to be automated for them. Today, it is a world of personal interactive assistants and according to Gartner\'s report\cite{planner1}, 85\% of customer interactions will be managed without a human by 2020. So we propose to develop a chatbot that is able to assist the user in scheduling a wide range of day-to-day tasks which may include classes, assignments, project meetings, discussions and readings to name a few. The application we are proposing is a chatbot interface which will take in all of this information as input from students to help them manage their time efficiently. 
+\par
+Also, in universities, students are involved in many group activities, and scheduling these meet-ups are often challenging due to conflicting schedules. They take up a lot of time and lead to hassles. So, having a collaborative approach is needed. The bot we propose, will automate this scheduling conundrum by suggesting meeting times based on common availability of the team. To maintain the privacy of the users' time, the system will suggest schedules only if all the members of the group have provided permission to the system to read their schedule.
+\par
+The motive of our work is to develop a Chatbot with which a user can communicate, provide data, ask for change in schedule, etc. The bot generates schedules on a weekly or biweekly basis as per user preference. The user requests a set of tasks every week and also sets the priority to each of them. As per the user preference, the bot will generate an appropriate schedule taking into account all of the details. Further, this generated schedule may be exported to Google Calendar for easy access across all the devices.
+\par
+We will host our system on Amazon Web Services and the user data will be stored on MongoDB. Amazon Web Services will provide scalability and reliability  to our system, and security to users' data. The user details will be stored as objects on the NoSQL MongoDB environment making it convenient to access the details of the user who is logged in without any  requirement of costly join operations which would have been needed in case of relational databases. Also storing user data in tables might lead to redundancy and lot of NULL data. Hence, we decided to use MongoDB as our database system.
+\par
+To provide a gist of what the bot does:
+\begin{itemize}
+\par
+  \item Accept information about classes, assignments, projects, etc. from the user
+  \item Generate a schedule for the user based on input
+  \item Organize project meetings based on availability of all members
+  \item Give the Student the option to add the generated schedule to Google calendar
+\end{itemize}
 \begin{figure}
+\includegraphics[scale = 0.36]{ActivityDiagram}
 \centering
-\includegraphics{fly}
-\caption{A sample black and white graphic.}
+\caption{Activity Diagram}
 \end{figure}
 
-\begin{figure}
+\section{Motivation}
+A major problem in students life is managing homeworks, projects, interviews, meetings etc. and still get some free time. Our study revealed that majority of survey respondents (77\%) want an application/bot which generates a schedule for them. However, a lot of people (74\%) don't use any calendar for organizing their day. This shows us that people want an application for a functionality (generating a time-table with time-wise task distributions) which other calendars don't provide. Hence, we came up with this idea to fulfill the users' requirement, by creating an interactive bot which generates schedules (time-tables) for the user and also organizes meeting times for them. This will help the users manage their time efficiently and work productively.
+
+
+
+\section{Literature Review}
+Despite the success of calender tools in organizing and tracking activities, a lot of time is spent by people on managing their time properly. Berry et al.\cite{planner2} came up with PTime, a personalized time management agent which reduces this problem of time management considerably, when it comes to arranging meetings. PTime schedules meetings based on factors like participants, time and locations. Our bot will go a step further and automatically schedule each and every task of a user along with the meetings.
+\par
+The biggest challenges in any task planner are the constraints in schedules and which scheduling method is used.
+\par
+The performance of a scheduling algorithm depends on the following:
+\begin{itemize}
+  \item Constraints in scheduling
+  \item Preemptive tasks
+  \item Penalty for errors in scheduling
+\end{itemize}
+\par
+Traditional algorithms face a lot of problems when it comes to preemptive scheduling. For example, schedule quality of FCFS scheduling algorithm is highly sensitive to the preemption strategy used. Schwiegelshohn et al.\cite{planner3} demonstrated that by doing certain improvements in FCFS it can be better than any of the other preemptive algorithms but the parameter settings and efficiency depends heavily on the workload. As our task scheduler deals with multiple tasks which can arrive at any time, using FCFS might lead to compromising efficient task scheduling as our workload itself is dynamic in nature.
+\par
+After reviewing some papers we came to the conclusion that the algorithm implemented by L. J. Wilkerson et al.\cite{planner4} will be the most effective algorithm for our task scheduler. The authors have assumed that the tasks are independent and simultaneously available for scheduling. The criterion used to judge the efficiency of the scheduling is the total tardiness of the task set. A task contributes to tardiness if it is completed after its due date, otherwise it contributes 0 to the level of tardiness.The decision rule does not strictly follow earliest deadline first or shortest task first strategy, but it is a combination of both. When comparing two tasks, it schedules the task which has the earlier deadline. If the task which has earlier deadline has processing time which contributes to tardiness, that is if it crosses both the deadlines, then the shorter task is executed first.
+
+
+
+
+\section{Use Case}
+Our system has just one actor i.e. the User of the system. The User has a variety of use cases, as follows - 
+% to fill in a form at the start of every semester to add the fixed tasks over the semester such as classes and assignments. The User can perform various functions like - Add a new task to be included in the schedule, Generate schedule, Make schedule final, Schedule a meeting with other users. If the User is happy with the generated schedule, he has an option of adding the entries to Google Calendar. Otherwise, he can modify the schedule to reflect the changes desired.
+\begin{enumerate}
+\item Fill form for details - Whenever the user starts a new cycle such as a new semester, he/she will have to fill a form with all the fixed tasks for that cycle.
+\item Add new task - This functionality will be present to allow the user to add any tasks such as project group or other meetings, which can change over time due to various unforeseen reasons.
+\item Generate schedule - When the user is ready after filling in the tasks, he/she can generate the schedule for the week.
+\item Add to calendar - If the user is happy with the generated schedule, he/she would get an option to add all the events to Google Calendar.
+\item Modify schedule - If the user is not completely happy with the generated schedule, he/she can modify that portion of the schedule he/she is not happy with.
+\item Check user availability - This functionality will allow the user to request other users to share their availability, for setting up a meeting with them. After the other users approve this request, a common free time between the users will be displayed.
+\item Schedule a meeting - With this functionality, the user can decide which of the common available time slots obtained from the 'Check user availability' use case is the best for the meeting and will then finalize the meeting.
+\end{enumerate}
+\begin{figure}[!htbp]
+\includegraphics[scale = 0.32]{Use_Case_Diagram}
 \centering
-\includegraphics[height=1in, width=1in]{fly}
-\caption{A sample black and white graphic
-that has been resized with the \texttt{includegraphics} command.}
+\caption{Use Case Diagram of the system}
+% \vskip -6pt
 \end{figure}
+\FloatBarrier
 
-
-As was the case with tables, you may want a figure
-that spans two columns.  To do this, and still to
-ensure proper ``floating'' placement of tables, use the environment
-\textbf{figure*} to enclose the figure and its caption.
-and don't forget to end the environment with
-{figure*}, not {figure}!
-
-\begin{figure*}
+\section{Survey}
+We took a survey to find out how people are tackling issues of time management and whether they need such a product or not. The questions which we asked are as follows:
+\begin{enumerate}
+  \item \textbf{How often do you face difficulties in completing tasks because of not being able to manage time properly?}
+  \par
+  The purpose of this question was to understand if the people face difficulties in time management. 
+  \par
+  From the survey, the results tells us that there are not many people who do not experience the problem of task completion due to ineffective time management, so our bot might help to solve this problem.
+\begin{figure}[!htbp]
+\includegraphics[scale = 0.5]{Difficulty}
 \centering
-\includegraphics{flies}
-\caption{A sample black and white graphic
-that needs to span two columns of text.}
-\end{figure*}
-
-
-\begin{figure}
-\centering
-\includegraphics[height=1in, width=1in]{rosette}
-\caption{A sample black and white graphic that has
-been resized with the \texttt{includegraphics} command.}
-\vskip -6pt
+\caption{Response for Question 1}
+% \vskip -6pt
 \end{figure}
+  \item \textbf{Do you face an issue to set up project (or other) meetings due to conflicting schedules?}
+  \par
+  The purpose of this question so that we could evaluate the need of collaborative scheduling methods. 
+  \par
+  The results suggest that people do face the issue of setting up meetings as their schedules conflict. Hence, indicating a need of a collaborative personal scheduler.  
+\begin{figure}[!htbp]
+	
+    \includegraphics[scale = 0.5]{Meeting}
+\centering
+\caption{Response for Question 2}
+\end{figure}
+  \item \textbf{How much do you rely on Google Calendar (or similar) for planning your day-to-day tasks?}
+  \par 
+  This question was to understand the percentage of people depending on Calendar applications for daily use.
+  \par
+  This result tell us that people do not rely on calendar applications for planning their activities.But the following question (Q4) tells us that they do want a software which makes schedule for them.
+    \begin{figure}[!htbp]
+\includegraphics[scale = 0.3]{Calendar}
+\centering
+\caption{Response for Question 3}
+% \vskip -6pt
+\end{figure}
+  \item \textbf{Do you feel the need for a software which makes a weekly schedule for you taking into account your pending tasks and preferences?}
+  \par
+  The results of this question showed us that more than three-fourth of the population need an application that helps the user. 
+    \begin{figure}[!htbp]
+\includegraphics[scale = 0.5]{WantApp}
+\centering
+\caption{Response for Question 4}
+% \vskip -6pt
+\end{figure}
+\end{enumerate}
+\subsection*{Survey Conclusion}
+\par
+Based on the 92 responses we got from our survey we can conclude that a personalized time management bot will be very helpful for the people. Most of the respondents do face a problem of completing tasks efficiently due to lack of proper time management. Using a bot which will schedule tasks for the individual will help with proper management of tasks and also save the user's time as there is no need to schedule tasks manually. The bot will also take care of meeting scheduling which is hassle for some of the respondents. The survey tells us that not many people rely on calendar applications like Google Calendar for task scheduling but would like to use a software like our bot. From this result we can conclude that people will start using softwares similar to calendar applications for task scheduling if there are more important features like dynamic schedule generation . 
 
-\subsection{Theorem-like Constructs}
-Other common constructs that may occur in your article are
-the forms for logical constructs like theorems, axioms,
-corollaries and proofs.  There are
-two forms, one produced by the
-command \texttt{{\char'134}newtheorem} and the
-other by the command \texttt{{\char'134}newdef}; perhaps
-the clearest and easiest way to distinguish them is
-to compare the two in the output of this sample document:
 
-This uses the \textbf{theorem} environment, created by
-the\linebreak\texttt{{\char'134}newtheorem} command:
-\newtheorem{theorem}{Theorem}
-\begin{theorem}
-Let $f$ be continuous on $[a,b]$.  If $G$ is
-an antiderivative for $f$ on $[a,b]$, then
-\begin{displaymath}\int^b_af(t)dt = G(b) - G(a).\end{displaymath}
-\end{theorem}
+\section{Technologies}
+\begin{enumerate}
+  \item \textbf{MongoDB on AWS: } 
+  We plan to use MongoDB\cite{planner5} Amazon Web Services'Database\cite{planner6} for storing user details and their tasks as individual objects.
+  \item \textbf{Dialogflow: } 
+  We plan to use Dialogflow\cite{planner7} for natural language processing in the implementation of the chatbot.
+  \item \textbf{Slack: } 
+  The platform for deploying the chatbot. We can integrate dialogflow with Slack\cite{planner8}.
+  \item \textbf{Python: } 
+  We will use this language for implementing our scheduling algorithm, for the API calls (Google Calendar and Dialogflow) and for establishing connection with AWS MongoDB Database.
+  \item \textbf{Google Calendar API: } 
+  We plan to use this API to provide an option to the users for adding their schedule to a widely used calendar service for easy integration between users.
+\end{enumerate}
 
-The other uses the \textbf{definition} environment, created
-by the \texttt{{\char'134}newdef} command:
-\newdef{definition}{Definition}
-\begin{definition}
-If $z$ is irrational, then by $e^z$ we mean the
-unique number which has
-logarithm $z$: \begin{displaymath}{\log e^z = z}\end{displaymath}
-\end{definition}
+\section{Time-line}
+\begin{enumerate}
+\item \textbf{January 16th} - Read research papers in search of a topic.
 
-Two lists of constructs that use one of these
-forms is given in the
-\textit{Author's  Guidelines}.
- 
-There is one other similar construct environment, which is
-already set up
-for you; i.e. you must \textit{not} use
-a \texttt{{\char'134}newdef} command to
-create it: the \textbf{proof} environment.  Here
-is a example of its use:
-\begin{proof}
-Suppose on the contrary there exists a real number $L$ such that
-\begin{displaymath}
-\lim_{x\rightarrow\infty} \frac{f(x)}{g(x)} = L.
-\end{displaymath}
-Then
-\begin{displaymath}
-l=\lim_{x\rightarrow c} f(x)
-= \lim_{x\rightarrow c}
-\left[ g{x} \cdot \frac{f(x)}{g(x)} \right ]
-= \lim_{x\rightarrow c} g(x) \cdot \lim_{x\rightarrow c}
-\frac{f(x)}{g(x)} = 0\cdot L = 0,
-\end{displaymath}
-which contradicts our assumption that $l\neq 0$.
-\end{proof}
+\item \textbf{January 19th} - Shortlisted and eventually finalized a topic.
 
-Complete rules about using these environments and using the
-two different creation commands are in the
-\textit{Author's Guide}; please consult it for more
-detailed instructions.  If you need to use another construct,
-not listed therein, which you want to have the same
-formatting as the Theorem
-or the Definition\cite{salas:calculus} shown above,
-use the \texttt{{\char'134}newtheorem} or the
-\texttt{{\char'134}newdef} command,
-respectively, to create it.
+\item \textbf{January 21st} - Detailed problem definition developed, modules defined.
 
-\subsection*{A {\secit Caveat} for the \TeX\ Expert}
-Because you have just been given permission to
-use the \texttt{{\char'134}newdef} command to create a
-new form, you might think you can
-use \TeX's \texttt{{\char'134}def} to create a
-new command: \textit{Please refrain from doing this!}
-Remember that your \LaTeX\ source code is primarily intended
-to create camera-ready copy, but may be converted
-to other forms -- e.g. HTML. If you inadvertently omit
-some or all of the \texttt{{\char'134}def}s recompilation will
-be, to say the least, problematic.
+\item \textbf{January 23rd} - Technologies decided, researched scheduling algorithms. 
+
+\item \textbf{January 26th} - Finalized the scheduling algorithm 
+
+\item \textbf{January 28th} - Divided the tasks and started working on the modules.
+
+\item \textbf{January 30th} - Made a demo bot using DialogFlow and designed schema for the database.
+
+\item \textbf{February 1st} - Establishing connection between the bot and MongoDB database, setup the bot and start learning it.
+
+\item \textbf{February 3rd} - Retrieval of data from database as input to the scheduling algorithm.
+
+\item \textbf{February 6th} - Finish learning the bot for our basic model.
+
+\item \textbf{February 10th} - Deployment of basic model which includes primary features like scheduling the tasks given by user. Also, we plan to start testing it after this.
+
+\item \textbf{February 13th} - Start working on the application for additional functionalities suggested in tests or ones previously planned, like meeting scheduling.
+
+\item \textbf{February 17th} - Start training the bot for additional functionalities.
+
+\item \textbf{February 20th} - Start working on the first set of reviews given by users involved in beta testing.
+
+\item \textbf{February 26th} - Complete training the bot which includes all the functionalities.
+
+\item \textbf{February 28th} - Creating test cases for the final testing phase.
+
+\item \textbf{March 7th} - Getting feedback from testing phase. Checking for bugs and thinking about approach and starting to fix the bugs.
+
+\item \textbf{March 10th} - Finalizing the application with the fixes required.
+\end{enumerate}
+
+
+\section{Evaluation Plan}
+As mentioned in the time-line, we intend to deploy a basic prototype by 10th February on Slack. Once deployed, we will test the prototype using Beta testing. We will collect inputs from the testers via Google form which will be prompted at the end. We plan to get our system evaluated by 30-40 testers in the Beta testing phase. 
+\par
+On receiving adequate feedback, we will work on the issues and/or improvements suggested. Also, we have a few functionalities which we plan to add if time permits. Once bug fixing and implementation of additional functionalities is done, we plan to deploy the fully functional prototype for use by the end of the month.
+\begin{figure}[!htbp]
+\includegraphics[scale = 0.4]{EP}
+\centering
+\caption{Evaluation Plan}
+% \vskip -6pt
+\end{figure}
+\begin{enumerate}
+\item \textbf{Security} - Our system is safe from external threats because of AWS security norms.
+\item \textbf{Scalability} - Our system is scalable because of the resources AWS provides.
+\item \textbf{Privacy} - Our system ensures privacy of the user because it does not allow a user to access any other user's schedule/tasks without the other user's permission.
+\item \textbf{Reliability} - Our system will not be reliable since no backup is maintained of the data. If the server goes down or due to some system error data is lost, there will be no way to recover the data.
+\item \textbf{Ease of use} - Our system is easy to use because of the interactive and easy to understand bot interface.
+\end{enumerate}
+\section{Future Scope}
+
+\begin{enumerate}
+\item \textbf{Integrating with the University Portal}
+\par
+Using the University portal, will save the students' time and effort. As the user will not have to enter details such as Courses, Exams and Assignment schedules. By integrating the application with the Portal will enable the Bot to fetch all of these details automatically. 
+\item \textbf{Using Machine Learning for better customization}
+\par
+By applying machine learning techniques, the bot could learn to adjust the time slice assigned for a particular task based on past experience. This could be obtained by learning the time taken by the user to perform a similar task previously.
+
+\item \textbf{Creating a new user: Professor/TA}
+\par
+We can create a new user type, Professor/TA who will decide and set time needed to complete certain tasks like assignments. This will be reflected automatically in the corresponding student users' schedule.
+
+\end{enumerate}
 
 \section{Conclusions}
-This paragraph will end the body of this sample document.
-Remember that you might still have Acknowledgments or
-Appendices; brief samples of these
-follow.  There is still the Bibliography to deal with; and
-we will make a disclaimer about that here: with the exception
-of the reference to the \LaTeX\ book, the citations in
-this paper are to articles which have nothing to
-do with the present subject and are used as
-examples only.
-%\end{document}  % This is where a 'short' article might terminate
+The chatbot will generate a schedule for the student taking into account their deadlines and dependencies between their tasks. Our scheduling algorithm will take into consideration all the details such as classes, assignments, project meetings, discussions, readings, etc of the student. The chatbot will help the user focus on important tasks by automating the scheduling. Furthermore, the chatbot will also assist in collaborative meet-ups as per the user's request. Therefore, helping users in a team to communicate well. 
+At the same time, the bot also makes it easier to access the generated schedule by providing an option to export to Google Calendar.
 
-%ACKNOWLEDGMENTS are optional
-\section{Acknowledgments}
-This section is optional; it is a location for you
-to acknowledge grants, funding, editing assistance and
-what have you.  In the present case, for example, the
-authors would like to thank Gerald Murray of ACM for
-his help in codifying this \textit{Author's Guide}
-and the \textbf{.cls} and \textbf{.tex} files that it describes.
+ 
+\begin{thebibliography}{999}
 
-%
-% The following two commands are all you need in the
-% initial runs of your .tex file to
-% produce the bibliography for the citations in your paper.
-\bibliographystyle{abbrv}
-\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
-% You must have a proper ".bib" file
-%  and remember to run:
-% latex bibtex latex latex
-% to resolve all references
-%
-% ACM needs 'a single self-contained file'!
-%
-%APPENDICES are optional
-%\balancecolumns
-\appendix
-%Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e. the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
-\subsection{Introduction}
-\subsection{The Body of the Paper}
-\subsubsection{Type Changes and  Special Characters}
-\subsubsection{Math Equations}
-\paragraph{Inline (In-text) Equations}
-\paragraph{Display Equations}
-\subsubsection{Citations}
-\subsubsection{Tables}
-\subsubsection{Figures}
-\subsubsection{Theorem-like Constructs}
-\subsubsection*{A Caveat for the \TeX\ Expert}
-\subsection{Conclusions}
-\subsection{Acknowledgments}
-\subsection{Additional Authors}
-This section is inserted by \LaTeX; you do not insert it.
-You just add the names and information in the
-\texttt{{\char'134}additionalauthors} command at the start
-of the document.
-\subsection{References}
-Generated by bibtex from your ~.bib file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the ~.bbl file.  Insert that ~.bbl file into
-the .tex source file and comment out
-the command \texttt{{\char'134}thebibliography}.
-% This next section command marks the start of
-% Appendix B, and does not continue the present hierarchy
-\section{More Help for the Hardy}
-The sig-alternate.cls file itself is chock-full of succinct
-and helpful comments.  If you consider yourself a moderately
-experienced to expert user of \LaTeX, you may find reading
-it useful but please remember not to change it.
-%\balancecolumns % GM June 2007
-% That's all folks!
+\bibitem{planner1}
+  Gartner.com,
+  \emph{ Gartner Customer 360 Summit 2011.} [Online].
+  Retrieved from: \url{http://www.gartner.com/imagesrv/summits/docs/na/customer-360/C360_2011_brochure_FINAL.pdf} [Accessed: 23-Jan-2018].
+  
+\bibitem{planner2}
+  Berry, Pauline, et al.
+  \emph{ Deploying a personalized time management agent.}
+  Proceedings of the fifth international joint conference on Autonomous agents and multiagent systems. ACM, 2006.
+
+\bibitem{planner3}
+  Schwiegelshohn, Uwe, and Ramin Yahyapour.
+  \emph{Analysis of first-come-first-serve parallel job scheduling.}
+SODA. Vol. 98. 1998
+  
+\bibitem{planner4}
+Wilkerson, L. J., and J. D. Irwin.
+  \emph{An improved method for scheduling independent tasks.}
+  AIIE transactions 3.3 (1971): 239-245.
+
+\bibitem{planner5}
+MongoDB Documentation,
+Retrieved from: \url{https://docs.mongodb.com/}
+[Accessed:26-Jan-2018]
+\bibitem{planner6}
+  Amazon Web Services,
+  \emph{MongoDB on AWS} April 2016
+  Retrieved from: \url{https://d0.awsstatic.com/whitepapers/AWS_NoSQL_MongoDB.pdf
+} [Accessed: 26-Jan-2018]
+  \bibitem{planner7}
+   Dialogflow,
+  \emph{Dialogflow Reference Documentation}
+  Retrieved from: \url{https://dialogflow.com/docs/reference/agent/}[Accessed: 26-Jan-2018]
+   \bibitem{planner8}
+   Slack,
+  \emph{Getting started with the Slack API}
+  Retrieved from: \url{https://api.slack.com/getting-started}[Accessed: 26-Jan-2018]
+
+
+\end{thebibliography}
+
 \end{document}
