@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 
-def db_connect():
+def db_connect(db_name):
     client = MongoClient('localhost', 27017)  #host, port
-    db = client.SE
+    db = client[db_name]
     return db
 
-db_connect()
+print(db_connect('SE'))
