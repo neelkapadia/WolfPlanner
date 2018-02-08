@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from db_connection import db_connect
 from datetime import datetime
 # from datetime import time
-
+from pprint import pprint as p
 
 db = db_connect('SE')
 
@@ -53,4 +53,14 @@ def db_insert():
 		}
 	)
 
-db_insert()
+def db_retrieve():
+	x = db.student.find_one(
+		{
+			'_id': 200199811
+		}
+		)
+	print(x[0])
+
+
+#db_insert()
+db_retrieve()
