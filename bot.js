@@ -50,7 +50,7 @@ var sessionMap = {}
     });
 
     request.on('response', function (response) {
-        // console.log(response);
+        console.log(response.result.action);
         if (response.result.actionIncomplete) {
 
             bot.reply(message, response.result.fulfillment.speech);
@@ -58,55 +58,9 @@ var sessionMap = {}
 
             switch (response.result.action) {
 
-                case 'user.initiation':
-
-                   if(userIdNameMap[message.user] == undefined) {
-                     getSlackUsers()
-                   }
-                   bot.reply(message, "Hello, " + userIdNameMap[message.user])
-
+                case 'bro':
+                    bot.reply(message, "Hey man!  How's it going?")
                    break;
-
-                case 'greeting.initial':
-                    bot.reply(message, response.result.fulfillment.speech);
-                    break;
-
-                case 'user.reply':
-                    bot.reply(message, response.result.fulfillment.speech);
-                    break;
-
-                // case 'find.cases.judge.last.name':
-                //     var lastName = response.result.parameters.any;
-                //     lastName = fixCase(lastName)
-                //     search.searchJudgeByLastName(bot, message, response, lastName);
-                //     //bot.reply(message, response.result.fulfillment.speech);
-                //     break;
-
-                // case 'find.cases.judge.first.last.name':
-                //     var firstName = response.result.parameters.any;
-                //     var lastName = response.result.parameters.any1;
-                //     firstName = fixCase(firstName)
-                //     lastName = fixCase(lastName)
-                //     console.log("updated name:" + firstName)
-                //     search.searchJudgeByFirstAndLastName(bot, message, response, firstName, lastName);
-                //     break;
-                 case 'bot.help':
-                     bot.reply(message, possibleFunctions);
-                     break;
-
-                case 'action.exit':
-                    bot.reply(message, response.result.fulfillment.speech);
-                    sessionMap[message.user] = message.user;
-                    deleteContextsForUser(message.user)
-                    break;
-
-                case 'conversation.end':
-                    if(userIdNameMap[message.user] == undefined) {
-                        getSlackUsers()
-                    }
-                     bot.reply(message, "Good Bye, " + userIdNameMap[message.user])
-
-                    break;
 
                 default:
 
