@@ -64,9 +64,9 @@ def db_retrieve(db_name, user_id):
 			'_id': user_id
 		}
 	)
-	pprint(record)
+	return record
 
 
 # db_insert('SE')
-db_retrieve('SE', 200200389)
+# pprint(db_retrieve('SE', 200200389))
 
