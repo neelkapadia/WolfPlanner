@@ -22,7 +22,7 @@ for day in range(1,8):
 
 # Adding fixed tasks to each day to find free time
 for record in student_record['fixedTasks']:
-	print(record)
+	# print(record)
 	# Keeping as a loop for now (Can be changed to make more efficient)
 	for day in record['days']:
 		# bisect_right since even if there is an endTime inside the array which corresponds to the startTime exactly,
@@ -38,6 +38,6 @@ for record in student_record['fixedTasks']:
 		free_time[day].insert(pos, record['startTime'])
 		free_time[day].insert(pos+1, record['endTime'])
 
-		print('After -', ), free_time[day], 'hii'
+		# print('After -', ), free_time[day], 'hii'
 
 pprint(free_time)
