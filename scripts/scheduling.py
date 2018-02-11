@@ -6,7 +6,8 @@ import bisect
 
 db_name = 'SE'
 collection_name = 'student'
-student_id = 200200389
+# student_id = 200200389
+student_id = 200199811
 
 student_record = db_scripts.db_retrieve(db_name, collection_name, student_id)
 
@@ -16,7 +17,7 @@ free_time = defaultdict(list)
 
 # Set the entire day window for every day from 8AM to 10PM
 # Since days are stored from 1 to 7 - 1 being Monday and 7 being Sunday
-for day in range(1,8):
+for day in '1234567':
 	free_time[day].append(datetime(1,1,1,8,0,0))
 	free_time[day].append(datetime(1,1,1,22,0,0))
 
@@ -41,3 +42,6 @@ for record in student_record['fixedTasks']:
 		# print('After -', ), free_time[day], 'hii'
 
 pprint(free_time)
+
+# db_scripts.db_update('SE', 'student', 200200389, 'freeTime', free_time)
+db_scripts.db_update('SE', 'student', 200199811, 'freeTime', free_time)
