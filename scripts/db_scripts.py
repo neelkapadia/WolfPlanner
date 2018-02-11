@@ -8,9 +8,9 @@ def db_connect(db_name):
 	db = client[db_name]
 	return db
 
-def db_insert(db_name):
+def db_insert(db_name, collection_name):
 	db = db_connect(db_name)
-	db.student.insert(
+	db[collection_name].insert(
 		{
 			'_id': 200199811,
 			'name': "Neel Kapadia",
@@ -36,21 +36,21 @@ def db_insert(db_name):
 					'_id': "CSC510",
 					'startTime': datetime(1, 1, 1, 18, 00, 00),
 					'endTime': datetime(1, 1, 1, 19, 15, 00),
-					'days': ["tuesday", "thursday"]
+					'days': [2, 4]
 				},
 				{
 					'name': "DBMS",
 					'_id': "CSC540",
 					'startTime': datetime(1, 1, 1, 13, 30, 00),
-					'endTime': datetime(1, 1, 1, 4, 45, 00),
-					'days': ["monday", "wednesday"]
+					'endTime': datetime(1, 1, 1, 14, 45, 00),
+					'days': [1, 3]
 				},
 				{
 					'name': "STDM",
 					'_id': "CSC591-013",
 					'startTime': datetime(1, 1, 1, 10, 15, 00),
 					'endTime': datetime(1, 1, 1, 11, 30, 00),
-					'days': ["monday", "wednesday"]
+					'days': [1, 3]
 				}
 			]
 		}
@@ -66,6 +66,6 @@ def db_retrieve(db_name, collection_name, user_id):
 	)
 	return record
 
-
-db_insert('SE')
-# pprint(db_retrieve('SE', 'student', 200200389))
+if __name__ == '__main__':
+	db_insert('SE', 'student')
+	# pprint(db_retrieve('SE', 'student', 200200389))
