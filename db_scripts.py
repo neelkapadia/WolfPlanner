@@ -57,9 +57,9 @@ def db_insert(db_name):
 	)
 
 
-def db_retrieve(db_name, user_id):
+def db_retrieve(db_name, collection_name, user_id):
 	db = db_connect(db_name)
-	record = db.student.find_one(
+	record = db[collection_name].find_one(
 		{
 			'_id': user_id
 		}
@@ -67,6 +67,5 @@ def db_retrieve(db_name, user_id):
 	return record
 
 
-# db_insert('SE')
-# pprint(db_retrieve('SE', 200200389))
-
+db_insert('SE')
+# pprint(db_retrieve('SE', 'student', 200200389))
