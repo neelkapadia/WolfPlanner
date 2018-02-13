@@ -4,13 +4,10 @@ import json
 from bson import json_util
 
 #uri = "mongodb://rtrgntsg:menzies@ds231758:56789"
-uri = "mongodb://rtrgntsg:menzies@ds231758.mlab.com:31758/se"
-
+#uri = "mongodb://rtrgntsg:menzies@ds231758.mlab.com:31758/se"
 #client = MongoClient(uri, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
 
 client = MongoClient("ds231758.mlab.com", 31758 ,connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
-
-print(client)
 
 db = client['se']
 
@@ -63,9 +60,6 @@ json_details = json.dumps(
 			]
 		}, default = json_util.default)
 
-print(json_details)
 
 d = json.loads(json_details)
 db.student.insert_one(d)
-
-#print(client)
