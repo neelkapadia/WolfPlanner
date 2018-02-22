@@ -47,21 +47,21 @@ def db_insert(db_name, collection_name, id, slackId, email, name, username, pass
 					'_id': "CSC510",
 					'startTime': datetime(1, 1, 1, 18, 00, 00),
 					'endTime': datetime(1, 1, 1, 19, 15, 00),
-					'days': ["tuesday", "thursday"]
+					'days': ["2", "4"]
 				},
 				{
 					'name': "DBMS",
 					'_id': "CSC540",
 					'startTime': datetime(1, 1, 1, 13, 30, 00),
 					'endTime': datetime(1, 1, 1, 4, 45, 00),
-					'days': ["monday", "wednesday"]
+					'days': ["1", "3"]
 				},
 				{
 					'name': "STDM",
 					'_id': "CSC591-013",
 					'startTime': datetime(1, 1, 1, 10, 15, 00),
 					'endTime': datetime(1, 1, 1, 11, 30, 00),
-					'days': ["monday", "wednesday"]
+					'days': ["1", "3"]
 				}
 			]
 		}, default=string_converter)
@@ -105,6 +105,6 @@ email = 'sgshetty@ncsu.edu'
 name = 'Sainag Ganesh Shetty'
 
 if __name__ == "__main__":
-	# db_insert(db_name, unityId, slackId, email, name, username, password)
-	pprint(db_retrieve(db_name, collection_name, unityId, username, password))
+	db_insert(db_name, collection_name, unityId, slackId, email, name, username, password)
+	# pprint(db_retrieve(db_name, collection_name, unityId, username, password))
 	# db_update(db_name, collection_name, user_id, record_key, record_val, username, password)
