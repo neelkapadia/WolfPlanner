@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2dac0c3-e58c-4106-89d5-a077d4a761cb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/db.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/db_scripts.py" afterPath="$PROJECT_DIR$/scripts/db_scripts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/scheduling.py" afterPath="$PROJECT_DIR$/scripts/scheduling.py" />
-    </list>
+    <list default="true" id="f2dac0c3-e58c-4106-89d5-a077d4a761cb" name="Default" comment="" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +13,7 @@
       <file leaf-file-name="scheduling.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/scheduling.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
+            <state relative-caret-position="810">
               <caret line="54" column="20" lean-forward="false" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="20" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
@@ -29,20 +25,8 @@
       <file leaf-file-name="db_scripts.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/db_scripts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_local.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/db_local.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="186">
+              <caret line="90" column="33" lean-forward="true" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -578,7 +562,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scheduling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
+        <state relative-caret-position="810">
           <caret line="54" column="20" lean-forward="false" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="20" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
@@ -598,8 +582,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/db_scripts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
+        <state relative-caret-position="186">
+          <caret line="90" column="33" lean-forward="true" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
