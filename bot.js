@@ -4,8 +4,8 @@ var Slack = require('slack-node')
 var request = require('request')
 var apiai = require('apiai');
 var app = apiai('5ed306a83fad4a698fb89c289008b4fc');
-var config = require('./config.js');
-var getuser = require('./getuser.js');
+var config = require('./utilities/config.js');
+var getuser = require('./utilities/getuser.js');
 
 var slackUsersList =[]
 var userIdNameMap = {}
