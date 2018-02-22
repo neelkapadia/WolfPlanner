@@ -4,14 +4,20 @@ from datetime import datetime
 from collections import defaultdict
 import bisect
 
-db_name = 'SE'
+# db_name = 'SE'
+# collection_name = 'student'
+# # student_id = 200200389
+# student_id = 200199811
+
+db_name = 'se'
+username = 'rtrgntsg'
+password = "menzies"
 collection_name = 'student'
-# student_id = 200200389
-student_id = 200199811
+unityId = 'sgshetty'
 
-student_record = db_scripts.db_retrieve(db_name, collection_name, student_id)
+student_record = db_scripts.db_retrieve(db_name, collection_name, unityId)
 
-pprint(student_record['fixedTasks'])
+# pprint(student_record['fixedTasks'])
 
 free_time = defaultdict(list)
 
@@ -44,4 +50,6 @@ for record in student_record['fixedTasks']:
 pprint(free_time)
 
 # db_scripts.db_update('SE', 'student', 200200389, 'freeTime', free_time)
-db_scripts.db_update('SE', 'student', 200199811, 'freeTime', free_time)
+
+
+db_scripts.db_update(db_name, collection_name, unityId, 'freeTime', free_time)
