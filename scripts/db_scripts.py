@@ -93,7 +93,7 @@ def db_update(db_name, collection_name, user_id, record_key, record_val, usernam
 	})
 
 
-# For local calls
+# For local calls (for testing)
 db_name = 'se'
 collection_name = 'student'
 username = 'rtrgntsg'
