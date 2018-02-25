@@ -36,24 +36,66 @@ def generate_free_time(student_record):
 			free_time[day].insert(pos, start_time)
 			free_time[day].insert(pos+1, end_time)
 
-	pprint(free_time)
-	# Update the student record with the free time slot
-	# db_scripts.db_update(db_name, collection_name, unityId, 'freeTime', free_time, username, password)
+			##new change
+			##algorithm
+			#insert start times as 30 mins earlier than stated and end time as 30 mins later than stated (for buffer)
+			#for example, if start time of STDM is 10:15 then insert 9:45 and if end time is 11:30 then insert 12
+			#keep buffer in free time array
 
+	##new change
+	db_update('SE', 'student', student_record['_id'], 'freeTime', free_time, 'rtrgntsg', 'menzies')
+
+
+##new change
 def generate_schedule(student_record):
 	if not 'freeTime' in student_record:
 		generate_free_time(student_record)
-		query = json.dumps({'_id': unityId})
+		query = json.dumps({'_id': "sgshetty"})
 		query = json.loads(query)
-		student_record = db.student.find_one(query)
+		student_record = db.student.find(query)
+	
+	tasks = student_record['tasks']
+	schedule = student_record['freeTime']
 
-	# Generate schedule using freeTime here
 
-	# print(student_record['name'])
-	list = student_record['tasks']
-	pprint(list)
-	# return schedule or student_record
-	return
+
+	##algorithm
+	#sort tasks based on deadline and if conflicting then select the one with lesser hours
+	#tasks = sorted(tasks)
+	##add a completed = false attribute in task
+
+	##design doubt: if l = [1,2,5,6,7], can i add [3,4] in betwwen the current list? -> l = [1,2,3,4,5,6,7]?? 
+	##If yes then we just have to add the start time and end time of the time slice provided to the task in the schedule array.
+	##If no then it will be better to implement free_time as a linked list
+
+	##new change
+	for task in tasks:
+		rem = task['duration']
+		curr_date = datetime.now()
+		##check format of free time for days, check for monday and if monday if over then go to tuesday! I guess we will need 3 for loops
+		for i in range(0,len(schedule) - 1):
+			curr_date = schedule[i]
+			if curr_date > task['deadline']:
+				##abort task scheduling and tell the user that he has to finish it in the whatever time slice has been assigned 
+				##(i.e. if duration = 4 hrs but after assigning a time slice of 2, the deadline is crossed then tell him to do it in 2
+			if task['startTime'] < schedule[i+1] :
+				##check how to take difference in dates
+				diff = schedule[i-1] - schedule[i]
+				if diff >= 1:
+					if diff >= rem:
+						##add task in this time frame
+						##mark task as completed
+					else:
+						rem = rem - diff
+						##add task in this time frame
+						##do not mark task as completed
+
+	##Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduling again
+	##by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
+
+	##schedule now contains all the tasks and fixed_tasks scheduled according to the time slots
+	##print the schedule and we are done!
+
 
 # mlab DB details
 db_name = 'se'
