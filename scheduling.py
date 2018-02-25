@@ -1,10 +1,11 @@
-from scripts import db_scripts
-from pprint import pprint
-from datetime import datetime
-from collections import defaultdict
 import bisect
-from pymongo import MongoClient
 import json
+from collections import defaultdict
+from datetime import datetime
+from pprint import pprint
+
+import db_scripts
+
 
 def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
