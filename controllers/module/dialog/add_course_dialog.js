@@ -1,6 +1,6 @@
 var dialog = {
   title: 'Please add your course',
-  callback_id: 'add_review_dialog',
+  callback_id: 'add_course_dialog',
   submit_label: 'Submit',
   submit_label: 'Submit',
   elements: [
@@ -78,4 +78,4 @@ var dialog = {
   ],
 }
 
-module.exports= {add_review_dialog: dialog};
+module.exports= {add_course_dialog: dialog};

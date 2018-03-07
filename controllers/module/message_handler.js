@@ -1,18 +1,7 @@
-require('dotenv').config({path: '/'})
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const qs = require('querystring');
 const dialogs = require('./dialog.js');
 const prompts = require('./prompt.js');
 const action = require('./action');
-const user = require('./user');
-
-
-var Botkit = require('botkit');
-
-var os = require('os');
-
+const User = require('./user');
 
 module.exports = {
   handle: function (req,res) {
@@ -31,7 +20,7 @@ module.exports = {
                 {
                     token: process.env.slackToken,
                     trigger_id,
-                    dialog: JSON.stringify(dialogs.add_review_dialog),
+                    dialog: JSON.stringify(dialogs.add_course_dialog),
                 }
                 action.open_dialog(dialog, res);
             }
@@ -39,11 +28,12 @@ module.exports = {
                 action.send_message(payload.channel.id, 'Alrighty boy!', []);
             }
         } 
-        else if (callback_id == 'add_review_dialog')
+        else if (callback_id == 'add_course_dialog')
         {
             // TODO Store review and rating into database
             //UserModel.give_review(payload);
-            console.log(payload)
+            User.add_course(payload)
+            //console.log(payload)
             action.send_message(payload.channel.id, payload.submission.name + " has been added", []);
             res.send('');
 
