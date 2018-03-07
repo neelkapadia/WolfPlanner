@@ -1,9 +1,7 @@
 from pymongo import MongoClient
 from datetime import datetime
 import json
-from pprint import pprint
-# from bson import json_util
-
+# import pickle
 
 # uri = "mongodb://rtrgntsg:menzies@ds231758:56789"
 # uri = "mongodb://rtrgntsg:menzies@ds231758.mlab.com:31758/se"
@@ -97,18 +95,18 @@ def db_update(db_name, collection_name, unityId, record_key, record_val, usernam
 	})
 
 
-# For local calls (for testing)
-db_name = 'se'
-collection_name = 'student'
-username = 'rtrgntsg'
-password = "menzies"
+# Details not needed here as everything necessary is being passed as parameters
 
-unityId = 'sgshetty'
-slackId = 'U90JUGPU1'
-email = 'sgshetty@ncsu.edu'
-name = 'Sainag Ganesh Shetty'
-
-if __name__ == "__main__":
-	db_insert(db_name, collection_name, unityId, slackId, email, name, username, password)
-	# pprint(db_retrieve(db_name, collection_name, unityId, username, password))
-	# db_update(db_name, collection_name, user_id, record_key, record_val, username, password)
+# # mlab DB details (from serialized object)
+# pkl_file = open('.cred.pkl', 'rb')
+# data = pickle.load(pkl_file)
+#
+# db_name = data['db_name']
+# collection_name = data['collection_name']
+# username = data['username']
+# password = data['password']
+#
+# unityId = 'sgshetty'
+# slackId = 'U90JUGPU1'
+# email = 'sgshetty@ncsu.edu'
+# name = 'Sainag Ganesh Shetty'
