@@ -20,7 +20,7 @@ var dialog = {
     label: "Days",
     name: "days",
     type: "text",
-    placeholder: "M, W, F"
+    placeholder: "M,T,W,Th,F"
   }, 
   {
     label: "Time(Start)",

@@ -33,7 +33,7 @@ module.exports = {
             // TODO Store review and rating into database
             //UserModel.give_review(payload);
             User.add_course(payload)
-            //console.log(payload)
+            // console.log(payload)
             action.send_message(payload.channel.id, payload.submission.name + " has been added", []);
             res.send('');
 

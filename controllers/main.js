@@ -92,6 +92,10 @@ module.exports = function(controller) {
           }
             console.log(courseList)
             bot.reply(message, courseList)
+            if(courseList.length == 0){
+                bot.reply(message, "No courses to view")
+                bot.reply(message, prompts.add_course_prompt);
+            }
         });
     });
 };
