@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var debug = require('debug')('botkit:webserver');
+const message_handler =  require('../controllers/module/message_handler');
 
 module.exports = function(controller) {
 
@@ -18,6 +19,10 @@ module.exports = function(controller) {
 
     });
 
+    webserver.post('/message', (req, res) =>
+    {
+      message_handler.handle(req, res);
+    });
     // import all the pre-defined routes that are present in /components/routes
     var normalizedPath = require("path").join(__dirname, "routes");
     require("fs").readdirSync(normalizedPath).forEach(function(file) {
