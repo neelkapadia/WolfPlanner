@@ -78,26 +78,21 @@ module.exports = function(controller) {
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
-        // User.fetch_user(message.user,function(err,uid){
-        //   if(err){
-        //     console.log(err);
-        //     return err;
-        //   }
-        //     console.log(uid)
-        //     bot.reply(message, uid)
-        // });
     });
-    controller.hears(['^add courses$', '^courses$', '^add courses$'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^add courses$', '^courses$', '^add course$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding courses")
-        controller.storage.users.get(message.user, function(err, user) {
-            if(user.courses){
-                bot.reply(message, user.courses)
-            }
-            else{
-                bot.reply(message, "No courses added yet!")
-            }
-        });
+        
         bot.reply(message, prompts.add_course_prompt);
+    });
+    controller.hears(['^view courses$'], 'direct_message,direct_mention', function(bot, message) {
+        User.fetch_courses(message.user,function(err,courseList){
+          if(err){
+            console.log(err);
+            return err;
+          }
+            console.log(courseList)
+            bot.reply(message, courseList)
+        });
     });
 };
 
