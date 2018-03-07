@@ -17,11 +17,11 @@ def db_connect(db_name, username, password):
 	return db
 
 
-def db_insert(db_name, collection_name, id, slackId, email, name, username, password):
+def db_insert(db_name, collection_name, unityId, slackId, email, name, username, password):
 	db = db_connect(db_name, username, password)
 	json_details = json.dumps(
 		{
-			'_id': id,
+			'_id': unityId,
 			'slackId': slackId,
 			'email': email,
 			'name': name,
@@ -68,23 +68,27 @@ def db_insert(db_name, collection_name, id, slackId, email, name, username, pass
 	entry = json.loads(json_details)
 	db[collection_name].insert_one(entry)
 
+
 def string_converter(o):
 	if isinstance(o, datetime):
 		return o.__str__()
 
-def db_retrieve(db_name, collection_name, id, username, password):
+
+# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
+def db_retrieve(db_name, collection_name, unityId, username, password):
 	db = db_connect(db_name, username, password)
 	query = json.dumps({
-		'_id': id
+		'_id': unityId
 	})
 	query = json.loads(query)
 
 	return db[collection_name].find_one(query)
 
-def db_update(db_name, collection_name, user_id, record_key, record_val, username, password):
+
+def db_update(db_name, collection_name, unityId, record_key, record_val, username, password):
 	db = db_connect(db_name, username, password)
 	db[collection_name].update_one({
-		'_id': user_id
+		'_id': unityId
 	},
 	{
 		'$push':{
