@@ -91,7 +91,7 @@ def db_update(db_name, collection_name, unityId, record_key, record_val, usernam
 		'_id': unityId
 	},
 	{
-		'$push':{
+		'$set':{
 			record_key:record_val
 		}
 	})

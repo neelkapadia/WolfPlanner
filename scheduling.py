@@ -12,17 +12,6 @@ def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
 
-def call_query(db_name, username, password, unityId):
-	db = db_scripts.db_connect(db_name, username, password)
-	query = json.dumps({
-		'_id': unityId
-	})
-	print('Query -\n', query, '\n')
-
-	query = json.loads(query)
-	return db.student.find_one(query)
-
-
 def generate_free_time(student_record):
 	free_time = defaultdict(list)
 	# Set the entire day window for every day from 8AM to 10PM
@@ -79,6 +68,8 @@ def generate_schedule(student_record, unityId, day_date):
 	# schedule should be the free time array for the ith day. CHECK!!!
 	# Initially free_time is the same as the original. As tasks get added, free_time reduces.
 	free_time = student_record['freeTime']
+	print("Free Time -")
+	pprint(free_time)
 	# The smallest quantum of time in which the student is willing to work
 	window_size = 1
 	# The schedule entry to be added to the student_record
@@ -99,6 +90,8 @@ def generate_schedule(student_record, unityId, day_date):
 	##If yes then we just have to add the start time and end time of the time slice provided to the task in the schedule array.
 
 	# new change
+	print("TASK and REMAINING TIME")
+
 	for task in sorted_tasks:
 		# rem_time = relativedelta()
 		# rem_time.hours = task['duration']
@@ -112,12 +105,16 @@ def generate_schedule(student_record, unityId, day_date):
 		# # Debugging
 		# print(rem_time, curr_date, task)
 		# return
+		print("Task - Initial time")
+		print(task['name'], rem_time)
 
 		# for i in range(0, len(schedule) - 1):
+
 		for day in '1234567':
 			# Mostly == 0, but safe side <= 0 is added
 			if rem_time == 0:
 				# Go to next task
+				print("Go to next task - Days")
 				break
 
 			# current day should be the day for which we are scheduling
@@ -125,6 +122,7 @@ def generate_schedule(student_record, unityId, day_date):
 
 			# If the deadline - sunday's date is less than the day you are on (i.e. day), then abort
 			# This is so because in this case, we are already past the deadline
+			print("DEADLINE CHECK -", day_date[day], task['deadline'])
 			if day_date[day] > task['deadline']:
 				# abort task scheduling and tell the user that he has to finish it in the whatever time slice has been assigned
 				# (i.e. if duration = 4 hrs but after assigning a time slice of 2 the deadline is crossed,
@@ -134,19 +132,27 @@ def generate_schedule(student_record, unityId, day_date):
 
 			# One more for loop. Traversing each and every row of free time
 			# Difference between two consecutive values. If difference > 1 -> assign in that timeframe
+			print("FREE TIME ARRAY - Day -", day)
+			print(free_time[day])
+			for i in range(0, len(free_time[day])):
+				print(free_time[day][i])
 
-			print()
-
-			for idx in range(0, len(free_time[0][day]), 2):
+			# for idx in range(0, len(free_time[day]), 2):
+			idx = 0
+			while idx < len(free_time[day]):
+				print('idx - ', idx)
+				print(free_time[day][idx], free_time[day][idx+1])
 				if rem_time == 0:
 					# Go to next task
+					print("Go to next task - Each day")
 					break
-				start_time = free_time[0][day][idx]
-				end_time = free_time[0][day][idx + 1]
+				start_time = free_time[day][idx]
+				end_time = free_time[day][idx + 1]
 				# Difference between two consecutive datetime objects (in seconds)
 				# diff = relativedelta(end_time, start_time)
 				avail = end_time - start_time
 				time_avail = avail.seconds/3600
+				print("--->", start_time, end_time, time_avail)
 				# If the number of available hours for this window is more than the window_size
 				# if diff.hours >= window_size:
 				if time_avail >= window_size:
@@ -176,11 +182,20 @@ def generate_schedule(student_record, unityId, day_date):
 						rem_time -= time_avail
 
 					pos = idx + 1
-					free_time[0][day].insert(pos, start_time)
-					free_time[0][day].insert(pos + 1, end_time)
+					free_time[day].insert(pos, start_time)
+					free_time[day].insert(pos + 1, end_time)
 					schedule[day].append([start_time, end_time, task['name']])
-		print('TASK and REMAINING TIME')
-		print(task['name'], rem_time)
+					print("After idx ", idx, "-")
+					print(rem_time)
+					pprint(schedule)
+					pprint(free_time[day])
+				idx += 2
+			print("SLOT ALLOTTED --", rem_time, '--', day, '--', start_time, '--', end_time)
+
+		# print(task['name'], rem_time)
+	print("REMAINING TIME ARRAY -")
+	pprint(free_time)
+	print("")
 	pprint(schedule)
 	return schedule
 						# rem_time.hours -= diff.hours
@@ -239,13 +254,13 @@ name = 'Sainag Ganesh Shetty'
 
 # dummy day_date variable for testing (till input received from bot)
 day_date = {
-	'1': '2018-03-05',
-	'2': '2018-03-06',
-	'3': '2018-03-07',
-	'4': '2018-03-08',
-	'5': '2018-03-09',
-	'6': '2018-03-10',
-	'7': '2018-03-11'
+	'1': '2018-03-05 20:30:00',
+	'2': '2018-03-06 20:30:00',
+	'3': '2018-03-07 20:30:00',
+	'4': '2018-03-08 20:30:00',
+	'5': '2018-03-09 20:30:00',
+	'6': '2018-03-10 20:30:00',
+	'7': '2018-03-11 20:30:00'
 }
 
 if __name__ == "__main__":
