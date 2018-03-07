@@ -30,8 +30,9 @@ require(__dirname + '/components/user_registration.js')(controller);
 require(__dirname + '/components/onboarding.js')(controller);
 
 var normalizedPath = require("path").join(__dirname, "controllers");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  require("./controllers/" + file)(controller);
-});
+require("./controllers/main.js")(controller)
+// require("fs").readdirSync(normalizedPath).forEach(function(file) {
+//   require("./controllers/" + file)(controller);
+// });
 
 

@@ -1,9 +1,16 @@
 var user = {}
+var express = require('express');
+var bodyParser = require('body-parser');
+var debug = require('debug')('botkit:webserver');
+
 var request = require('request-promise');
 var cheerio = require('cheerio');
+const dialogs = require('./module/dialog.js');
+const prompts = require('./module/prompt.js');  
+const User = require('./module/user.js');  
 module.exports = function(controller) {
 
-    controller.hears(['^hello$', '^hey$'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
         controller.storage.users.get(message.user, function(err, user) {
             
         if (user && user.uid) {
@@ -70,10 +77,27 @@ module.exports = function(controller) {
         console.log("fetching schedule")
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
-        console.log("adding task")
+        console.log("adding task"+message.user)
+        // User.fetch_user(message.user,function(err,uid){
+        //   if(err){
+        //     console.log(err);
+        //     return err;
+        //   }
+        //     console.log(uid)
+        //     bot.reply(message, uid)
+        // });
     });
-    controller.hears(['^add courses$'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^add courses$', '^courses$', '^add courses$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding courses")
+        controller.storage.users.get(message.user, function(err, user) {
+            if(user.courses){
+                bot.reply(message, user.courses)
+            }
+            else{
+                bot.reply(message, "No courses added yet!")
+            }
+        });
+        bot.reply(message, prompts.add_course_prompt);
     });
 };
 

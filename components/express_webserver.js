@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var debug = require('debug')('botkit:webserver');
-const message_handler =  require('../utilities/message_handler');
+const message_handler =  require('../controllers/module/message_handler');
 
 module.exports = function(controller) {
 
@@ -19,7 +19,7 @@ module.exports = function(controller) {
 
     });
 
-    app.post('/message', (req, res) =>
+    webserver.post('/message', (req, res) =>
     {
       message_handler.handle(req, res);
     });

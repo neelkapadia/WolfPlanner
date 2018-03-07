@@ -10,7 +10,7 @@ module.exports = function (controller) {
             if (err) {
                 console.log(err);
             } else {
-                convo.say('I am a bot that has just joined your workspace!');
+                convo.say('Hi! I am your WolfPlanner bot!!');
             }
         });
     });
