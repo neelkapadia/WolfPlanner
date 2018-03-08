@@ -69,7 +69,7 @@ module.exports = function(controller) {
     });
      controller.hears(['^help$'], 'direct_message,direct_mention', function(bot, message) {
         j = {
-            "text": "`add task`: to add tasks to your schedule\n`fetch schedule`: to get the week's schedule\n`add courses`: to add courses"
+            "text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule"
         }
         bot.reply(message, j)
     });
@@ -90,12 +90,39 @@ module.exports = function(controller) {
             console.log(err);
             return err;
           }
-            console.log(courseList)
-            bot.reply(message, courseList)
-            if(courseList.length == 0){
+          if(courseList.length == 0){
                 bot.reply(message, "No courses to view")
                 bot.reply(message, prompts.add_course_prompt);
             }
+            else{
+                console.log(courseList)
+                var courses = [];
+                // var courses = [{title : "CSC510 SE", value : "M | W \n 0800 - 0945", short:true}, {title : "CSC510 SE", value : "M | W \n 0800 - 0945", short:true}]
+                var dict = {"1":"M","2":"Tu","3":"W","4":"Th","5":"Fr","6":"Sa","7":"Su"}
+                for(i=0;i<courseList.length;i++){
+                    var days = ""
+                    for(j=1;j<=7;j++){
+                        if(courseList[i].days.includes(j.toString())){
+                            days += (" | "+dict[j.toString()])
+                        }
+                    }
+                    courses.push({
+                        title: courseList[i]._id + " " +courseList[i].name,
+                        value: courseList[i].startTime.split(" ")[1] + " - " +courseList[i].endTime.split(" ")[1] + " " + days,
+                        short: true
+                    })
+                }
+                
+                bot.reply(message, {
+                    text: "Your Courses",
+                    attachments: [
+                        {
+                            fields: courses
+                        }
+                    ]
+                });
+            }
+            
         });
     });
 };
