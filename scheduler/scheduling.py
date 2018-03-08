@@ -1,10 +1,14 @@
+import ast
 import bisect
+import pickle
+import sys
 from collections import defaultdict
 from datetime import datetime
 from pprint import pprint
-import pickle
 
-import db_scripts
+# This is causing some error when calling scheduling.py from js file. Hence commented out all db_script references
+# from the file. Still error somewhere.
+# import db_scripts
 
 
 def string_to_datetime(datetime_str):
@@ -54,7 +58,7 @@ def generate_free_time(student_record, buffer_time):
 			free_time[day].insert(pos, start_time)
 			free_time[day].insert(pos + 1, end_time)
 
-	db_scripts.db_update(db_name, collection_name, student_record['_id'], 'freeTime', free_time, username, password)
+	# db_scripts.db_update(db_name, collection_name, student_record['_id'], 'freeTime', free_time, username, password)
 
 
 def generate_schedule(unityId, day_date, student_record, buffer_time):
@@ -139,10 +143,47 @@ def generate_schedule(unityId, day_date, student_record, buffer_time):
 
 	pprint(schedule)
 	if schedule:
-		db_scripts.db_update(db_name, collection_name, student_record['_id'], 'schedule', schedule, username, password)
+		pass
+		# db_scripts.db_update(db_name, collection_name, student_record['_id'], 'schedule', schedule, username, password)
 	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduler again
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
+
+# # Details about temporary entries
+#
+# # unityId = 'rgchanda'
+# # slackId = 'U912NK72P'
+# # email = 'rgchanda@ncsu.edu'
+# # name = 'Rohan Chandavarkar'
+#
+# # unityId = 'rtnaik'
+# # slackId = 'U921S9WF8'
+# # email = 'rtnaik@ncsu.edu'
+# # name = 'Rohit Tushar Naik'
+#
+# unityId = 'sgshetty'
+# slackId = 'U90JUGPU1'
+# email = 'sgshetty@ncsu.edu'
+# name = 'Sainag Ganesh Shetty'
+#
+# # dummy day_date variable for testing (till input received from bot)
+# day_date = {
+# 	'1': '2018-03-05 20:30:00',
+# 	'2': '2018-03-06 20:30:00',
+# 	'3': '2018-03-07 20:30:00',
+# 	'4': '2018-03-08 20:30:00',
+# 	'5': '2018-03-09 20:30:00',
+# 	'6': '2018-03-10 20:30:00',
+# 	'7': '2018-03-11 20:30:00'
+# }
+#
+# # Assumed to be in minutes (logically)
+# buffer_time = 15
+
+# if __name__ == "__main__":
+
+
+print("ARGUMENTS -", sys.argv[1])
 
 # mlab DB details (from serialized object)
 pkl_file = open('.cred.pkl', 'rb')
@@ -153,38 +194,26 @@ collection_name = data['collection_name']
 username = data['username']
 password = data['password']
 
-# Details about temporary entries
+unityId = sys.argv[1]
+slackId = sys.argv[2]
+email = sys.argv[3]
+name = sys.argv[4]
 
-# unityId = 'rgchanda'
-# slackId = 'U912NK72P'
-# email = 'rgchanda@ncsu.edu'
-# name = 'Rohan Chandavarkar'
+# data = ast.literal_eval(sys.argv[1])
+# unityId = data[0]
+# slackId = data[1]
+# email = data[2]
+# name = data[3]
 
-# unityId = 'rtnaik'
-# slackId = 'U921S9WF8'
-# email = 'rtnaik@ncsu.edu'
-# name = 'Rohit Tushar Naik'
+day_date = ast.literal_eval(sys.argv[5])
+# day_date = ast.literal_eval(sys.argv[2])
+buffer_time = int(sys.argv[6])
+# buffer_time = int(sys.argv[3])
 
-unityId = 'sgshetty'
-slackId = 'U90JUGPU1'
-email = 'sgshetty@ncsu.edu'
-name = 'Sainag Ganesh Shetty'
+print("abcd")
 
-# dummy day_date variable for testing (till input received from bot)
-day_date = {
-	'1': '2018-03-05 20:30:00',
-	'2': '2018-03-06 20:30:00',
-	'3': '2018-03-07 20:30:00',
-	'4': '2018-03-08 20:30:00',
-	'5': '2018-03-09 20:30:00',
-	'6': '2018-03-10 20:30:00',
-	'7': '2018-03-11 20:30:00'
-}
-
-# Assumed to be in minutes (logically)
-buffer_time = 15
-
-if __name__ == "__main__":
-	# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
-	student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
-	generate_schedule(unityId, day_date, student_record, buffer_time)
+# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
+# student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
+generate_schedule(unityId, day_date, student_record, buffer_time)
+print("Success!")
+sys.stdout.flush()
