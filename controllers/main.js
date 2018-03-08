@@ -75,13 +75,23 @@ module.exports = function(controller) {
     });
 	controller.hears(['^fetch schedule$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("fetching schedule")
+        var curr = new Date;
+        var first = curr.getDate() - curr.getDay() +1;
+        var last = first + 6;
+        var dt = {};
+        for(i=first,j=1;i<=last;i++,j++){
+            dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
+        }
+        console.log(dt)
+        // var path = "testpy.py"
+        // var spawn = require("child_process").spawn;
+        // var pythonProcess = spawn('python',[path, dt]);
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
     });
     controller.hears(['^add courses$', '^courses$', '^add course$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding courses")
-        
         bot.reply(message, prompts.add_course_prompt);
     });
     controller.hears(['^view courses$'], 'direct_message,direct_mention', function(bot, message) {
@@ -140,7 +150,7 @@ module.exports = function(controller) {
                     console.log(Date.parse(taskList[i].deadline))
                     var fields = [{
                         title: taskList[i].name,
-                        value: "Time assigned is " + taskList[i].duration,
+                        value: "Time assigned is " + taskList[i].duration + " hours",
                     }];
                     tasks.push({
                         fields: fields,
@@ -156,29 +166,3 @@ module.exports = function(controller) {
         });
     });
 };
-
-var get_the_user_info = function(uid) {
-	
-	console.log("Here work")
-	request('https://directory.ncsu.edu/directory/moreinfo.php?username='+uid.uid, function(err, resp, html) {
-		var myData = []
-	        if (!err){
-	          const $ = cheerio.load(html);
-	          $('.col-sm-6').each(function() {
-				    myData.push($(this).text().trim().replace(/\r?\n|\r/g, ""))
-				});
-	          var temp = myData[1].split(":")
-	          var myobj = { _id: uid, name: myData[0], email: temp[3].trim()};
-	          user["name"] = myData[0]
-	          user["email"] = temp[3].trim()
-	          console.log(user["name"])
-              console.log(user["email"])
-              controller.storage.users.save(user, function(err, id) {
-                                    //bot.reply(message, 'Alright!');
-                                    console.log(user)
-                                });
-	          // console.log('After fetching: '+util.inspect(uid, false, null))
-		      //store.add_new_user(myobj)
-	      }
-	});
-}
