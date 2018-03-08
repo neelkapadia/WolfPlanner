@@ -4,14 +4,14 @@ from datetime import datetime
 from pprint import pprint
 import pickle
 
-from scheduling import db_scripts
+import db_scripts
 
 
 def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
 
-def generate_free_time(student_record):
+def generate_free_time(student_record, buffer_time):
 	free_time = defaultdict(list)
 	# Set the entire day window for every day from 8AM to 10PM
 	# Since days are stored from 1 to 7 - 1 being Monday and 7 being Sunday
@@ -24,30 +24,42 @@ def generate_free_time(student_record):
 		# Converting string datetimes (for JSON storing) to datetime objects
 		start_time = string_to_datetime(record['startTime'])
 		end_time = string_to_datetime(record['endTime'])
+
+		# Adding buffer time to start time
+		if start_time.minute < buffer_time:
+			new_minutes = 60 - (buffer_time - start_time.minute)
+			new_hours = start_time.hour - 1
+		else:
+			new_minutes = start_time.minute - buffer_time
+			new_hours = start_time.hour
+		start_time = datetime(start_time.year, start_time.month, start_time.day, new_hours, new_minutes, start_time.second)
+
+		# Adding buffer time to end time
+		if end_time.minute + buffer_time >= 60:
+			new_minutes = buffer_time + end_time.minute - 60
+			new_hours = end_time.hour + 1
+		else:
+			new_minutes = end_time.minute + buffer_time
+			new_hours = end_time.hour
+		end_time = datetime(end_time.year, end_time.month, end_time.day, new_hours, new_minutes, end_time.second)
+
 		# Keeping as a loop for now (Can be changed to make more efficient)
 		for day in record['days']:
 			# bisect_right since even if there is an endTime inside the array which corresponds to the startTime exactly,
 			# the startTime we are inserting should be to the right of this already present endTime
 			# Assumption - Distance Education courses (if any) have also been allotted a non-conflicting slot
 			pos = bisect.bisect_right(free_time[day], start_time)
-			# Debugging -
+
 			# Only need to find the correct position of startTime. endTime to be inserted will ALWAYS be after that.
 			free_time[day].insert(pos, start_time)
 			free_time[day].insert(pos + 1, end_time)
 
-		##new change
-		# Would be implemented already when the fixedTasks will be added from nodeJS
-		##algorithm
-		# insert start times as 30 mins earlier than stated and end time as 30 mins later than stated (for buffer)
-		# for example, if start time of STDM is 10:15 then insert 9:45 and if end time is 11:30 then insert 12
-		# keep buffer in free time array
-
 	db_scripts.db_update(db_name, collection_name, student_record['_id'], 'freeTime', free_time, username, password)
 
 
-def generate_schedule(student_record, unityId, day_date):
+def generate_schedule(unityId, day_date, student_record, buffer_time):
 	if not 'freeTime' in student_record:
-		generate_free_time(student_record)
+		generate_free_time(student_record, buffer_time)
 
 		# Above query replaced by the following query.
 		student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
@@ -76,12 +88,13 @@ def generate_schedule(student_record, unityId, day_date):
 				# Go to next task
 				break
 
-			# If date for which we are scheduling is past the deadline date for the task -> STOP.
+			# If date for which we are scheduler is past the deadline date for the task -> STOP.
 			if day_date[day] > task['deadline']:
-				# abort task scheduling and tell the user that he has to finish it in the whatever time slice has been assigned
+				# abort task scheduler and tell the user that he has to finish it in the whatever time slice has been assigned
 				# (i.e. if duration = 4 hrs but after assigning a time slice of 2 the deadline is crossed,
-				# then tell him to do it in 2)
-				print("Sorry! Cannot be scheduled. You will have to complete the task in ", task['duration']-rem_time, " hours!")
+				# then tell them to do it in 2)
+				print("Sorry! The task", task['name'], "cannot be scheduled completely. You will have to complete the task in",
+				      task['duration']-rem_time, "hours instead of", task['duration'], "hours!")
 				break
 
 			idx = 0
@@ -127,7 +140,7 @@ def generate_schedule(student_record, unityId, day_date):
 	pprint(schedule)
 	if schedule:
 		db_scripts.db_update(db_name, collection_name, student_record['_id'], 'schedule', schedule, username, password)
-	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduling again
+	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduler again
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
 
@@ -168,8 +181,10 @@ day_date = {
 	'7': '2018-03-11 20:30:00'
 }
 
+# Assumed to be in minutes (logically)
+buffer_time = 15
 
 if __name__ == "__main__":
 	# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
 	student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
-	generate_schedule(student_record, unityId, day_date)
+	generate_schedule(unityId, day_date, student_record, buffer_time)
