@@ -97,7 +97,6 @@ module.exports = function(controller) {
             else{
                 console.log(courseList)
                 var courses = [];
-                // var courses = [{title : "CSC510 SE", value : "M | W \n 0800 - 0945", short:true}, {title : "CSC510 SE", value : "M | W \n 0800 - 0945", short:true}]
                 var dict = {"1":"M","2":"Tu","3":"W","4":"Th","5":"Fr","6":"Sa","7":"Su"}
                 for(i=0;i<courseList.length;i++){
                     var days = ""
@@ -120,6 +119,37 @@ module.exports = function(controller) {
                             fields: courses
                         }
                     ]
+                });
+            }
+            
+        });
+    });
+    controller.hears(['^view tasks$'], 'direct_message,direct_mention', function(bot, message) {
+        User.fetch_tasks(message.user,function(err,taskList){
+          if(err){
+            console.log(err);
+            return err;
+          }
+          if(taskList.length == 0){
+                bot.reply(message, "No tasks to view")
+                //bot.reply(message, prompts.add_course_prompt);
+            }
+            else{
+                var tasks = [];
+                for(i=0;i<taskList.length;i++){
+                    console.log(Date.parse(taskList[i].deadline))
+                    var fields = [{
+                        title: taskList[i].name,
+                        value: "Time assigned is " + taskList[i].duration,
+                    }];
+                    tasks.push({
+                        fields: fields,
+                        ts: (Date.parse(taskList[i].deadline)/1000)
+                    });
+                }
+                bot.reply(message, {
+                    text: "Your Tasks",
+                    attachments: tasks
                 });
             }
             
