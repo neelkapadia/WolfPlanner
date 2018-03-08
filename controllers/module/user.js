@@ -87,4 +87,13 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
+  	fetch_tasks: function(user_id,callback){
+  		user.findOne({slackId:user_id}, function(err,user){
+  			if(err){
+  				console.log(err)
+  				return err
+  			}
+  			callback(null,user.tasks);
+  		});
+  	},
 }

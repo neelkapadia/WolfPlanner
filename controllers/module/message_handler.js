@@ -30,22 +30,16 @@ module.exports = {
         } 
         else if (callback_id == 'add_course_dialog')
         {
-            // TODO Store review and rating into database
-            //UserModel.give_review(payload);
             User.add_course(payload)
-            // console.log(payload)
             action.send_message(payload.channel.id, payload.submission.name + " has been added", []);
             res.send('');
 
         }
-        else
-        {
+        else{
             console.log('Reached idhar');
-            // console.log(payload);
         }
     }
-    else
-    {
+    else{
 
         debug('Verification token mismatch');
         console.log('Failed Here');
