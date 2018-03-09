@@ -75,6 +75,7 @@ module.exports = function(controller) {
     });
 	controller.hears(['^fetch schedule$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("fetching schedule")
+        var buffer_time = 60;
         var curr = new Date;
         var first = curr.getDate() - curr.getDay() +1;
         var last = first + 6;
@@ -82,10 +83,26 @@ module.exports = function(controller) {
         for(i=first,j=1;i<=last;i++,j++){
             dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
         }
-        console.log(dt)
-        // var path = "testpy.py"
+        User.fetch_user(message.user,function(err,unityId){
+          if(err){
+            console.log(err);
+            return err;
+          }
+          console.log(dt)
+        console.log(unityId)
+        // var path = "./scheduler/testpy.py"
         // var spawn = require("child_process").spawn;
-        // var pythonProcess = spawn('python',[path, dt]);
+        // var pythonProcess = spawn('python',[path, unityId, JSON.stringify(dt), buffer_time]);
+        });
+// // Temporary function call to print the schedule from the mlab
+//     User.fetch_schedule(message.user, function(err,schedule){
+//         if(err){
+//             console.log(err);
+//             return err
+//         }
+//         console.log(schedule)
+//     });
+        
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
