@@ -5,9 +5,6 @@ import sys
 from collections import defaultdict
 from datetime import datetime
 from pprint import pprint
-
-# This is causing some error when calling scheduling.py from js file. Hence commented out all db_script references
-# from the file. Still error somewhere.
 import db_scripts
 
 
