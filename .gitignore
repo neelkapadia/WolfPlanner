@@ -1,9 +1,9 @@
-.db
-node_modules
-components/routes/_*
-.idea/
-
+# DS_STORE
 .DS_Store
+
+# workspace file
+.idea/workspace.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
