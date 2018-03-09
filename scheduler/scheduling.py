@@ -8,14 +8,14 @@ from pprint import pprint
 
 # This is causing some error when calling scheduling.py from js file. Hence commented out all db_script references
 # from the file. Still error somewhere.
-# import db_scripts
+import db_scripts
 
 
 def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
 
-def generate_free_time(student_record, buffer_time):
+def generate_free_time(_student_record, buffer_time):
 	free_time = defaultdict(list)
 	# Set the entire day window for every day from 8AM to 10PM
 	# Since days are stored from 1 to 7 - 1 being Monday and 7 being Sunday
@@ -24,7 +24,7 @@ def generate_free_time(student_record, buffer_time):
 		free_time[day].append(datetime(1, 1, 1, 22, 0, 0))
 
 	# Adding fixed tasks to each day to find free time
-	for record in student_record['fixedTasks']:
+	for record in _student_record['fixedTasks']:
 		# Converting string datetimes (for JSON storing) to datetime objects
 		start_time = string_to_datetime(record['startTime'])
 		end_time = string_to_datetime(record['endTime'])
@@ -58,22 +58,23 @@ def generate_free_time(student_record, buffer_time):
 			free_time[day].insert(pos, start_time)
 			free_time[day].insert(pos + 1, end_time)
 
-	# db_scripts.db_update(db_name, collection_name, student_record['_id'], 'freeTime', free_time, username, password)
+	db_scripts.db_update(db_name, collection_name, _student_record['_id'], 'freeTime', free_time, username, password)
 
 
-def generate_schedule(unityId, day_date, student_record, buffer_time):
-	if not 'freeTime' in student_record:
-		generate_free_time(student_record, buffer_time)
+def generate_schedule(unityId, day_date, _student_record, buffer_time):
+	print("Entered generate schedule")
+	if not 'freeTime' in _student_record:
+		generate_free_time(_student_record, buffer_time)
 
 		# Above query replaced by the following query.
-		student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
+		_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
-	tasks = student_record['tasks']
+	tasks = _student_record['tasks']
 
 	# Defining variables to be used in the algorithm
 
 	# Initially free_time is the same as the original. As tasks get added, free_time reduces.
-	free_time = student_record['freeTime']
+	free_time = _student_record['freeTime']
 
 	# The smallest quantum of time in which the student is willing to work
 	window_size = 1
@@ -144,10 +145,54 @@ def generate_schedule(unityId, day_date, student_record, buffer_time):
 	pprint(schedule)
 	if schedule:
 		pass
-		# db_scripts.db_update(db_name, collection_name, student_record['_id'], 'schedule', schedule, username, password)
+		db_scripts.db_update(db_name, collection_name, _student_record['_id'], 'schedule', schedule, username, password)
 	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduler again
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
+
+# if __name__ == "__main__":
+
+print("ARGUMENTS -", sys.argv[1])
+
+# mlab DB details (from serialized object)
+pkl_file = open('.cred.pkl', 'rb')
+data = pickle.load(pkl_file)
+
+print("check 1")
+
+db_name = data['db_name']
+collection_name = data['collection_name']
+username = data['username']
+password = data['password']
+
+print("check 2")
+
+unityId = sys.argv[1]
+slackId = sys.argv[2]
+email = sys.argv[3]
+name = sys.argv[4]
+
+# data = ast.literal_eval(sys.argv[1])
+# unityId = data[0]
+# slackId = data[1]
+# email = data[2]
+# name = data[3]
+
+print("check 3")
+
+day_date = ast.literal_eval(sys.argv[5])
+buffer_time = int(sys.argv[6])
+
+print("abcd")
+
+# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
+
+student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
+
+generate_schedule(unityId, day_date, student_record, buffer_time)
+
+print("Success!")
+sys.stdout.flush()
 
 # # Details about temporary entries
 #
@@ -179,41 +224,3 @@ def generate_schedule(unityId, day_date, student_record, buffer_time):
 #
 # # Assumed to be in minutes (logically)
 # buffer_time = 15
-
-# if __name__ == "__main__":
-
-
-print("ARGUMENTS -", sys.argv[1])
-
-# mlab DB details (from serialized object)
-pkl_file = open('.cred.pkl', 'rb')
-data = pickle.load(pkl_file)
-
-db_name = data['db_name']
-collection_name = data['collection_name']
-username = data['username']
-password = data['password']
-
-unityId = sys.argv[1]
-slackId = sys.argv[2]
-email = sys.argv[3]
-name = sys.argv[4]
-
-# data = ast.literal_eval(sys.argv[1])
-# unityId = data[0]
-# slackId = data[1]
-# email = data[2]
-# name = data[3]
-
-day_date = ast.literal_eval(sys.argv[5])
-# day_date = ast.literal_eval(sys.argv[2])
-buffer_time = int(sys.argv[6])
-# buffer_time = int(sys.argv[3])
-
-print("abcd")
-
-# unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
-# student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
-generate_schedule(unityId, day_date, student_record, buffer_time)
-print("Success!")
-sys.stdout.flush()

@@ -1,5 +1,5 @@
-var path = "testNodeJS.py";
-//var path = "scheduling.py";
+//var path = "testNodeJS.py";
+var path = "scheduling.py";
 var spawn = require("child_process").spawn;
 var n1 = 2;
 var n2 = 15;
@@ -28,8 +28,8 @@ var data = [unityId, slackId, email, name];
 
 console.log("hii");
 try{
-var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-//var pythonProcess = spawn("python",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
+//var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
+var pythonProcess = spawn("python3",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
 //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
 }
 catch(err){
