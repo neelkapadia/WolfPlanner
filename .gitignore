@@ -1,6 +1,6 @@
 # DS_STORE
 .DS_Store
-
+node_modules
 # workspace file
 .idea/workspace.xml
 

@@ -1,0 +1,33 @@
+{
+  "name": "wolfplanner",
+  "version": "1.0.0",
+  "description": "Task Scheduling Bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neelkapadia/WolfPlanner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neelkapadia/WolfPlanner/issues"
+  },
+  "homepage": "https://github.com/neelkapadia/WolfPlanner#readme",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "axios": "^0.18.0",
+    "botkit": "^0.6.11",
+    "debug": "^2.3.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.14.0",
+    "mongoose": "^5.0.9",
+    "node-env-file": "^0.1.8",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "slack-node": "^0.1.8",
+    "util": "^0.10.3"
+  }
+}
