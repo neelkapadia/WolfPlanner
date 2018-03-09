@@ -87,13 +87,44 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
+//<<<<<<< HEAD
+
+  	add_task: function(payload){
+  		var task = {}
+
+  		task = {
+  			name = payload.submission.tname,
+  			type = payload.submission.type,
+  			duration = payload.submission.duration,
+            deadline = payload.submission.deadline,
+  		}
+
+  		user.findOneAndUpdate({
+        slackId: payload.user.id
+        } , {
+        	$push: {
+        		 Tasks: task
+
+        	}
+        }, function(err, res){
+        	if (err) return err;
+        	console.log(res);
+  			});	
+  	},
+
+//=======
+//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
   	fetch_tasks: function(user_id,callback){
   		user.findOne({slackId:user_id}, function(err,user){
   			if(err){
   				console.log(err)
   				return err
   			}
-  			callback(null,user.tasks);
+//<<<<<<< HEAD
+  			callback(null,user.Tasks);
   		});
-  	},
+  	}
+//=======
+  			
+//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
 }
