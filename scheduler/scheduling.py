@@ -7,7 +7,6 @@ from datetime import datetime
 from pprint import pprint
 import db_scripts
 
-
 def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
@@ -115,7 +114,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 				if time_avail >= window_size:
 					# If the amount of time available is greater than equal to remaining needed amount of time
 					# if diff.hours >= rem_time:
-					if time_avail >= rem_time:
+					if int(time_avail) >= int(rem_time):
 						# Add the duration of remaining time to the free_time
 						# end_time (date) should be start_time (date) + rem_time (float)
 						end_hours = start_time.hour + int(rem_time)
@@ -136,9 +135,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					free_time[day].insert(pos, start_time)
 					free_time[day].insert(pos + 1, end_time)
 					schedule[day].append([start_time, end_time, task['name']])
-
+				pprint("In while")	
 				idx += 2
-
 	pprint(schedule)
 	if schedule:
 		pass

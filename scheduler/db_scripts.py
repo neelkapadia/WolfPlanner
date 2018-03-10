@@ -118,8 +118,7 @@ def db_update(db_name, collection_name, unityId, record_key, record_val, usernam
 		print("Sorry we encountered some error in updating.")
 
 if __name__ == '__main__':
-	#db_connect('se', 'rtrgntsg', 'menzies')
+	db_connect('se', 'rtrgntsg', 'menzies')
 	#db_insert('se', 'student', 'ntkapadi', 'Y1279HXQ1', 'ntkapadi@ncsu.edu', 'Neel Kapadia', 'rtrgntsg', 'menzies')
 	#print(db_retrieve('se','student','ntkapadi','rtrgntsg','menzies'))
 	#db_update('se', 'student', 'ntkapadi', 'tasks', '{"name": "STDM HW 3","type": "HW","duration": 10,"deadline": "2018-03-10 23:59:00","number": 4},{"name": "SE Proj 2","type": "HW","duration": 20,"deadline": "2018-03-12 08:30:00","number": 1}', 'rtrgntsg', 'menzies')
-
