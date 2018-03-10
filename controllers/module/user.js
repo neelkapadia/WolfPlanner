@@ -2,10 +2,10 @@ const configure = require('./config');
 const action = require('../module/action');
 
 var user_schema = new configure.schema({
-    _id: 'string',
+    uid: 'string',
   name: 'string',
   email: 'string',
-  slackId: 'string',
+  id: 'string',
   tasks: 'array',
   fixedTasks: 'array',
   freeTime: 'array',
@@ -17,12 +17,12 @@ var user = configure.mongoose.model('user', user_schema);
 
 module.exports = {
 	fetch_user: function(user_id,callback){
-	    user.findOne({slackId:user_id},function(err,user){
+	    user.findOne({id:user_id},function(err,user){
 	      if(err){
 	        console.log(err);
 	        return err;
 	      }
-	      callback(null,user._id);
+	      callback(null,user.uid);
 	    });
   	},
   	add_course: function(payload){
@@ -67,7 +67,7 @@ module.exports = {
   		console.log(course)
   		console.log(payload.user.id)
   		user.findOneAndUpdate({
-		      slackId: payload.user.id
+		      id: payload.user.id
 		      // console.log(_id)
 		    }, {
 		      $push: {
@@ -79,7 +79,7 @@ module.exports = {
 		    });
   	},
   	fetch_courses: function(user_id,callback){
-  		user.findOne({slackId:user_id}, function(err,user){
+  		user.findOne({id:user_id}, function(err,user){
   			if(err){
   				console.log(err)
   				return err
@@ -99,7 +99,7 @@ module.exports = {
   		}
 
   		user.findOneAndUpdate({
-        slackId: payload.user.id
+        id: payload.user.id
         } , {
         	$push: {
         		 tasks: task
@@ -112,7 +112,7 @@ module.exports = {
   	},
 
   	fetch_tasks: function(user_id,callback){
-  		user.findOne({slackId:user_id}, function(err,user){
+  		user.findOne({id:user_id}, function(err,user){
   			if(err){
   				console.log(err)
   				return err
