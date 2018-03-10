@@ -106,6 +106,8 @@ module.exports = function(controller) {
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
+        bot.reply(message,prompts.add_task_prompt);
+
     });
     controller.hears(['^add courses$', '^courses$', '^add course$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding courses")

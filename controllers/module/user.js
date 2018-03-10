@@ -87,7 +87,7 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
-//<<<<<<< HEAD
+
 
   	add_task: function(payload){
   		var task = {}
@@ -112,19 +112,15 @@ module.exports = {
   			});	
   	},
 
-//=======
-//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
   	fetch_tasks: function(user_id,callback){
   		user.findOne({slackId:user_id}, function(err,user){
   			if(err){
   				console.log(err)
   				return err
   			}
-//<<<<<<< HEAD
+
   			callback(null,user.Tasks);
   		});
   	}
-//=======
-  			
-//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
+
 }

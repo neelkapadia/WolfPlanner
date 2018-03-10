@@ -35,6 +35,31 @@ module.exports = {
             res.send('');
 
         }
+
+           else if (callback_id == 'add_task_prompt'){
+            if(payload.actions[0].value == 'yes'){
+                const dialog =
+                {
+                    token: process.env.slackToken,
+                    trigger_id,
+                    dialog: JSON.stringify(dialogs.add_task_dialog),
+
+                }
+                action.open_dialog(dialog,res)
+            }
+            else
+            {
+                action.send_message(payload.channel.id, 'Okay fine', []);
+            }
+        }
+
+        else if (callback_id == 'add_task_dialog')
+        {
+            //User.add_task(payload)
+            console.log(payload)
+            res.send('');
+        }
+        
         else{
             console.log('Reached idhar');
         }
