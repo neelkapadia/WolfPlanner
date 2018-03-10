@@ -9,14 +9,20 @@ if (!process.env.clientId || !process.env.clientSecret || !process.env.PORT) {
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
+var mongoStorage = require('botkit-storage-mongo')({
+    mongoUri: process.env.MONGO_CONNECTION,
+    tables: ['student']
+});
+
 var bot_options = {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     // debug: true,
-    scopes: ['bot']
+    scopes: ['bot'],
+    storage: mongoStorage
 };
 
-bot_options.json_file_store = __dirname + '/.data/db/';
+//bot_options.json_file_store = __dirname + '/.data/db/';
 
 var controller = Botkit.slackbot(bot_options);
 

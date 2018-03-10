@@ -2,10 +2,10 @@ const configure = require('./config');
 const action = require('../module/action');
 
 var user_schema = new configure.schema({
-    _id: 'string',
+    uid: 'string',
   name: 'string',
   email: 'string',
-  slackId: 'string',
+  id: 'string',
   tasks: 'array',
   fixedTasks: 'array',
   freeTime: 'array',
@@ -17,12 +17,12 @@ var user = configure.mongoose.model('user', user_schema);
 
 module.exports = {
 	fetch_user: function(user_id,callback){
-	    user.findOne({slackId:user_id},function(err,user){
+	    user.findOne({id:user_id},function(err,user){
 	      if(err){
 	        console.log(err);
 	        return err;
 	      }
-	      callback(null,user._id);
+	      callback(null,user.uid);
 	    });
   	},
   	add_course: function(payload){
@@ -67,7 +67,7 @@ module.exports = {
   		console.log(course)
   		console.log(payload.user.id)
   		user.findOneAndUpdate({
-		      slackId: payload.user.id
+		      id: payload.user.id
 		      // console.log(_id)
 		    }, {
 		      $push: {
@@ -79,7 +79,7 @@ module.exports = {
 		    });
   	},
   	fetch_courses: function(user_id,callback){
-  		user.findOne({slackId:user_id}, function(err,user){
+  		user.findOne({id:user_id}, function(err,user){
   			if(err){
   				console.log(err)
   				return err
@@ -87,44 +87,36 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
-//<<<<<<< HEAD
+  fetch_tasks: function(user_id,callback){
+      user.findOne({id:user_id}, function(err,user){
+        if(err){
+          console.log(err)
+          return err
+        }
+        callback(null,user.tasks);
+      });
+    },
 
   	add_task: function(payload){
   		var task = {}
-
   		task = {
-  			name = payload.submission.tname,
-  			type = payload.submission.type,
-  			duration = payload.submission.duration,
-            deadline = payload.submission.deadline,
+  			name: payload.submission.name,
+  			type: payload.submission.type,
+  			duration: payload.submission.duration,
+            deadline: payload.submission.deadline,
   		}
 
   		user.findOneAndUpdate({
-        slackId: payload.user.id
+        id: payload.user.id
         } , {
         	$push: {
-        		 Tasks: task
+        		 tasks: task
 
         	}
         }, function(err, res){
         	if (err) return err;
         	console.log(res);
   			});	
-  	},
-
-//=======
-//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
-  	fetch_tasks: function(user_id,callback){
-  		user.findOne({slackId:user_id}, function(err,user){
-  			if(err){
-  				console.log(err)
-  				return err
-  			}
-//<<<<<<< HEAD
-  			callback(null,user.Tasks);
-  		});
   	}
-//=======
-  			
-//>>>>>>> 8f3a175678e5c159ac9126905f69268f629a2604
+
 }
