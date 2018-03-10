@@ -9,7 +9,7 @@ var user_schema = new configure.schema({
   tasks: 'array',
   fixedTasks: 'array',
   freeTime: 'array',
-  scheduled: 'array',
+  schedule: 'array',
 }, {
   collection: 'student'
 });
@@ -123,6 +123,15 @@ module.exports = {
         	if (err) return err;
         	console.log(res);
   			});	
-  	}
+  	},
+    fetch_schedule: function(user_id,callback){
+      user.findOne({id:user_id}, function(err,user){
+        if(err){
+          console.log(err)
+          return err
+        }
+        callback(null,user);
+      });
+    },
 
 }
