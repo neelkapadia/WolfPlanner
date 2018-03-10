@@ -21,7 +21,7 @@ WolfPlanner is designed for students to help them in planning their activities b
 ### Use Cases
 
 ### Contributors
-Neel Kapadia - [ntkapadi](https://github.com/neelkapadia)
-Rohit Naik - [rtnaik](https://github.com/rohitnaik246)
-Sainag Shetty - [sgshetty](https://github.com/SainagShetty)
+Neel Kapadia - [ntkapadi](https://github.com/neelkapadia)<br/>
+Rohit Naik - [rtnaik](https://github.com/rohitnaik246)<br/>
+Sainag Shetty - [sgshetty](https://github.com/SainagShetty)<br/>
 Rohan Chandavarkar - [rgchanda](https://github.com/RohanChandavarkar)
