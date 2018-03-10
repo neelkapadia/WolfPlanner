@@ -1,11 +1,12 @@
 # WolfPlanner
-``Software Engineering Spring 2018``
-## Problem Statement
+### Problem Statement
+With the number of tasks increasing day-by-day, it is becoming difficult for individuals to manage so many tasks considering the varying amount of time available and required to complete them. It requires continuous and active effort to create weekly schedules. This leads to wastage of valuable time, and poor planning might lead to excessive workloads. In such situations, an application that makes a schedule (time-table) for the individuals taking into account their pending tasks, deadlines will be a great asset for students. 
 
-## Bot Description
+### Bot Description
 
-## Steps for Running and Installing
+### Steps for Running and Installing
 
+<<<<<<< HEAD
 ## Basic Flow of the System
 Before showing a typical communication with the bot, let us discuss some points about the application.
 WolfPlanner is designed for students to help them in planning their activities by generating a weekly schedule. Thus, the intended user of the system is student.
@@ -18,3 +19,8 @@ WolfPlanner is designed for students to help them in planning their activities b
 7. Upon receiving the tasks, the bot will generate a time-table for the student and simultaneously adds the tasks with corresponding timing on Google Calendar of the student's university account.
 8. The bot now sends the user an image of the schedule which it generated.
 ## Use Cases
+=======
+### Basic Flow of the System
+
+### Use Cases
+>>>>>>> 189f62f3178b842fea4cc9b13f6f129bd0c0dbd9
