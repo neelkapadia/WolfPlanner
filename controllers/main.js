@@ -10,7 +10,7 @@ const User = require('./module/user.js');
 module.exports = function(controller) {
 
     controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
-        controller.storage.users.get(message.user, function(err, user) {
+        controller.storage.student.get(message.user, function(err, user) {
             
         if (user && user.uid) {
             bot.reply(message, 'Hey <@'+message.user+'>!\nType `help` to find out what I can do')
@@ -44,7 +44,7 @@ module.exports = function(controller) {
                     }, {'key': 'uid'}); // store the results in a field called nickname
                     convo.on('end', function(convo) {
                         if (convo.status == 'completed') {
-                            controller.storage.users.get(message.user, function(err, user) {
+                            controller.storage.student.get(message.user, function(err, user) {
                                 if (!user) {
                                     user = {
                                         id: message.user,
@@ -52,7 +52,7 @@ module.exports = function(controller) {
                                     };
                                      //console.log(get_the_user_info(user))
                                 }
-                                controller.storage.users.save(user, function(err, id) {
+                                controller.storage.student.save(user, function(err, id) {
                                     bot.reply(message, 'Alright!');
                                     console.log(user)
                                 });
@@ -113,7 +113,6 @@ module.exports = function(controller) {
 //         console.log(schedule)
 //     });
         
->>>>>>> 8f7d1fbe251930a818fdf9e27aeae75b6258b713
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
