@@ -19,7 +19,7 @@ module.exports = function(controller) {
                 if (!err) {
                     convo.say('Hello <@'+message.user+'>! Let\'s find out something more about you');
                     convo.ask('What is your unity id?', function(response, convo) {
-                        convo.ask('Please confirm if your unity id is `' + response.text + '`?', [
+                        convo.ask('Please confirm if your unity id is `' + response.text + '`?(Yes/No)', [
                             {
                                 pattern: 'yes',
                                 callback: function(response, convo) {
@@ -54,6 +54,7 @@ module.exports = function(controller) {
                                 }
                                 controller.storage.student.save(user, function(err, id) {
                                     bot.reply(message, 'Alright!');
+                                    bot.reply(message, 'Type `help` to find out what I can do')
                                     console.log(user)
                                 });
                             });
@@ -114,7 +115,7 @@ module.exports = function(controller) {
 //     });
         
 	});
-    controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['^add task$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
         bot.reply(message,prompts.add_task_prompt);
 
@@ -129,6 +130,7 @@ module.exports = function(controller) {
             console.log(err);
             return err;
           }
+          console.log(courseList);
           if(courseList.length == 0){
                 bot.reply(message, "No courses to view")
                 bot.reply(message, prompts.add_course_prompt);
@@ -169,9 +171,10 @@ module.exports = function(controller) {
             console.log(err);
             return err;
           }
+          console.log(taskList);
           if(taskList.length == 0){
                 bot.reply(message, "No tasks to view")
-                //bot.reply(message, prompts.add_course_prompt);
+                bot.reply(message, prompts.add_task_prompt);
             }
             else{
                 var tasks = [];

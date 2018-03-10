@@ -87,7 +87,15 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
-
+  fetch_tasks: function(user_id,callback){
+      user.findOne({id:user_id}, function(err,user){
+        if(err){
+          console.log(err)
+          return err
+        }
+        callback(null,user.tasks);
+      });
+    },
 
   	add_task: function(payload){
   		var task = {}
@@ -109,17 +117,6 @@ module.exports = {
         	if (err) return err;
         	console.log(res);
   			});	
-  	},
-
-  	fetch_tasks: function(user_id,callback){
-  		user.findOne({id:user_id}, function(err,user){
-  			if(err){
-  				console.log(err)
-  				return err
-  			}
-
-  			callback(null,user.Tasks);
-  		});
   	}
 
 }
