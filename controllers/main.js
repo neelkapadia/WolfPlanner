@@ -113,7 +113,6 @@ module.exports = function(controller) {
 //         console.log(schedule)
 //     });
         
->>>>>>> 8f7d1fbe251930a818fdf9e27aeae75b6258b713
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
