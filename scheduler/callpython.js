@@ -24,12 +24,12 @@ var day_date = {
 //Assumed to be in minutes (logically)
 var buffer_time = 15;
 
-var data = [unityId, slackId, email, name];
+//var data = [unityId, slackId, email, name];
 
 console.log("hii");
 try{
 //var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-var pythonProcess = spawn("python",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
+var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(day_date), buffer_time]);
 //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
 }
 catch(err){
