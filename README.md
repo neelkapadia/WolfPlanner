@@ -6,8 +6,7 @@ With the number of tasks increasing day-by-day, it is becoming difficult for ind
 
 ### Steps for Running and Installing
 
-<<<<<<< HEAD
-## Basic Flow of the System
+### Basic Flow of the System
 Before showing a typical communication with the bot, let us discuss some points about the application.
 WolfPlanner is designed for students to help them in planning their activities by generating a weekly schedule. Thus, the intended user of the system is student.
 1. Student starts conversation with the bot: ``Hi``
@@ -18,9 +17,11 @@ WolfPlanner is designed for students to help them in planning their activities b
 6. If not, then the bot asks the user to enter details to create a new profile in the system and then asks for the set of tasks to be scheduled.
 7. Upon receiving the tasks, the bot will generate a time-table for the student and simultaneously adds the tasks with corresponding timing on Google Calendar of the student's university account.
 8. The bot now sends the user an image of the schedule which it generated.
-## Use Cases
-=======
-### Basic Flow of the System
 
 ### Use Cases
->>>>>>> 189f62f3178b842fea4cc9b13f6f129bd0c0dbd9
+
+### Contributors
+Neel Kapadia - [a relative link](google.com) ntkapadi
+Rohit Naik - rtnaik
+Sainag Shetty - sgshetty
+Rohan Chandavarkar - rgchanda
