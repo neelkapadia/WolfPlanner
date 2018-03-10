@@ -9,12 +9,12 @@ import pickle
 # import db_scripts
 
 def try_parameters(a, b, c):
-	print(c["1"])
+	# print(c["1"])
 	return int(a)+int(b)
 
 
-print(sys.argv[1], sys.argv[2], sys.argv[3])
-print(type(sys.argv[3]))
+# print(sys.argv[1], sys.argv[2], sys.argv[3])
+# print(type(sys.argv[3]))
 dict_data = ast.literal_eval(sys.argv[3])
 data_to_return = try_parameters(sys.argv[1], sys.argv[2], dict_data)
 print(data_to_return)

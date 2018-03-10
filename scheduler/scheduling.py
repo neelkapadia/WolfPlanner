@@ -139,8 +139,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 				idx += 2
 	pprint(schedule)
 	if schedule:
-		pass
 		db_scripts.db_update(db_name, collection_name, _student_record['_id'], 'schedule', schedule, username, password)
+		return schedule
 	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduler again
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
@@ -181,9 +181,10 @@ print("abcd")
 
 student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
-generate_schedule(unityId, day_date, student_record, buffer_time)
+schedule = generate_schedule(unityId, day_date, student_record, buffer_time)
 
 print("Success!")
+print(schedule)
 sys.stdout.flush()
 
 # # Details about temporary entries

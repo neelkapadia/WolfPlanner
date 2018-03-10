@@ -1,7 +1,7 @@
 var fs = require('fs');
 var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+const {google} = require('googleapis');
+//var googleAuth = require('google-auth-library');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/calendar-nodejs-quickstart.json
@@ -118,7 +118,7 @@ function listEvents(auth) {
       console.log('The API returned an error: ' + err);
       return;
     }
-    var events = response.items;
+    var events = response.data.items;
     if (events.length == 0) {
       console.log('No upcoming events found.');
     }
@@ -185,7 +185,7 @@ var event = {
 
 //console.log(event)
 
-  var calendar = google.calendar("v3");
+  const calendar = google.calendar("v3");
 
   calendar.events.insert({
   auth: auth,
@@ -196,7 +196,18 @@ var event = {
     console.log("There was an error contacting the Calendar service: " + err);
     return;
   }
-  console.log("Event created: %s", event.htmlLink);
+//  console.log("Event created: %s", event.htmlLink);
+  console.log("Event created!");
+//  var events = response.data.items;
+//    if (events.length == 0) {
+//      console.log('No upcoming events found.');
+//    }
+//    else {
+//      console.log('Upcoming 10 events:');
+//      for (var i = 0; i < events.length; i++) {
+//        var event = events[i];
+//        var start = event.start.dateTime || event.start.date;
+//        console.log('%s - %s', start, event.summary);
 });
 
 }
