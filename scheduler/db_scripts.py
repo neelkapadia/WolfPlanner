@@ -91,7 +91,7 @@ def string_converter(o):
 def db_retrieve(db_name, collection_name, unityId, username, password):
 	db = db_connect(db_name, username, password)
 	query = json.dumps({
-		'_id': unityId
+		'uid': unityId
 	})
 	query = json.loads(query)
 
@@ -106,7 +106,7 @@ def db_update(db_name, collection_name, unityId, record_key, record_val, usernam
 	db = db_connect(db_name, username, password)
 	try:
 		db[collection_name].update_one({
-			'_id': unityId
+			'uid': unityId
 		},
 		{
 			'$set':{

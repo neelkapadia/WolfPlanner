@@ -5,6 +5,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime
 from pprint import pprint
+
 import db_scripts
 
 def string_to_datetime(datetime_str):
@@ -54,17 +55,18 @@ def generate_free_time(_student_record, buffer_time):
 			free_time[day].insert(pos, start_time)
 			free_time[day].insert(pos + 1, end_time)
 
-	db_scripts.db_update(db_name, collection_name, _student_record['_id'], 'freeTime', free_time, username, password)
+	db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'freeTime', free_time, username, password)
 
 
 def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	print("Entered generate schedule")
-	if not 'freeTime' in _student_record:
-		generate_free_time(_student_record, buffer_time)
+	# if not 'freeTime' in _student_record:
+	# 	print("inside if")
+	# 	generate_free_time(_student_record, buffer_time)
+	# 	# Above query replaced by the following query.
+	# 	_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
-		# Above query replaced by the following query.
-		_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
-
+	print("After if")
 	tasks = _student_record['tasks']
 
 	# Defining variables to be used in the algorithm
@@ -80,6 +82,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# sort tasks based on deadline and if conflicting then select the one with lesser hours.
 	# String form of dates (deadlines) can directly be compared for inequality to order the tasks by deadlines.
 	sorted_tasks = sorted(tasks, key=lambda task: (task['deadline'], task['duration']))
+
+	print("Entering for")
 
 	for task in sorted_tasks:
 		rem_time = task['duration']
@@ -108,13 +112,12 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 				# Difference between two consecutive datetime objects (in seconds)
 				avail = end_time - start_time
 				time_avail = avail.seconds/3600
-
 				# If the number of available hours for this window is more than the window_size
 				# if diff.hours >= window_size:
 				if time_avail >= window_size:
 					# If the amount of time available is greater than equal to remaining needed amount of time
 					# if diff.hours >= rem_time:
-					if int(time_avail) >= int(rem_time):
+					if time_avail >= rem_time:
 						# Add the duration of remaining time to the free_time
 						# end_time (date) should be start_time (date) + rem_time (float)
 						end_hours = start_time.hour + int(rem_time)
@@ -135,12 +138,12 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					free_time[day].insert(pos, start_time)
 					free_time[day].insert(pos + 1, end_time)
 					schedule[day].append([start_time, end_time, task['name']])
-				pprint("In while")	
+				#pprint("In while")	
 				idx += 2
 	pprint(schedule)
 	if schedule:
 		pass
-		db_scripts.db_update(db_name, collection_name, _student_record['_id'], 'schedule', schedule, username, password)
+		db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'schedule', schedule, username, password)
 	# Suggestion: if we reach the deadline and the task is not getting completed, we can try scheduler again
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
