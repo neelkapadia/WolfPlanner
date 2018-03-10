@@ -29,7 +29,7 @@ var buffer_time = 15;
 console.log("hii");
 try{
 //var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-var pythonProcess = spawn("python3",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
+var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(day_date), buffer_time]);
 //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
 }
 catch(err){

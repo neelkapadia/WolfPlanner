@@ -163,9 +163,6 @@ password = data['password']
 print("check 2")
 
 unityId = sys.argv[1]
-slackId = sys.argv[2]
-email = sys.argv[3]
-name = sys.argv[4]
 
 # data = ast.literal_eval(sys.argv[1])
 # unityId = data[0]
@@ -175,8 +172,8 @@ name = sys.argv[4]
 
 print("check 3")
 
-day_date = ast.literal_eval(sys.argv[5])
-buffer_time = int(sys.argv[6])
+day_date = ast.literal_eval(sys.argv[2])
+buffer_time = int(sys.argv[3])
 
 print("abcd")
 
