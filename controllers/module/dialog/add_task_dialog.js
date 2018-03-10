@@ -1,12 +1,12 @@
 var dialog = {
-	title: 'Please add your task'
-	callback_id: 'add_task_dialog'
+	title: 'Please add your task',
+	callback_id: 'add_task_dialog',
 	submit_label: 'Submit',
-	submit_label: 'Submit'.
+	submit_label: 'Submit',
 	elements: [
 	{
 		label:"Task Name",
-        name: "tname",
+        name: "name",
         type: "text",
         placeholder: "AI HW 1"
 
