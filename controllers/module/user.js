@@ -91,19 +91,18 @@ module.exports = {
 
   	add_task: function(payload){
   		var task = {}
-
   		task = {
-  			name = payload.submission.tname,
-  			type = payload.submission.type,
-  			duration = payload.submission.duration,
-            deadline = payload.submission.deadline,
+  			name: payload.submission.name,
+  			type: payload.submission.type,
+  			duration: payload.submission.duration,
+            deadline: payload.submission.deadline,
   		}
 
   		user.findOneAndUpdate({
         slackId: payload.user.id
         } , {
         	$push: {
-        		 Tasks: task
+        		 tasks: task
 
         	}
         }, function(err, res){

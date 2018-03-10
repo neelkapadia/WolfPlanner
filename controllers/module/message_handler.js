@@ -55,8 +55,9 @@ module.exports = {
 
         else if (callback_id == 'add_task_dialog')
         {
-            //User.add_task(payload)
+            User.add_task(payload)
             console.log(payload)
+            action.send_message(payload.channel.id, payload.submission.name + " has been added", []);
             res.send('');
         }
         

@@ -1,5 +1,5 @@
-var path = "testNodeJS.py";
-//var path = "scheduling.py";
+//var path = "testNodeJS.py";
+var path = "scheduling.py";
 var spawn = require("child_process").spawn;
 var n1 = 2;
 var n2 = 15;
@@ -28,8 +28,8 @@ var data = [unityId, slackId, email, name];
 
 console.log("hii");
 try{
-var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-//var pythonProcess = spawn("python",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
+//var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
+var pythonProcess = spawn("python",[path, unityId, slackId, email, name, JSON.stringify(day_date), buffer_time]);
 //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
 }
 catch(err){
@@ -44,19 +44,3 @@ pythonProcess.stdout.on("data", function(data){
 pythonProcess.stdout.on("error", function(err){
 	console.log(err.toString())
 });
-
-//var spawn = require('child_process').spawn,
-//    py    = spawn('python', ['testNodeJS.py']),
-//    data = [1,2,3,4,5,6,7,8,9],
-//    dictData = {1:2, 3:4},
-//    dataString = '';
-//
-//py.stdout.on('data', function(data){
-//  dataString += data.toString();
-//});
-//py.stdout.on('end', function(){
-//  console.log('Sum of numbers=',dataString);
-//});
-//py.stdin.write(JSON.stringify(data));
-//py.stdin.write(JSON.stringify(dictData));
-//py.stdin.end();

@@ -91,6 +91,17 @@ module.exports = function(controller) {
         console.log(unityId)
         // var path = "./scheduler/testpy.py"
         // var spawn = require("child_process").spawn;
+        var path = "scheduling.py";
+        var spawn = require("child_process").spawn;
+        //console.log("hii");
+        try{
+        //var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
+        var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
+        //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
+        }
+        catch(err){
+            console.log(err)
+        }
         // var pythonProcess = spawn('python',[path, unityId, JSON.stringify(dt), buffer_time]);
         });
 // // Temporary function call to print the schedule from the mlab
@@ -102,6 +113,7 @@ module.exports = function(controller) {
 //         console.log(schedule)
 //     });
         
+>>>>>>> 8f7d1fbe251930a818fdf9e27aeae75b6258b713
 	});
     controller.hears(['^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task"+message.user)
