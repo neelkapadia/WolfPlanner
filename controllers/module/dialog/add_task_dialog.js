@@ -17,7 +17,7 @@ var dialog = {
         type: "select",
        options: [
          { label: 'HW', value: 'HW' },
-         { label: 'Project', value: 'Project'}
+         { label: 'Project', value: 'Project'},
          { label: 'Interview Prep', value: 'Interview Prep' },
          { label: 'On-campus job', value: 'On-campus job' },
          { label: 'Other', value: 'Other' },

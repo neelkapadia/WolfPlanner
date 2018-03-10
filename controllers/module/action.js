@@ -26,7 +26,6 @@ module.exports = {
     axios.post('https://slack.com/api/chat.postMessage', qs.stringify({
       token: process.env.slackToken,
       channel: channel_id,
-      // Edit the text that you want to send to the bot
       text: text,
       attachments : JSON.stringify(attachments),
     })).then((result) => {

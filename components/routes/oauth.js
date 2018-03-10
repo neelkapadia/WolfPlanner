@@ -10,7 +10,6 @@ module.exports = function(webserver, controller) {
             var code = req.query.code;
             var state = req.query.state;
 
-            // we need to use the Slack API, so spawn a generic bot with no token
             var slackapi = controller.spawn({});
 
             var opts = {
@@ -64,8 +63,7 @@ module.exports = function(webserver, controller) {
 
 
     // Create a /login link
-    // This link will send user's off to Slack to authorize the app
-    // See: https://github.com/howdyai/botkit/blob/master/readme-slack.md#custom-auth-flows
+    // This link will send user's off to Slack to authorize the app3
     debug('Configured /login url');
     webserver.get('/login', handler.login);
 
