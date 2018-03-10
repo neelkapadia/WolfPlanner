@@ -89,30 +89,65 @@ module.exports = function(controller) {
             return err;
           }
           console.log(dt)
-        console.log(unityId)
-        // var path = "./scheduler/testpy.py"
-        // var spawn = require("child_process").spawn;
-        var path = "scheduling.py";
-        var spawn = require("child_process").spawn;
-        //console.log("hii");
-        try{
-        //var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-        var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
-        //var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
-        }
-        catch(err){
-            console.log(err)
-        }
-        // var pythonProcess = spawn('python',[path, unityId, JSON.stringify(dt), buffer_time]);
+            console.log(unityId)
+            var path = "scheduling.py";
+            var spawn = require("child_process").spawn;
+            try{
+            var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
+            }
+            catch(err){
+                console.log(err)
+            }
         });
 // // Temporary function call to print the schedule from the mlab
-//     User.fetch_schedule(message.user, function(err,schedule){
-//         if(err){
-//             console.log(err);
-//             return err
-//         }
-//         console.log(schedule)
-//     });
+    User.fetch_schedule(message.user, function(err,user){
+        if(err){
+            console.log(err);
+            return err
+        }
+        // var p = JSON.stringify(user)
+        var p = user.schedule[0]
+        var scheduled = []
+        var dict = {"1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday","7":"Sunday"}
+        // console.log(Object.keys(p).length)
+        for(i=1;i<=Object.keys(p).length;i++){
+            // console.log(dict[i]+dt[i])
+            // console.log(p[i])
+            var fields = [];
+            for (j=0;j<p[i].length;j++) {
+                fields.push({
+                    title: p[i][j][2],
+                    value: "From: "+p[i][0][0].toISOString().split('T')[1].substr(0,5)+"\nTo: "+p[i][1][0].toISOString().split('T')[1].substr(0,5)
+                });
+                // console.log(p[1][j][2]);
+            }
+            scheduled.push({
+                        text: dict[i]+" "+dt[i],
+                        attachments: [
+                            {
+                                fields: fields
+                            }
+                        ]
+                    });
+            // bot.reply(message, {
+            //             text: dict[i]+" "+dt[i],
+            //             attachments: [
+            //                 {
+            //                     fields: fields
+            //                 }
+            //             ]
+            //         });
+        }
+        console.log(scheduled)
+        console.log(scheduled.length)
+        for(k=0;k<scheduled.length;k++){
+            bot.reply(message,scheduled[k])
+        }
+        // bot.reply(message,scheduled);
+        // console.log(p[1][0][0].toISOString().split('T')[1].substr(0,5))
+        // var oneday = {text:};
+        
+    });
         
 	});
     controller.hears(['^add task$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
@@ -189,6 +224,10 @@ module.exports = function(controller) {
                         ts: (Date.parse(taskList[i].deadline)/1000)
                     });
                 }
+                console.log({
+                    text: "Your Tasks",
+                    attachments: tasks
+                });
                 bot.reply(message, {
                     text: "Your Tasks",
                     attachments: tasks
