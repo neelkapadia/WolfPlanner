@@ -1,5 +1,5 @@
 # WolfPlanner
-``Software Engineering Srping 2018``
+``Software Engineering Spring 2018``
 ## Problem Statement
 
 ## Bot Description
