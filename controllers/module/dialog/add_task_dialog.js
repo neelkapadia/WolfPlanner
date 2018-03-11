@@ -27,7 +27,7 @@ var dialog = {
 	{
 		label:"Task Duration in hours",
         name: "duration",
-        type: "number",
+        type: "text",
         placeholder: "10"
 
 	},
