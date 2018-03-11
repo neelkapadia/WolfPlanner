@@ -83,6 +83,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 
 	print("Entering for")
 
+	new_tasks = sorted_tasks.copy()
+
 	for task in sorted_tasks:
 		rem_time = task['duration']
 
@@ -103,6 +105,9 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 			idx = 0
 			while idx < len(free_time[day]):
 				if rem_time == 0:
+					# Remove that task
+					new_tasks.remove(task)
+
 					# Go to next task
 					break
 				start_time = free_time[day][idx]
@@ -138,6 +143,9 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					schedule[day].append([start_time, end_time, task['name']])
 				#pprint("In while")	
 				idx += 2
+	# Update tasks to the new_tasks (i.e. removing those which have been scheduled successfully)
+	db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'tasks', new_tasks, username, password)
+
 	pprint(schedule)
 	if schedule:
 		pass
