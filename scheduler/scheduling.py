@@ -160,7 +160,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 print("ARGUMENTS -", sys.argv[1])
 
 # mlab DB details (from serialized object)
-pkl_file = open('.cred.pkl', 'rb')
+pkl_file = open('scheduler/.cred.pkl', 'rb')
 data = pickle.load(pkl_file)
 
 print("check 1")
@@ -220,4 +220,4 @@ schedule = generate_schedule(unityId, day_date, student_record, buffer_time)
 
 print("Success!")
 print(schedule)
-# sys.stdout.flush()
+sys.stdout.flush()

@@ -104,7 +104,7 @@ module.exports = function(controller) {
             //     console.log(err)
             // }
 
-            call.call_python(unityId, buffer_time, dt, function(err,data){
+            call.call_python(unityId, buffer_time, JSON.stringify(dt), function(err,data){
                                                                                     if(err){
                                                                                     console.log(err);
                                                                                     return err;
