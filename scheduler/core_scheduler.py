@@ -156,18 +156,25 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
 
-print("ARGUMENTS -", sys.argv[1])
+print("Entered")
+print("In core_scheduler")
 
+print("ARGUMENTS -", sys.argv[1])
 # mlab DB details (from serialized object)
-pkl_file = open('scheduler/.cred.pkl', 'rb')
-data = pickle.load(pkl_file)
+# pkl_file = open('.cred.pkl', 'rb')
+# data = pickle.load(pkl_file)
 
 print("check 1")
 
-db_name = data['db_name']
-collection_name = data['collection_name']
-username = data['username']
-password = data['password']
+# db_name = data['db_name']
+# collection_name = data['collection_name']
+# username = data['username']
+# password = data['password']
+
+db_name = 'se'
+collection_name = 'student'
+username = 'rtrgntsg'
+password = 'menzies'
 
 print("check 2")
 
