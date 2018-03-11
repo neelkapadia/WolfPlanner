@@ -27,11 +27,10 @@ def db_insert(db_name, collection_name, unityId, slackId, email, name, username,
 	# connect to the database
 	db = db_connect(db_name, username, password)
 	# dumps function converts the parameter into JSON object
-	# json_details = json.dumps(
 	json_details = json.dumps(
 		{
 			'uid': unityId,
-			'slackId': slackId,
+			'id': slackId,
 			'email': email,
 			'name': name,
 			'tasks': [
@@ -96,7 +95,7 @@ def db_retrieve(db_name, collection_name, unityId, username, password):
 	})
 	query = json.loads(query)
 	query = {
-		'_id': unityId
+		'uid': unityId
 	}
 	# query = json.dumps({
 	# 	'_id': unityId
