@@ -99,17 +99,13 @@ module.exports = {
 
   	add_task: function(payload){
   		var task = {}
-  		var year = payload.submission.deadlineYear
-      var month = payload.submission.deadlineMonth
-      var day = payload.submission.deadlineDay
-      var time  = payload.submission.deadlineTime
-      var deadline = year+"-"+month+"-"+day + " " + time[0] + time[1] + ":" + time[2] + time[3] + ":00"
-
+  		
+     
       task = {
-        name: payload.submission.name,
-        type: payload.submission.type,
-        duration: payload.submission.duration,
-            deadline: deadline,
+      name: payload.submission.name,
+      type: payload.submission.type,
+      duration: payload.submission.duration,
+      deadline: payload.submission.deadline,
       }
 
   		user.findOneAndUpdate({
