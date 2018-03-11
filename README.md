@@ -1,26 +1,21 @@
 # WolfPlanner
 ### Problem Statement
 With the number of tasks increasing day-by-day, it is becoming difficult for individuals to manage so many tasks considering the varying amount of time available and required to complete them. It requires continuous and active effort to create weekly schedules. This leads to wastage of valuable time, and poor planning might lead to excessive workloads. In such situations, an application that makes a schedule (time-table) for the individuals taking into account their pending tasks, deadlines will be a great asset for students. 
-
-### Bot Details
-
-
-
-### Installation Steps
-
  
 
 ### Basic Flow of the System
 Before showing a typical communication with the bot, let us discuss some points about the application.
 WolfPlanner is designed for students to help them in planning their activities by generating a weekly schedule. Thus, the intended user of the system is student.
-1. Student starts conversation with the bot: `Hi`, `hello`
-2. The bot responds to the user asking for the unity id: `Hi. Please enter your unity ID.`
-3. The student enters the unity ID.
-4. The bot then checks the database for a corresponding entry to the student ID.
-5. If it exists, then the bot asks the student to enter the list of tasks he/she has to perform for the following week: `Please enter the tasks which you want to be scheduled.`
-6. If not, then the bot asks the user to enter details to create a new profile in the system and then asks for the set of tasks to be scheduled.
-7. Upon receiving the tasks, the bot will generate a time-table for the student and simultaneously adds the tasks with corresponding timing on Google Calendar of the student's university account.
-8. The bot now sends the user an image of the schedule which it generated.
+1. Student starts conversation with the bot with a greeting like `Hi`, `Hello`
+2. The bot responds to the user asking for the unity id
+3. The student enters the unity ID and the student profile is created.
+4. The student can now access different options such as `add task`, `add course`,  `view tasks`, `view courses`, `view tasks` and `fetch schedule`
+At any point of the conversation the user can access these commands by asking for `help`.
+5. The student can `add course` which the user interacts with a popup dialog which takes the course details as input,
+6. The student can `add tasks` which include tasks such as Project, Interview Prep, Job, Homework among others. Task input is done in a way similar to that of adding courses.
+7. Once the tasks and courses have been entered,  `view course`, `view tasks` commands can be accessed to view them respectively. 
+8. Now, the student can request for the schedule to be generated, using the `fetch schedule` command. 
+9. The bot generates the schedule for the student and the week's schedule is generated. 
 
 ### Use Cases
 The most important use cases of the application are -
@@ -41,6 +36,9 @@ Also, if they want to regenerate the schedule due to addition of tasks during th
 #### 4. Add to calendar -
 
 Students can easily export their generated schedule to Google Calendar for easy access for the schedule and setting reminders about the scheduled events.
+
+### Installation Steps
+
 
 ### Contributors
 Neel Kapadia - [ntkapadi](https://github.com/neelkapadia)<br/>
