@@ -2,14 +2,18 @@
 ### Problem Statement
 With the number of tasks increasing day-by-day, it is becoming difficult for individuals to manage so many tasks considering the varying amount of time available and required to complete them. It requires continuous and active effort to create weekly schedules. This leads to wastage of valuable time, and poor planning might lead to excessive workloads. In such situations, an application that makes a schedule (time-table) for the individuals taking into account their pending tasks, deadlines will be a great asset for students. 
 
-### Bot Description
+### Bot Details
 
-### Steps for Running and Installing
+
+
+### Installation Steps
+
+ 
 
 ### Basic Flow of the System
 Before showing a typical communication with the bot, let us discuss some points about the application.
 WolfPlanner is designed for students to help them in planning their activities by generating a weekly schedule. Thus, the intended user of the system is student.
-1. Student starts conversation with the bot: `Hi`
+1. Student starts conversation with the bot: `Hi`, `hello`
 2. The bot responds to the user asking for the unity id: `Hi. Please enter your unity ID.`
 3. The student enters the unity ID.
 4. The bot then checks the database for a corresponding entry to the student ID.
