@@ -20,7 +20,8 @@ return;
 }
 // Authorize a client with the loaded credentials, then call the
 // Google Calendar API.
-authorize(JSON.parse(content), listEvents);
+//authorize(JSON.parse(content), listEvents);
+authorize(JSON.parse(content), addEvents);
 });
 
 /**
@@ -126,12 +127,15 @@ var start = event.start.dateTime || event.start.date;
 console.log('%s - %s', start, event.summary);
 }
 }
+});
+}
 // Refer to the Node.js quickstart on how to setup the environment:
 // https://developers.google.com/calendar/quickstart/node
 // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
 // stored credentials.
+function addEvents(auth){
 var event = {
-'summary': 'Google I/O 2015',
+'summary': 'Trial Event',
 'location': '800 Howard St., San Francisco, CA 94103',
 'description': 'A chance to hear more about Google\'s developer products.',
 'start': {
@@ -139,7 +143,7 @@ var event = {
 'timeZone': 'America/Los_Angeles',
 },
 'end': {
-'dateTime': '2018-03-13T17:00:00-07:00',
+'dateTime': '2018-03-13T13:45:00-07:00',
 'timeZone': 'America/Los_Angeles',
 },
 'reminders': {
@@ -150,6 +154,7 @@ var event = {
 ],
 },
 };
+var calendar = google.calendar('v3');
 
 calendar.events.insert({
 auth: auth,
@@ -161,7 +166,6 @@ console.log('There was an error contacting the Calendar service: ' + err);
 return;
 }
 console.log('Event created: %s', event.data.htmlLink);
-});
 });
 
 }
