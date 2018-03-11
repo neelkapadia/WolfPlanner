@@ -6,6 +6,7 @@ With the number of tasks increasing day-by-day, it is becoming difficult for ind
 ### Basic Flow of the System
 Before showing a typical communication with the bot, let us discuss some points about the application.
 WolfPlanner is designed for students to help them in planning their activities by generating a weekly schedule. Thus, the intended user of the system is student.
+
 Every new student user, receives a Slack invite to join the workspace inorder to access the WolfPlanner bot.
 1. Student starts conversation with the bot with a greeting like `Hi`, `Hello`
 2. The bot responds to the user asking for the unity id
