@@ -121,7 +121,7 @@ module.exports = {
   			});	
   	},
     fetch_schedule: function(user_id,callback){
-      user.findOne({id:user_id}, function(err,user){
+      user.findOne({uid:user_id}, function(err,user){
         if(err){
           console.log(err)
           return err

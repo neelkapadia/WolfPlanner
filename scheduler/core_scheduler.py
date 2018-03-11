@@ -84,10 +84,11 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 
 	print("Entering for")
 
-	new_tasks = sorted_tasks.copy()
+	# new_tasks = sorted_tasks.copy()
+	new_tasks = sorted_tasks[:]
 
 	for task in sorted_tasks:
-		rem_time = task['duration']
+		rem_time = float(task['duration'])
 
 		for day in '1234567':
 			if rem_time == 0:
@@ -137,7 +138,9 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					# If the amount of time available is less than the total time required
 					else:
 						rem_time -= time_avail
-
+					print("Remtime",rem_time)
+					print("time_avail",time_avail)
+					# print(type)
 					pos = idx + 1
 					free_time[day].insert(pos, start_time)
 					free_time[day].insert(pos + 1, end_time)

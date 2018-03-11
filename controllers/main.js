@@ -92,63 +92,50 @@ module.exports = function(controller) {
           }
           console.log("Reached till date time!")
           console.log(dt)
-            //console.log(unityId)
-            // var path = "./scheduler/scheduling.py";
-            // var spawn = require("child_process").spawn;
-            // console.log("trying")
-            // try{
-            // console.log("Spawning")
-            // var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
-            // console.log("Spawned")
-            // }
-            // catch(err){
-            //     console.log(err)
-            // }
 
-            call.call_python(unityId, buffer_time, JSON.stringify(dt), function(err,data){
+            call.call_python(unityId, buffer_time, dt, function(err,data){
                                                                                     if(err){
                                                                                     console.log(err);
                                                                                     return err;
                                                                                     }
-                                                                                    console.log(data);
+                                                                                    // console.log(data);
+        for(k=0;k<data.length;k++){
+            bot.reply(message,data[k])
+        }
+        console.log(data[0]);
+
                                                                                   });
         });
-    User.fetch_schedule(message.user, function(err,user){
-        if(err){
-            console.log(err);
-            return err
-        }
-        var p = user.schedule[0];
-        console.log("THIS IS THE SCHEDULE --");
-        console.log(user.schedule[0]);
-        var scheduled = [];
-        var dict = {"1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday","7":"Sunday"}
-        for(i=1;i<=Object.keys(p).length;i++){
-            var fields = [];
-            for (j=0;j<p[i].length;j++) {
-                fields.push({
-                    title: p[i][j][2],
-                    value: "From: "+p[i][j][0].toISOString().split('T')[1].substr(0,5)+"\nTo: "+p[i][j][1].toISOString().split('T')[1].substr(0,5)
-                });
-                // console.log(p[i][j][0])
-            }
-            scheduled.push({
-                        text: dict[i]+" "+dt[i],
-                        attachments: [
-                            {
-                                fields: fields
-                            }
-                        ]
-                    });
-        }
-        // console.log(p[1][0][0])
-        // console.log(message)
-        // console.log(scheduled.length)
-        // action.send_message(message.channel, scheduled[0])
-        for(k=0;k<scheduled.length;k++){
-            bot.reply(message,scheduled[k])
-        }
-    });
+    // User.fetch_schedule(message.user, function(err,user){
+    //     if(err){
+    //         console.log(err);
+    //         return err
+    //     }
+    //     var p = user.schedule[0];
+    //     var scheduled = [];
+    //     var dict = {"1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday","7":"Sunday"}
+    //     for(i=1;i<=Object.keys(p).length;i++){
+    //         var fields = [];
+    //         for (j=0;j<p[i].length;j++) {
+    //             fields.push({
+    //                 title: p[i][j][2],
+    //                 value: "From: "+p[i][j][0].toISOString().split('T')[1].substr(0,5)+"\nTo: "+p[i][j][1].toISOString().split('T')[1].substr(0,5)
+    //             });
+
+    //         }
+    //         scheduled.push({
+    //                     text: dict[i]+" "+dt[i],
+    //                     attachments: [
+    //                         {
+    //                             fields: fields
+    //                         }
+    //                     ]
+    //                 });
+    //     }
+        // for(k=0;k<scheduled.length;k++){
+        //     bot.reply(message,scheduled[k])
+        // }
+    // });
         
 	});
     controller.hears(['^add task$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
