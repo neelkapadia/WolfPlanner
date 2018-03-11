@@ -16,7 +16,7 @@ At any point of the conversation the user can access these commands by asking fo
 5. The student can `add course` which the user interacts with a popup dialog which takes the course details as input,
 6. The student can `add tasks` which include tasks such as Project, Interview Prep, Job, Homework among others. Task input is done in a way similar to that of adding courses.
 7. Once the tasks and courses have been entered,  `view course`, `view tasks` commands can be accessed to view them respectively. 
-8. Now, the student can request for the schedule to be generated, using the `fetch schedule` command. 
+8. Now, after the courses and tasks have been added, the student can request for the schedule to be generated, using the `fetch schedule` command.
 9. The bot generates the schedule for the student and the week's schedule is generated. 
 
 ### Use Cases
