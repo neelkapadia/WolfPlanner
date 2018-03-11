@@ -33,10 +33,10 @@ var dialog = {
 	},
 {
 		
--		label:"Deadline",
--        name: "deadline",
--        type: "text",
--        placeholder: "2018-05-07 12:00:00"
+	label:"Deadline",
+       name: "deadline",
+       type: "text",
+       placeholder: "2018-05-07 12:00:00"
 	},
 
 

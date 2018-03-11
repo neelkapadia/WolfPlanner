@@ -1,11 +1,11 @@
-
-var env = require('node-env-file');
-env(__dirname + '/.env');
-if (!process.env.clientId || !process.env.clientSecret || !process.env.PORT) {
-  console.log('Error: Specify clientId clientSecret and PORT in environment');
-  usage_tip();
-  process.exit(1);
-}
+require('dotenv').config();
+// var env = require('node-env-file');
+// env(__dirname + '/.env');
+// if (!process.env.clientId || !process.env.clientSecret || !process.env.PORT) {
+//   console.log('Error: Specify clientId clientSecret and PORT in environment');
+//   usage_tip();
+//   process.exit(1);
+// }
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
