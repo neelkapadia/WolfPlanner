@@ -90,7 +90,8 @@ module.exports = function(controller) {
             console.log(err);
             return err;
           }
-          //console.log(dt)
+          console.log("Reached till date time!")
+          console.log(dt)
             //console.log(unityId)
             // var path = "./scheduler/scheduling.py";
             // var spawn = require("child_process").spawn;
@@ -117,8 +118,10 @@ module.exports = function(controller) {
             console.log(err);
             return err
         }
-        var p = user.schedule[0]
-        var scheduled = []
+        var p = user.schedule[0];
+        console.log("THIS IS THE SCHEDULE --");
+        console.log(user.schedule[0]);
+        var scheduled = [];
         var dict = {"1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday","7":"Sunday"}
         for(i=1;i<=Object.keys(p).length;i++){
             var fields = [];
