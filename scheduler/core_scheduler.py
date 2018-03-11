@@ -58,14 +58,14 @@ def generate_free_time(_student_record, buffer_time):
 
 
 def generate_schedule(unityId, day_date, _student_record, buffer_time):
-	print("Entered generate schedule")
+	# print("Entered generate schedule")
 	if not 'freeTime' in _student_record:
-		print("inside if")
+		# print("inside if")
 		generate_free_time(_student_record, buffer_time)
 		# Above query replaced by the following query.
 		_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
-	print("After if")
+	# print("After if")
 	tasks = _student_record['tasks']
 
 	# Defining variables to be used in the algorithm
@@ -82,7 +82,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# String form of dates (deadlines) can directly be compared for inequality to order the tasks by deadlines.
 	sorted_tasks = sorted(tasks, key=lambda task: (task['deadline'], task['duration']))
 
-	print("Entering for")
+	# print("Entering for")
 
 	# new_tasks = sorted_tasks.copy()
 	new_tasks = sorted_tasks[:]
@@ -138,8 +138,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					# If the amount of time available is less than the total time required
 					else:
 						rem_time -= time_avail
-					print("Remtime",rem_time)
-					print("time_avail",time_avail)
+					# print("Remtime",rem_time)
+					# print("time_avail",time_avail)
 					# print(type)
 					pos = idx + 1
 					free_time[day].insert(pos, start_time)
@@ -159,15 +159,15 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
 
-print("Entered")
-print("In core_scheduler")
-
-print("ARGUMENTS -", sys.argv[1])
+# print("Entered")
+# print("In core_scheduler")
+#
+# print("ARGUMENTS -", sys.argv[1])
 # mlab DB details (from serialized object)
 # pkl_file = open('.cred.pkl', 'rb')
 # data = pickle.load(pkl_file)
 
-print("check 1")
+# print("check 1")
 
 # db_name = data['db_name']
 # collection_name = data['collection_name']
@@ -179,16 +179,16 @@ collection_name = 'student'
 username = 'rtrgntsg'
 password = 'menzies'
 
-print("check 2")
+# print("check 2")
 
 unityId = sys.argv[1]
 
-print("check 3")
+# print("check 3")
 
 day_date = ast.literal_eval(sys.argv[2])
 buffer_time = int(sys.argv[3])
 
-print("abcd")
+# print("abcd")
 
 # unityId is the only parameter on which we query right now. Can be modified to have other parameters as well.
 student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
@@ -196,7 +196,7 @@ print(student_record)
 
 schedule = generate_schedule(unityId, day_date, student_record, buffer_time)
 
-print("Success!")
+# print("Success!")
 print(schedule)
 sys.stdout.flush()
 

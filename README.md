@@ -26,16 +26,24 @@ The most important use cases of the application are -
 
 Students add a set of tasks such as lecture timings and days which stay fixed throughout the semester. 
 
-#### 2. Add new task -
+#### 2. View courses -
+
+Students can see their course listings, if needed, to get an idea of the time they will not be available for any task.
+
+#### 3. Add new task -
 
 Students can add various other tasks to their To Do list along with the amount of time they expect to keep aside for it. These can be tasks like Home works, Coding practice, Project Discussions, etc.
 
-#### 3. Generate schedule -
+#### 4. View tasks - 
+
+Students can take a look at the tasks they have this week. This can help them make sure that they added all the tasks they want to complete in the current week and did not miss out anything. 
+
+#### 5. Generate schedule -
 
 Students can generate the schedule for the week, based on the fixed tasks they have and the additional tasks they need to get done in the week. They can set the window size according to their convenience i.e. some users may want their tasks to be scheduled even in small slots of time, whereas others might want to take rest if the available amount of time is too small for their liking.  
 Also, if they want to regenerate the schedule due to addition of tasks during the week, they can call this again to get the updated schedule.
 
-#### 4. Add to calendar -
+#### 6. Add to calendar -
 
 Students can easily export their generated schedule to Google Calendar for easy access for the schedule and setting reminders about the scheduled events.
 

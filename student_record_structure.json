@@ -43,7 +43,7 @@
                      datetime.datetime(1, 1, 1, 22, 0)]}],
  'name': 'Sainag Ganesh Shetty',
  'slackId': 'U90JUGPU1',
- 'tasks': [{"deadline": "2018-03-10 23:59:00",
+ 'tasks': [{"deadline": "2018-03-14 23:59:00",
             "duration": 10,
             "name": "STDM HW 3",
             "number": 1,
