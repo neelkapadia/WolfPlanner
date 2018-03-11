@@ -8,6 +8,7 @@ const dialogs = require('./module/dialog.js');
 const prompts = require('./module/prompt.js');  
 const User = require('./module/user.js');  
 const action = require('./module/action');
+const call = require('../scheduler/callpython.js');
 module.exports = function(controller) {
 
     controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
@@ -89,16 +90,27 @@ module.exports = function(controller) {
             console.log(err);
             return err;
           }
-          console.log(dt)
-            console.log(unityId)
-            var path = "scheduling.py";
-            var spawn = require("child_process").spawn;
-            try{
-            var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
-            }
-            catch(err){
-                console.log(err)
-            }
+          //console.log(dt)
+            //console.log(unityId)
+            // var path = "./scheduler/scheduling.py";
+            // var spawn = require("child_process").spawn;
+            // console.log("trying")
+            // try{
+            // console.log("Spawning")
+            // var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(dt), buffer_time]);
+            // console.log("Spawned")
+            // }
+            // catch(err){
+            //     console.log(err)
+            // }
+
+            call.call_python(unityId, buffer_time, dt, function(err,data){
+                                                                                    if(err){
+                                                                                    console.log(err);
+                                                                                    return err;
+                                                                                    }
+                                                                                    console.log(data);
+                                                                                  });
         });
     User.fetch_schedule(message.user, function(err,user){
         if(err){

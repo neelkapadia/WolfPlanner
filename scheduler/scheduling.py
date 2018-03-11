@@ -5,12 +5,10 @@ import sys
 from collections import defaultdict
 from datetime import datetime
 from pprint import pprint
-
 import db_scripts
 
 def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
-
 
 def generate_free_time(_student_record, buffer_time):
 	free_time = defaultdict(list)
@@ -60,11 +58,11 @@ def generate_free_time(_student_record, buffer_time):
 
 def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	print("Entered generate schedule")
-	# if not 'freeTime' in _student_record:
-	# 	print("inside if")
-	# 	generate_free_time(_student_record, buffer_time)
-	# 	# Above query replaced by the following query.
-	# 	_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
+	if not 'freeTime' in _student_record:
+		print("inside if")
+		generate_free_time(_student_record, buffer_time)
+		# Above query replaced by the following query.
+		_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
 	print("After if")
 	tasks = _student_record['tasks']
@@ -149,8 +147,6 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# by reducing the buffer to 15 mins/0 mins (this is optimization i guess. can be ignored for now)
 
 
-# if __name__ == "__main__":
-
 print("ARGUMENTS -", sys.argv[1])
 
 # mlab DB details (from serialized object)
@@ -168,12 +164,6 @@ print("check 2")
 
 unityId = sys.argv[1]
 
-# data = ast.literal_eval(sys.argv[1])
-# unityId = data[0]
-# slackId = data[1]
-# email = data[2]
-# name = data[3]
-
 print("check 3")
 
 day_date = ast.literal_eval(sys.argv[2])
@@ -190,34 +180,3 @@ schedule = generate_schedule(unityId, day_date, student_record, buffer_time)
 print("Success!")
 print(schedule)
 sys.stdout.flush()
-
-# # Details about temporary entries
-#
-# # unityId = 'rgchanda'
-# # slackId = 'U912NK72P'
-# # email = 'rgchanda@ncsu.edu'
-# # name = 'Rohan Chandavarkar'
-#
-# # unityId = 'rtnaik'
-# # slackId = 'U921S9WF8'
-# # email = 'rtnaik@ncsu.edu'
-# # name = 'Rohit Tushar Naik'
-#
-# unityId = 'sgshetty'
-# slackId = 'U90JUGPU1'
-# email = 'sgshetty@ncsu.edu'
-# name = 'Sainag Ganesh Shetty'
-#
-# # dummy day_date variable for testing (till input received from bot)
-# day_date = {
-# 	'1': '2018-03-05 20:30:00',
-# 	'2': '2018-03-06 20:30:00',
-# 	'3': '2018-03-07 20:30:00',
-# 	'4': '2018-03-08 20:30:00',
-# 	'5': '2018-03-09 20:30:00',
-# 	'6': '2018-03-10 20:30:00',
-# 	'7': '2018-03-11 20:30:00'
-# }
-#
-# # Assumed to be in minutes (logically)
-# buffer_time = 15

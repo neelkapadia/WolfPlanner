@@ -1,46 +1,34 @@
-//var path = "testNodeJS.py";
-var path = "scheduling.py";
-var spawn = require("child_process").spawn;
-var n1 = 2;
-var n2 = 15;
+module.exports = {
+	call_python: function(unityId, buffer_time, day_date, callback){
+		var spawn = require("child_process").spawn;
+		var path = "../scheduler/temp.py";
+		console.log("In call python");
+		const { exec } = require('child_process');
+		exec('python3 temp.py ', (err, stdout, stderr) => {
+			  if (err) {
+			    // node couldn't execute the command
+			    return;
+			  }
+			  // the *entire* stdout and stderr (buffered)
+			  console.log(`stdout: ${stdout}`);
+			  console.log(`stderr: ${stderr}`);
+			});
 
-// Login details
-var unityId = "sgshetty";
-var slackId = "U90JUGPU1";
-var email = "sgshetty@ncsu.edu";
-var name = "Sainag Ganesh Shetty";
+		try{
+			var my_call = spawn("python3",[path, unityId, JSON.stringify(day_date), buffer_time]);
+		}
+		catch(err){
+			console.log(err);
+			return err;
+		}
 
-// dummy day_date variable for testing (till input received from bot)
-var day_date = {
-	"1": "2018-03-05 20:30:00",
-	"2": "2018-03-06 20:30:00",
-	"3": "2018-03-07 20:30:00",
-	"4": "2018-03-08 20:30:00",
-	"5": "2018-03-09 20:30:00",
-	"6": "2018-03-10 20:30:00",
-	"7": "2018-03-11 20:30:00"
-};
+		my_call.stdout.on("data", function(data){
+			callback(null,data.toString());
+		});
 
-//Assumed to be in minutes (logically)
-var buffer_time = 15;
-
-//var data = [unityId, slackId, email, name];
-
-console.log("hii");
-try{
-//var pythonProcess = spawn("python",[path, n1, n2, JSON.stringify(day_date)]);
-var pythonProcess = spawn("python3",[path, unityId, JSON.stringify(day_date), buffer_time]);
-//var pythonProcess = spawn("python",[path, JSON.stringify(data), JSON.stringify(day_date), buffer_time]);
+		my_call.stdout.on("error", function(err){
+			console.log(err);
+			return err;
+		});  + unityId + ' ' + day_date + ' ' + buffer_time
+	}
 }
-catch(err){
-	console.log(err)
-}
-console.log("byee");
-
-pythonProcess.stdout.on("data", function(data){
-	console.log(data.toString())
-});
-
-pythonProcess.stdout.on("error", function(err){
-	console.log(err.toString())
-});
