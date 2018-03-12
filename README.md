@@ -22,6 +22,7 @@ At any point of the conversation the user can access these commands by asking fo
 ### Use Cases
 Whenever a new user joins, the conversation goes like this - 
 ![new user intro](https://user-images.githubusercontent.com/18022447/37309791-5b0d222a-2618-11e8-8ffb-fbe82226f80b.gif)
+
 _**Fig 1.** When a new user starts conversation_
 
 
@@ -32,6 +33,7 @@ The most important use cases of the application are -
 Students add a set of tasks such as lecture timings and days which stay fixed throughout the semester. 
 
 ![add courses](https://user-images.githubusercontent.com/18022447/37310346-01c44bb0-261a-11e8-9991-6f4c804d7386.gif)
+
 _**Fig 2.** Add course_
 
 #### 2. View courses -
@@ -39,6 +41,7 @@ _**Fig 2.** Add course_
 Students can see their course listings, if needed, to get an idea of the time they will not be available for any task.
 
 ![view courses](https://user-images.githubusercontent.com/18022447/37310381-1b7ffa68-261a-11e8-9d62-3d256fe893d3.gif)
+
 _**Fig 3.** View courses_
 
 #### 3. Add task -
@@ -46,6 +49,7 @@ _**Fig 3.** View courses_
 Students can add various other tasks to their To Do list along with the amount of time they expect to keep aside for it. These can be tasks like Home works, Coding practice, Project Discussions, etc.
 
 ![add task](https://user-images.githubusercontent.com/18022447/37311307-257c2b56-261d-11e8-9ac3-d69e3e44be44.gif)
+
 _**Fig 4.** Add task_
 
 #### 4. View tasks - 
@@ -53,6 +57,7 @@ _**Fig 4.** Add task_
 Students can take a look at the tasks they have this week. This can help them make sure that they added all the tasks they want to complete in the current week and did not miss out anything. 
 
 ![view tasks](https://user-images.githubusercontent.com/18022447/37311329-36399cc6-261d-11e8-9cc4-189431084bf5.gif)
+
 _**Fig 5.** View tasks_
 
 #### 5. Generate schedule -
@@ -61,6 +66,7 @@ Students can generate the schedule for the week, based on the fixed tasks they h
 Also, if they want to regenerate the schedule due to addition of tasks during the week, they can call this again to get the updated schedule.
 
 ![fetch schedule](https://user-images.githubusercontent.com/18022447/37311732-d86e54c2-261e-11e8-8983-24452b15b32e.gif)
+
 _**Fig 6.** Generate schedule_
 
 #### 6. Add to calendar -
