@@ -17,7 +17,13 @@ module.exports = {
 	            console.log(err);
 	            return err
 	        }
-	        var p = user.schedule[0];
+	        if(typeof user.schedule[0] === "undefined"){
+	        	var p = []
+	        }
+	        else{
+	        	var p = user.schedule[0];
+	        }
+	        
 	        var scheduled = [];
 	        var dict = {"1":"Monday","2":"Tuesday","3":"Wednesday","4":"Thursday","5":"Friday","6":"Saturday","7":"Sunday"}
 	        for(i=1;i<=Object.keys(p).length;i++){
