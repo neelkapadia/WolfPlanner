@@ -135,25 +135,44 @@ console.log('%s - %s', start, event.summary);
 // stored credentials.
 function addEvents(auth){
 var event = {
-'summary': 'Trial Event',
-'location': '800 Howard St., San Francisco, CA 94103',
-'description': 'A chance to hear more about Google\'s developer products.',
-'start': {
-'dateTime': '2018-03-13T09:00:00-07:00',
-'timeZone': 'America/Los_Angeles',
-},
-'end': {
-'dateTime': '2018-03-13T13:45:00-07:00',
-'timeZone': 'America/Los_Angeles',
-},
-'reminders': {
-'useDefault': false,
-'overrides': [
-{'method': 'email', 'minutes': 24 * 60},
-{'method': 'popup', 'minutes': 10},
-],
-},
+	'summary': eventName,
+	'description': description,
+	'start': {
+		'dateTime': startDate
+	},
+	'end': {
+		'dateTime': endTime
+	},
+	'reminders': {
+		'useDault': false,
+		'overrides': [
+			{'method': 'popup', 'hours': 12},
+			{'method': 'popup', 'minutes': 30}
+		],
+	},
 };
+
+//var event = {
+//'summary': 'Trial Event',
+//'location': '800 Howard St., San Francisco, CA 94103',
+//'description': 'A chance to hear more about Google\'s developer products.',
+//'start': {
+//'dateTime': '2018-03-28T09:00:00-07:00',
+//'timeZone': 'America/Los_Angeles',
+//},
+//'end': {
+//'dateTime': '2018-03-28T13:45:00-07:00',
+//'timeZone': 'America/Los_Angeles',
+//},
+//'reminders': {
+//'useDefault': false,
+//'overrides': [
+//{'method': 'email', 'minutes': 24 * 60},
+//{'method': 'popup', 'minutes': 10},
+//],
+//},
+//};
+
 var calendar = google.calendar('v3');
 
 calendar.events.insert({
