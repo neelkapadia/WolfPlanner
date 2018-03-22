@@ -5,9 +5,10 @@ var debug = require('debug')('botkit:webserver');
 var request = require('request-promise');
 var cheerio = require('cheerio');
 const dialogs = require('./module/dialog.js');
-const prompts = require('./module/prompt.js');  
-const User = require('./module/user.js');  
+const prompts = require('./module/prompt.js');
+const User = require('./module/user.js');
 const action = require('./module/action');
+const calendar = require('../calendar.js');
 const call = require('../scheduler/callpython.js');
 module.exports = function(controller) {
     controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
@@ -110,6 +111,11 @@ module.exports = function(controller) {
                         for(k=0;k<data.length;k++){
                             bot.reply(message,data[k])
                         }
+
+                        // Currently just adding to schedule without asking
+						calendar.call_calendar(unityId, function(err, data){
+							console.log(data)
+						});
                     });
                 });
             }
