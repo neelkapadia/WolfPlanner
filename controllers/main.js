@@ -70,7 +70,7 @@ module.exports = function(controller) {
     });
     
     controller.hears(['^help$'], 'direct_message,direct_mention', function(bot, message) {
-        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule"}
+        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule\n`add to calendar`: to add your schedule to Google Calendar"};
         bot.reply(message, j)
     });
 
@@ -111,11 +111,6 @@ module.exports = function(controller) {
                         for(k=0;k<data.length;k++){
                             bot.reply(message,data[k])
                         }
-
-                        // Currently just adding to schedule without asking
-						calendar.call_calendar(unityId, function(err, data){
-							console.log(data)
-						});
                     });
                 });
             }
@@ -123,7 +118,24 @@ module.exports = function(controller) {
         
 	});
 
-    controller.hears(['^add task$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
+	controller.hears(['^add to calendar$', '^calendar$'], 'direct_message,direct_mention', function(bot, message) {
+		console.log("Adding to calendar");
+		// Currently just adding to schedule without asking
+        eventName = 'Trying calendar API';
+        description = 'Check if passing parameters works or not!';
+        startDateTime = '2018-03-28T09:00:00-07:00';
+        endDateTime = '2018-03-28T14:00:00-07:00';
+		calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
+			if(err){
+				console.log(err);
+				return err;
+			}
+			console.log(data);
+			bot.reply(message, "Your schedule has been added to Google Calendar!");
+		});
+	});
+
+    controller.hears(['^add tasks$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task")
         bot.reply(message,prompts.add_task_prompt);
 

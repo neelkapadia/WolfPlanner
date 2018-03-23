@@ -1,6 +1,6 @@
 module.exports = {
 
-call_calendar: function(unityId, callback){
+call_calendar: function(eventName, description, startDateTime, endDateTime, callback){
 	var fs = require('fs');
 	var readline = require('readline');
 	var {google} = require('googleapis');
@@ -141,15 +141,15 @@ call_calendar: function(unityId, callback){
 			'summary': eventName,
 			'description': description,
 			'start': {
-				'dateTime': startDate
+				'dateTime': startDateTime
 			},
 			'end': {
-				'dateTime': endTime
+				'dateTime': endDateTime
 			},
 			'reminders': {
-				'useDault': false,
+				'useDefault': false,
 				'overrides': [
-					{'method': 'popup', 'hours': 12},
+					{'method': 'popup', 'minutes': 12*60},
 					{'method': 'popup', 'minutes': 30}
 				],
 			},
