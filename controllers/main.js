@@ -120,19 +120,61 @@ module.exports = function(controller) {
 
 	controller.hears(['^add to calendar$', '^calendar$'], 'direct_message,direct_mention', function(bot, message) {
 		console.log("Adding to calendar");
-		// Currently just adding to schedule without asking
-        eventName = 'Trying calendar API';
-        description = 'Check if passing parameters works or not!';
-        startDateTime = '2018-03-28T09:00:00-07:00';
-        endDateTime = '2018-03-28T14:00:00-07:00';
-		calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
+
+		User.fetch_details_user(message.user,function(err,user){
 			if(err){
 				console.log(err);
 				return err;
 			}
-			console.log(data);
-			bot.reply(message, "Your schedule has been added to Google Calendar!");
-		});
+
+			// Getting schedule into a variable for ease of use
+			schedule = user['schedule'];
+
+			console.log("SCHEDULE - ");
+			console.log(schedule);
+			console.log(schedule.length);
+
+			console.log("Before condition");
+			if(schedule.length == 0){
+				bot.reply(message, "You have not generated a schedule yet!");
+				bot.reply(message, "Please generate a schedule using `fetch schedule` and then try `add to calendar` to add it to Google Calendar");
+			}
+			else if(schedule.length == 1){
+				console.log("Schedule available! Adding to calendar");
+				// Currently just adding to schedule without asking
+		        eventName = 'Trying calendar API';
+		        description = 'Check if passing parameters works or not!';
+		        startDateTime = '2018-03-28T09:00:00-07:00';
+		        endDateTime = '2018-03-28T14:00:00-07:00';
+				calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
+					if(err){
+						console.log(err);
+						return err;
+					}
+					console.log(data);
+					bot.reply(message, "Your schedule has been added to Google Calendar!");
+				});
+
+			}
+			console.log("After condition");
+
+//          console.log("User is -");
+//          console.log(user);
+//
+//          console.log(user['schedule']);
+//
+//          console.log('schedule' in user);
+//          console.log(Object.keys(user['schedule']));
+//          console.log(schedule);
+//          console.log(user['schedule']);
+//
+//          console.log(schedule.length);
+//
+//          empty = {};
+//          console.log(empty.length == undefined);
+//
+//          console.log(Object.keys(user['schedule']).length);
+        });
 	});
 
     controller.hears(['^add tasks$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {

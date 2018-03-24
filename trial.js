@@ -22,10 +22,12 @@ var event = {
 var a = 1;
 var str = "abc";
 var dict = {
-1:2,
-'a':1,
-1:'A',
-'A':'A'}
+	'a':1,
+	1:'A',
+	'A':'A'
+};
+
+console.log(dict);
 
 var try_var =
 {
@@ -35,3 +37,18 @@ var try_var =
 };
 
 console.log(try_var);
+
+trial = {};
+
+console.log('para1' in try_var);
+console.log(try_var['para3']);
+console.log(Object.keys(try_var['para3']).length);
+console.log(Object.keys(try_var['para3']));
+console.log([].length)
+
+if('para1' in try_var){
+	console.log("Testing presence of key in try_var");
+}
+else{
+	console.log("Trial object is empty");
+}
