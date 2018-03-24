@@ -110,13 +110,6 @@ module.exports = function(controller) {
             else{
                 var buffer_time = 60;
 
-//                var curr = new Date;
-//                var first = curr.getDate() - curr.getDay() +1;
-//                var last = first + 6;
-//                var dt = {};
-//                for(i=first,j=1;i<=last;i++,j++){
-//                    dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
-//                }
                 dt = getDayDate()
                 console.log("DAY DATE -");
                 console.log(dt);
@@ -192,52 +185,12 @@ module.exports = function(controller) {
 						});
 						console.log("DONEE!!");
 					});
-
-//					console.log(key);
-//					startDateTime = schedule[key][0]
-//					endDateTime = schedule[key][1]
-//					eventName = schedule[key][2]
-//
-//					console.log("Start time -", startDateTime);
-//					console.log("End time -", endDateTime);
-//					console.log("Event name -", eventName);
-
 				}
-
-//		        eventName = 'Trying calendar API';
-////		        description = 'Check if passing parameters works or not!';
-//		        startDateTime = '2018-03-28T09:00:00-07:00';
-//		        endDateTime = '2018-03-28T14:00:00-07:00';
-
-//				calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
-//					if(err){
-//						console.log(err);
-//						return err;
-//					}
-//					console.log(data);
-//					bot.reply(message, "Your schedule has been added to Google Calendar!");
-//				});
 
 				// Check position!
                 bot.reply(message, "Your schedule has been added to Google Calendar!");
 			}
 			console.log("After condition");
-//          console.log("User is -");
-//          console.log(user);
-//
-//          console.log(user['schedule']);
-//
-//          console.log('schedule' in user);
-//          console.log(Object.keys(user['schedule']));
-//          console.log(schedule);
-//          console.log(user['schedule']);
-//
-//          console.log(schedule.length);
-//
-//          empty = {};
-//          console.log(empty.length == undefined);
-//
-//          console.log(Object.keys(user['schedule']).length);
         });
 	});
 
