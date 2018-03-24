@@ -11,17 +11,29 @@ def string_to_datetime(datetime_str):
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
 
-def generate_free_time(_student_record, buffer_time):
+def generate_free_time(_student_record, buffer_time, day_date):
 	free_time = defaultdict(list)
 	# Set the entire day window for every day from 8AM to 10PM
 	# Since days are stored from 1 to 7 - 1 being Monday and 7 being Sunday
 	for day in '1234567':
-		free_time[day].append(datetime(1, 1, 1, 8, 0, 0))
-		free_time[day].append(datetime(1, 1, 1, 22, 0, 0))
+		date = day_date[day]
+
+		stime = ':'.join(['08', '00', '00'])
+		start_time = string_to_datetime(date + ' ' + stime)
+
+		etime = ':'.join(['22', '00', '00'])
+		end_time = string_to_datetime(date + ' ' + etime)
+
+		free_time[day].append(start_time)
+		free_time[day].append(end_time)
 
 	# Adding fixed tasks to each day to find free time
 	for record in _student_record['fixedTasks']:
 		# Converting string datetimes (for JSON storing) to datetime objects
+
+		# for day in record['days']:
+		# 	date = day_date[day]
+
 		start_time = string_to_datetime(record['startTime'])
 		end_time = string_to_datetime(record['endTime'])
 
@@ -48,6 +60,13 @@ def generate_free_time(_student_record, buffer_time):
 			# bisect_right since even if there is an endTime inside the array which corresponds to the startTime exactly,
 			# the startTime we are inserting should be to the right of this already present endTime
 			# Assumption - Distance Education courses (if any) have also been allotted a non-conflicting slot
+			date = day_date[day]
+			stime = ':'.join([str(start_time.hour), str(start_time.minute), str(start_time.second)])
+			etime = ':'.join([str(end_time.hour), str(end_time.minute), str(end_time.second)])
+
+			start_time = string_to_datetime(date + ' ' + stime)
+			end_time = string_to_datetime(date + ' ' + etime)
+
 			pos = bisect.bisect_right(free_time[day], start_time)
 
 			# Only need to find the correct position of startTime. endTime to be inserted will ALWAYS be after that.
@@ -61,7 +80,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# print("Entered generate schedule")
 	if not 'freeTime' in _student_record:
 		# print("inside if")
-		generate_free_time(_student_record, buffer_time)
+		generate_free_time(_student_record, buffer_time, day_date)
 		# Above query replaced by the following query.
 		_student_record = db_scripts.db_retrieve(db_name, collection_name, unityId, username, password)
 
