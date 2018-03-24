@@ -5,10 +5,27 @@ var debug = require('debug')('botkit:webserver');
 var request = require('request-promise');
 var cheerio = require('cheerio');
 const dialogs = require('./module/dialog.js');
-const prompts = require('./module/prompt.js');  
-const User = require('./module/user.js');  
+const prompts = require('./module/prompt.js');
+const User = require('./module/user.js');
 const action = require('./module/action');
+const calendar = require('../calendar.js');
 const call = require('../scheduler/callpython.js');
+
+getDayDate = function(err){
+	if(err){
+		console.log(err);
+		return err;
+	}
+	var curr = new Date;
+    var first = curr.getDate() - curr.getDay() +1;
+    var last = first + 6;
+    var dt = {};
+    for(i=first,j=1;i<=last;i++,j++){
+        dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
+    }
+    return dt;
+}
+
 module.exports = function(controller) {
     controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
         controller.storage.student.get(message.user, function(err, user) {
@@ -69,7 +86,7 @@ module.exports = function(controller) {
     });
     
     controller.hears(['^help$'], 'direct_message,direct_mention', function(bot, message) {
-        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule"}
+        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule\n`add to calendar`: to add your schedule to Google Calendar"};
         bot.reply(message, j)
     });
 
@@ -80,8 +97,10 @@ module.exports = function(controller) {
                 console.log(err);
                 return err
             }
-            var noTasks = user.tasks.length
-            var noFixedTasks = user.noFixedTasks
+            console.log("User details -");
+            console.log(user);
+            var noTasks = user.tasks.length;
+            var noFixedTasks = user.fixedTasks.length;
             if(typeof noFixedTasks === "undefined"){
                 noFixedTasks = 0
             }
@@ -90,13 +109,11 @@ module.exports = function(controller) {
             }
             else{
                 var buffer_time = 60;
-                var curr = new Date;
-                var first = curr.getDate() - curr.getDay() +1;
-                var last = first + 6;
-                var dt = {};
-                for(i=first,j=1;i<=last;i++,j++){
-                    dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
-                }
+
+                dt = getDayDate()
+                console.log("DAY DATE -");
+                console.log(dt);
+
                 User.fetch_user(message.user,function(err,unityId){
                   if(err){
                     console.log(err);
@@ -117,7 +134,67 @@ module.exports = function(controller) {
         
 	});
 
-    controller.hears(['^add task$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
+	controller.hears(['^add to calendar$', '^calendar$'], 'direct_message,direct_mention', function(bot, message) {
+		console.log("Adding to calendar");
+
+		User.fetch_details_user(message.user,function(err,user){
+			if(err){
+				console.log(err);
+				return err;
+			}
+
+			// Getting schedule into a variable for ease of use
+			schedule = user['schedule'];
+
+			console.log("SCHEDULE - ");
+			console.log(schedule);
+			console.log(schedule.length);
+
+			console.log("Before condition");
+			if(schedule.length == 0){
+				bot.reply(message, "You have not generated a schedule yet!");
+				bot.reply(message, "Please generate a schedule using `fetch schedule` and then try `add to calendar` to add it to Google Calendar");
+			}
+			else if(schedule.length == 1){
+				console.log("Schedule available! Adding to calendar");
+
+				// [0] since it returns an array with the only element to be the schedule dictionary
+				schedule = schedule[0];
+				for(key in schedule){
+					console.log(key);
+					console.log(schedule[key]);
+//					for(element in schedule[key]){
+					schedule[key].forEach(function(entry){
+//						console.log(schedule[key]);
+						console.log(entry);
+
+						startDateTime = entry[0].toISOString().slice(0, -1) + '-04:00';
+						endDateTime = entry[1].toISOString().slice(0, -1) + '-04:00';
+						eventName = entry[2];
+
+						console.log("Start time -", startDateTime);
+						console.log("End time -", endDateTime);
+						console.log("Event name -", eventName);
+
+						calendar.call_calendar(eventName, startDateTime, endDateTime, function(err, data){
+							if(err){
+								console.log(err);
+								return err;
+							}
+							console.log(data);
+						});
+						console.log("DONEE!!");
+					});
+				}
+
+				// Check position!
+                bot.reply(message, "Your schedule has been added to Google Calendar!");
+			}
+			console.log("After condition");
+        });
+	});
+
+    controller.hears(['^add tasks$' , '^task$', '^add task$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("adding task")
         bot.reply(message,prompts.add_task_prompt);
 

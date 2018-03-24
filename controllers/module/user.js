@@ -25,6 +25,7 @@ module.exports = {
 	      callback(null,user.uid);
 	    });
   	},
+
   	add_course: function(payload){
   		// console.log(payload)
   		var course = {}
@@ -78,6 +79,7 @@ module.exports = {
 		      console.log(res);
 		    });
   	},
+
   	fetch_courses: function(user_id,callback){
   		user.findOne({id:user_id}, function(err,user){
   			if(err){
@@ -87,7 +89,8 @@ module.exports = {
   			callback(null,user.fixedTasks);
   		});
   	},
-  fetch_tasks: function(user_id,callback){
+
+    fetch_tasks: function(user_id,callback){
       user.findOne({id:user_id}, function(err,user){
         if(err){
           console.log(err)
@@ -120,6 +123,7 @@ module.exports = {
         	console.log(res);
   			});	
   	},
+
     fetch_schedule: function(user_id,callback){
       user.findOne({uid:user_id}, function(err,user){
         if(err){
@@ -129,6 +133,7 @@ module.exports = {
         callback(null,user);
       });
     },
+
     fetch_details_user: function(user_id,callback){
       user.findOne({id:user_id}, function(err,user){
         if(err){
