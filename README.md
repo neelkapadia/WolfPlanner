@@ -73,6 +73,10 @@ _**Fig 6.** Generate schedule_
 
 Students can easily export their generated schedule to Google Calendar for easy access for the schedule and setting reminders about the scheduled events.
 
+![calendar](https://user-images.githubusercontent.com/18022447/37869101-1723789c-2f88-11e8-9b81-22178f436e71.gif)
+
+_**Fig 7.** Add schedule to your Google Calendar_
+
 ### Installation Steps -
 1. Install Python 3.6 - https://www.python.org/downloads/ 
 2. Install Node.js - https://nodejs.org/en/download/package-manager/
