@@ -10,6 +10,22 @@ const User = require('./module/user.js');
 const action = require('./module/action');
 const calendar = require('../calendar.js');
 const call = require('../scheduler/callpython.js');
+
+getDayDate = function(err){
+	if(err){
+		console.log(err);
+		return err;
+	}
+	var curr = new Date;
+    var first = curr.getDate() - curr.getDay() +1;
+    var last = first + 6;
+    var dt = {};
+    for(i=first,j=1;i<=last;i++,j++){
+        dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
+    }
+    return dt;
+}
+
 module.exports = function(controller) {
     controller.hears(['^hello$', '^hey$', '^hi$'], 'direct_message,direct_mention', function(bot, message) {
         controller.storage.student.get(message.user, function(err, user) {
@@ -81,8 +97,10 @@ module.exports = function(controller) {
                 console.log(err);
                 return err
             }
-            var noTasks = user.tasks.length
-            var noFixedTasks = user.noFixedTasks
+            console.log("User details -");
+            console.log(user);
+            var noTasks = user.tasks.length;
+            var noFixedTasks = user.fixedTasks.length;
             if(typeof noFixedTasks === "undefined"){
                 noFixedTasks = 0
             }
@@ -91,13 +109,18 @@ module.exports = function(controller) {
             }
             else{
                 var buffer_time = 60;
-                var curr = new Date;
-                var first = curr.getDate() - curr.getDay() +1;
-                var last = first + 6;
-                var dt = {};
-                for(i=first,j=1;i<=last;i++,j++){
-                    dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
-                }
+
+//                var curr = new Date;
+//                var first = curr.getDate() - curr.getDay() +1;
+//                var last = first + 6;
+//                var dt = {};
+//                for(i=first,j=1;i<=last;i++,j++){
+//                    dt[j] = new Date(curr.setDate(i)).toISOString().split("T")[0]
+//                }
+                dt = getDayDate()
+                console.log("DAY DATE -");
+                console.log(dt);
+
                 User.fetch_user(message.user,function(err,unityId){
                   if(err){
                     console.log(err);
@@ -141,23 +164,64 @@ module.exports = function(controller) {
 			}
 			else if(schedule.length == 1){
 				console.log("Schedule available! Adding to calendar");
-				// Currently just adding to schedule without asking
-		        eventName = 'Trying calendar API';
-		        description = 'Check if passing parameters works or not!';
-		        startDateTime = '2018-03-28T09:00:00-07:00';
-		        endDateTime = '2018-03-28T14:00:00-07:00';
-				calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
-					if(err){
-						console.log(err);
-						return err;
-					}
-					console.log(data);
-					bot.reply(message, "Your schedule has been added to Google Calendar!");
-				});
 
+				// [0] since it returns an array with the only element to be the schedule dictionary
+				schedule = schedule[0];
+				for(key in schedule){
+					console.log(key);
+					console.log(schedule[key]);
+//					for(element in schedule[key]){
+					schedule[key].forEach(function(entry){
+//						console.log(schedule[key]);
+						console.log(entry);
+
+						startDateTime = entry[0].toISOString().slice(0, -1) + '-04:00';
+						endDateTime = entry[1].toISOString().slice(0, -1) + '-04:00';
+						eventName = entry[2];
+
+						console.log("Start time -", startDateTime);
+						console.log("End time -", endDateTime);
+						console.log("Event name -", eventName);
+
+						calendar.call_calendar(eventName, startDateTime, endDateTime, function(err, data){
+							if(err){
+								console.log(err);
+								return err;
+							}
+							console.log(data);
+						});
+						console.log("DONEE!!");
+					});
+
+//					console.log(key);
+//					startDateTime = schedule[key][0]
+//					endDateTime = schedule[key][1]
+//					eventName = schedule[key][2]
+//
+//					console.log("Start time -", startDateTime);
+//					console.log("End time -", endDateTime);
+//					console.log("Event name -", eventName);
+
+				}
+
+//		        eventName = 'Trying calendar API';
+////		        description = 'Check if passing parameters works or not!';
+//		        startDateTime = '2018-03-28T09:00:00-07:00';
+//		        endDateTime = '2018-03-28T14:00:00-07:00';
+
+//				calendar.call_calendar(eventName, description, startDateTime, endDateTime, function(err, data){
+//					if(err){
+//						console.log(err);
+//						return err;
+//					}
+//					console.log(data);
+//					bot.reply(message, "Your schedule has been added to Google Calendar!");
+//				});
+
+				// Check position!
+                bot.reply(message, "Your schedule has been added to Google Calendar!");
 			}
 			console.log("After condition");
-
 //          console.log("User is -");
 //          console.log(user);
 //

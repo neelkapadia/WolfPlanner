@@ -36,6 +36,13 @@ var try_var =
 	'para3': dict
 };
 
+
+var try_var_2 =
+{
+	'1': dict,
+	'2': dict
+};
+
 console.log(try_var);
 
 trial = {};
@@ -45,6 +52,15 @@ console.log(try_var['para3']);
 console.log(Object.keys(try_var['para3']).length);
 console.log(Object.keys(try_var['para3']));
 console.log([].length)
+console.log("Hello -", try_var['para1']);
+
+console.log(try_var_2);
+for(key in try_var_2){
+console.log("Inside first for", key, try_var_2[key]);
+	for(kk in key){
+		console.log("Inside second for", kk, key[kk]);
+	}
+}
 
 if('para1' in try_var){
 	console.log("Testing presence of key in try_var");
@@ -52,3 +68,9 @@ if('para1' in try_var){
 else{
 	console.log("Trial object is empty");
 }
+
+var str = "hi my name";
+console.log(str.slice(0,-1));
+
+var curr = new Date;
+console.log(curr.toISOString());

@@ -1,6 +1,6 @@
 module.exports = {
 
-call_calendar: function(eventName, description, startDateTime, endDateTime, callback){
+call_calendar: function(eventName, startDateTime, endDateTime, callback){
 	var fs = require('fs');
 	var readline = require('readline');
 	var {google} = require('googleapis');
@@ -139,7 +139,6 @@ call_calendar: function(eventName, description, startDateTime, endDateTime, call
 	function addEvents(auth){
 		var event = {
 			'summary': eventName,
-			'description': description,
 			'start': {
 				'dateTime': startDateTime
 			},
