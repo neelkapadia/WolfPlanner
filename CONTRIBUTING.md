@@ -25,3 +25,12 @@ In short, when you submit code changes, your submissions are understood to be un
 
 ## Report bugs using Github's [issues](https://github.com/neelkapadia/WolfPlanner/issues)
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
+
+## License
+By contributing, you agree that your contributions will be licensed under its MIT License.
+
+## Team
+Sainag Shetty - [sgshetty](https://github.com/SainagShetty)<br/>
+Neel Kapadia - [ntkapadi](https://github.com/neelkapadia)<br/>
+Rohit Naik - [rtnaik](https://github.com/rohitnaik246)<br/>
+Rohan Chandavarkar - [rgchanda](https://github.com/RohanChandavarkar)
