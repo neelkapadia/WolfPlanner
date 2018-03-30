@@ -8,8 +8,21 @@ from pprint import pprint
 import db_scripts
 
 def string_to_datetime(datetime_str):
+	# Assuming the format is the same
 	return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
+def check_tasks(_student_record):
+	today = datetime.now()
+	tasks = _student_record['tasks']
+
+	new_tasks = tasks[:]
+
+	for task in tasks:
+		if string_to_datetime(task['deadline']) < today:
+			new_tasks.remove(task)
+
+	# Update tasks to the new_tasks (i.e. removing those which have been scheduled successfully)
+	db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'tasks', new_tasks, username, password)
 
 def generate_free_time(_student_record, buffer_time, day_date):
 	free_time = defaultdict(list)
@@ -77,6 +90,8 @@ def generate_free_time(_student_record, buffer_time, day_date):
 
 
 def generate_schedule(unityId, day_date, _student_record, buffer_time):
+	check_tasks(_student_record)
+
 	# print("Entered generate schedule")
 	if not 'freeTime' in _student_record:
 		# print("inside if")
@@ -104,7 +119,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	# print("Entering for")
 
 	# new_tasks = sorted_tasks.copy()
-	new_tasks = sorted_tasks[:]
+	# new_tasks = sorted_tasks[:]
 
 	for task in sorted_tasks:
 		rem_time = float(task['duration'])
@@ -126,8 +141,8 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 			idx = 0
 			while idx < len(free_time[day]):
 				if rem_time == 0:
-					# Remove that task
-					new_tasks.remove(task)
+					# # Remove that task
+					# new_tasks.remove(task)
 
 					# Go to next task
 					break
@@ -166,8 +181,9 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 					schedule[day].append([start_time, end_time, task['name']])
 				# pprint("In while")
 				idx += 2
-	# Update tasks to the new_tasks (i.e. removing those which have been scheduled successfully)
-	db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'tasks', new_tasks, username, password)
+
+	# # Update tasks to the new_tasks (i.e. removing those which have been scheduled successfully)
+	# db_scripts.db_update(db_name, collection_name, _student_record['uid'], 'tasks', new_tasks, username, password)
 
 	pprint(schedule)
 	if schedule:

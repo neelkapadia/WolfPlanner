@@ -104,7 +104,7 @@ module.exports = function(controller) {
             if(typeof noFixedTasks === "undefined"){
                 noFixedTasks = 0
             }
-            if(noTasks==0&&noFixedTasks==0){
+            if(noTasks==0 && noFixedTasks==0){
                 bot.reply(message,"Please enter your courses and tasks before fetching the schedule")
             }
             else{
