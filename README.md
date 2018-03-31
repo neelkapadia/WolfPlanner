@@ -85,7 +85,7 @@ _**Fig 7.** Add schedule to your Google Calendar_
 5. Install the required packages using `pip install <package- name>`
 6. Rename the `.env.example` file to `.env` and add all the access code and environment details.
 7. Install Ngrok - https://ngrok.com/download
-8. Run a local server for development by running the command - `nrgok http 3000`. Specify the url ob- tained, in the slack app api page(Event Subscription, Interactive Components, and OAuth & Permissions) for receiving HTTP POST requests.
+8. Run a local server for development by running the command - `./nrgok http 3000`. Specify the url ob- tained, in the slack app api page(Event Subscription, Interactive Components, and OAuth & Permissions) for receiving HTTP POST requests.
 9. Do a `npm install & npm start` from the WolfPlanner directory to install all the packages required by Node.js.
 
 ### Contributors
