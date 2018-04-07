@@ -9,8 +9,8 @@ import json
 
 #Updating DB credentials.
 # uri = "mongo ds237979.mlab.com:37979/mydb -u <Sanya> -p <Qwerty7>"
-#uri = "mongodb://<Sanya>:<Qwerty7>@ds237979.mlab.com:37979/mydb"
-
+# uri = "mongodb://<Sanya>:<Qwerty7>@ds237979.mlab.com:37979/mydb"
+# client = MongoClient(uri, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
 
 def db_connect(db_name, username, password):
 	# get connection object to the server space
