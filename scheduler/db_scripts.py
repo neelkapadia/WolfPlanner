@@ -2,11 +2,6 @@ from pymongo import MongoClient
 from datetime import datetime
 import json
 
-
-# uri = "mongodb://rtrgntsg:menzies@ds231758:56789"
-# uri = "mongodb://rtrgntsg:menzies@ds231758.mlab.com:31758/se"
-# client = MongoClient(uri, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
-
 #Updating DB credentials.
 # uri = "mongo ds237979.mlab.com:37979/mydb -u <Sanya> -p <Qwerty7>"
 # uri = "mongodb://<Sanya>:<Qwerty7>@ds237979.mlab.com:37979/mydb"
