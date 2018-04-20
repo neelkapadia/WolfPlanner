@@ -193,10 +193,10 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 # username = data['username']
 # password = data['password']
 
-db_name = 'se'
-collection_name = 'student'
-username = 'rtrgntsg'
-password = 'menzies'
+db_name = 'mydb'
+collection_name = 'teams'
+username = 'Sanya'
+password = 'Qwerty7'
 
 # print("check 2")
 
@@ -219,23 +219,6 @@ schedule = generate_schedule(unityId, day_date, student_record, buffer_time)
 print(schedule)
 sys.stdout.flush()
 
-# # Details about temporary entries
-#
-# # unityId = 'rgchanda'
-# # slackId = 'U912NK72P'
-# # email = 'rgchanda@ncsu.edu'
-# # name = 'Rohan Chandavarkar'
-#
-# # unityId = 'rtnaik'
-# # slackId = 'U921S9WF8'
-# # email = 'rtnaik@ncsu.edu'
-# # name = 'Rohit Tushar Naik'
-#
-# unityId = 'sgshetty'
-# slackId = 'U90JUGPU1'
-# email = 'sgshetty@ncsu.edu'
-# name = 'Sainag Ganesh Shetty'
-#
 # # dummy day_date variable for testing (till input received from bot)
 # day_date = {
 # 	'1': '2018-03-05 20:30:00',
