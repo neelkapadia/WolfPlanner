@@ -194,7 +194,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 # password = data['password']
 
 db_name = 'mydb'
-collection_name = 'teams'
+collection_name = 'student'
 username = 'Sanya'
 password = 'Qwerty7'
 
