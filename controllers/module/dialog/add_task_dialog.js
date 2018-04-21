@@ -38,7 +38,13 @@ var dialog = {
        type: "text",
        placeholder: "2018-05-07 12:00:00"
 	},
+	{
+	label:"Priority",
+        name: "priority",
+        type: "text",
+        placeholder: "1 being highest"
 
+	},
 
 	],
 

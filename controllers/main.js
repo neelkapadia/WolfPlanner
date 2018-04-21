@@ -10,6 +10,7 @@ const User = require('./module/user.js');
 const action = require('./module/action');
 const calendar = require('../calendar.js');
 const call = require('../scheduler/callpython.js');
+const parseFile = require('../scheduler/parseFile.js');
 
 getDayDate = function(err){
 	if(err){
@@ -86,9 +87,51 @@ module.exports = function(controller) {
     });
     
     controller.hears(['^help$'], 'direct_message,direct_mention', function(bot, message) {
-        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule\n`add to calendar`: to add your schedule to Google Calendar"};
+        j = {"text": "`add task`: to add tasks to your schedule\n`view tasks`: to view tasks\n`add courses`: to add courses\n`view courses`: to view list of your courses\n`fetch schedule`: to get the week's schedule\n`add to calendar`: to add your schedule to Google Calendar\n`parse CSC 530`: Next week's tasks in CSC 530\n`parse CSC 520`: Next week's tasks in CSC 520\n`parse CSC 510`: Next week's tasks in CSC 510"};
         bot.reply(message, j)
     });
+
+	controller.hears(['^parse CSC 530$'], 'direct_message,direct_mention', function(bot, message) {
+		console.log("course file");
+		//bot.reply(message, prompts.add_course_prompt);
+		parseFile.parse_file('/home/shivam/Documents/WolfPlanner/scheduler/date.txt', function(err,data){
+			if(err){
+			    console.log(err);   
+			    return err;
+			}
+			for(k=0;k<data.length;k++){
+                            bot.reply(message,data[k])
+                        }
+	       });	
+	});
+	
+	controller.hears(['^parse CSC 510$'], 'direct_message,direct_mention', function(bot, message) {
+		console.log("course file");
+		//bot.reply(message, prompts.add_course_prompt);
+		parseFile.parse_file('/home/shivam/Documents/WolfPlanner/scheduler/CSC510.txt', function(err,data){
+			if(err){
+			    console.log(err);   
+			    return err;
+			}
+			for(k=0;k<data.length;k++){
+                            bot.reply(message,data[k])
+                        }
+	       });	
+	});
+
+	controller.hears(['^parse CSC 520$'], 'direct_message,direct_mention', function(bot, message) {
+		console.log("course file");
+		//bot.reply(message, prompts.add_course_prompt);
+		parseFile.parse_file('/home/shivam/Documents/WolfPlanner/scheduler/CSC520.txt', function(err,data){
+			if(err){
+			    console.log(err);   
+			    return err;
+			}
+			for(k=0;k<data.length;k++){
+                            bot.reply(message,data[k])
+                        }
+	       });	
+	});
 
 	controller.hears(['^fetch schedule$'], 'direct_message,direct_mention', function(bot, message) {
         console.log("fetching schedule")

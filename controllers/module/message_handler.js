@@ -60,6 +60,25 @@ module.exports = {
             action.send_message(payload.channel.id, payload.submission.name + " has been added", []);
             res.send('');
         }
+	/*else if(callback_id == 'course_parse_dialog')
+	{
+	}
+	else if(callback_id == 'course_parse_prompt')
+	{
+		if(payload.actions[0].value == 'CSC 510'){
+                console.log("I am here!!!!")
+                const dialog =
+                {
+                    token: process.env.slackToken,
+                    trigger_id,
+                    dialog: JSON.stringify(dialogs.course_parse_dialog),
+                }
+                action.open_dialog(dialog, res);
+            }
+            else{
+                action.send_message(payload.channel.id, 'Alrighty boy!', []);
+            }
+	}*/
         
         else{
             console.log('Reached idhar');
