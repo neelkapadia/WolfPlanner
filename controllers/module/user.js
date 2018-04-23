@@ -2,10 +2,11 @@ const configure = require('./config');
 const action = require('../module/action');
 
 var user_schema = new configure.schema({
-    uid: 'string',
+  uid: 'string',
   name: 'string',
   email: 'string',
   id: 'string',
+  priority: 'string',
   tasks: 'array',
   fixedTasks: 'array',
   freeTime: 'array',
@@ -58,6 +59,7 @@ module.exports = {
 	    var en = payload.submission.endTime
 	    var startTime = dt + " " + st[0] + st[1] + ":" + st[2] + st[3] + ":00"
 	    var endTime = dt + " " + en[0] + en[1] + ":" + en[2] + en[3] + ":00"
+	    var priority = "1"
 		course = {
 			name: payload.submission.name,
 			startTime: startTime,
@@ -113,7 +115,7 @@ module.exports = {
       priority: payload.submission.priority,
       }
 
-  		user.findOneAndUpdate({
+  	user.findOneAndUpdate({
         id: payload.user.id
         } , {
         	$push: {
