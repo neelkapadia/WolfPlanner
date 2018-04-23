@@ -16,12 +16,12 @@ var dialog = {
     type: "text",
     placeholder: "Software Engineering"
   }, 
-//   {
-//     label:"Priority",
-//     name: "priority",
-//     type: "text",
-//     placeholder: "1 being highest"
-//   },
+  {
+    label:"Priority",
+    name: "priority",
+    type: "text",
+    placeholder: "1 being highest"
+  },
   {
     label: "Days",
     name: "days",
