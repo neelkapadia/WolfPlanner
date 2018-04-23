@@ -9,7 +9,7 @@ import json
 
 def db_connect(db_name, username, password):
 	# get connection object to the server space
-	client = MongoClient("ds237979.mlab.com", 31758, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
+	client = MongoClient("ds237979.mlab.com", 37979, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
 	# select the database name which you want to work on
 	db = client[db_name]
 	# authenticate connection to the database. Without this your object won't be able to read/write from/to the database
