@@ -66,7 +66,6 @@ module.exports = {
   			endTime: endTime,
   			_id: payload.submission._id,
   			days: result,
-			priority: payload.submission.priority,
   		}
   		console.log(course)
   		console.log(payload.user.id)
