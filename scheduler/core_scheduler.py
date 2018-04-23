@@ -120,7 +120,7 @@ def generate_schedule(unityId, day_date, _student_record, buffer_time):
 	window_size = 1
 	# The schedule entry to be added to the student_record
 	schedule = defaultdict(list)
-	sorted_tasks = sorted(tasks, key=lambda task: (task['priority'], task['deadline']))
+	sorted_tasks = sorted(tasks, key=lambda task: (task['deadline'], task['duration']))
 
 	for task in sorted_tasks:
 		rem_time = float(task['duration'])
