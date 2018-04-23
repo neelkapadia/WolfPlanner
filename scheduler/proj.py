@@ -1,6 +1,8 @@
 import sys
 import datetime
 
+import os
+
 def withinweek(infile):
     todo = []
     with open (infile, 'r') as fp:
@@ -24,7 +26,10 @@ def withinweek(infile):
 
 
 def main():
-    out = withinweek(sys.argv[1])
+    dirname = os.path.dirname(__file__)
+    f = sys.argv[1]
+    filename = os.path.join(dirname, f)
+    out = withinweek(filename)
     return out
 
 if __name__ == "__main__":
