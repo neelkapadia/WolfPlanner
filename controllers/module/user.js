@@ -64,6 +64,7 @@ module.exports = {
   			endTime: endTime,
   			_id: payload.submission._id,
   			days: result,
+			priority: payload.submission.priority
   		}
   		console.log(course)
   		console.log(payload.user.id)
@@ -109,6 +110,7 @@ module.exports = {
       type: payload.submission.type,
       duration: payload.submission.duration,
       deadline: payload.submission.deadline,
+      priority: payload.submission.priority
       }
 
   		user.findOneAndUpdate({
