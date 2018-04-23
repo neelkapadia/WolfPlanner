@@ -1,3 +1,4 @@
+
 var user = {}
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -94,7 +95,7 @@ module.exports = function(controller) {
 	controller.hears(['^parse CSC 530$'], 'direct_message,direct_mention', function(bot, message) {
 		console.log("course file");
 		//bot.reply(message, prompts.add_course_prompt);
-		parseFile.parse_file('/home/shivam/Documents/WolfPlanner/scheduler/date.txt', function(err,data){
+		parseFile.parse_file('date.txt', function(err,data){
 			if(err){
 			    console.log(err);   
 			    return err;
