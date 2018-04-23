@@ -5,27 +5,30 @@ var dialog = {
 	submit_label: 'Submit',
 	elements: [
 	{
-		label:"Task Name",
+	label:"Task Name",
         name: "name",
         type: "text",
         placeholder: "AI HW 1"
 
 	},
 	{
-		label:"Task Type",
+	label:"Task Type",
         name: "type",
         type: "select",
-       options: [
+        options: [
          { label: 'HW', value: 'HW' },
          { label: 'Project', value: 'Project'},
          { label: 'Interview Prep', value: 'Interview Prep' },
          { label: 'On-campus job', value: 'On-campus job' },
-         { label: 'Other', value: 'Other' },
+	 { label: 'Gym/ Fitness', value:'Extracurricular'},
+	 { label: 'Travel',value:'Travel'},
+	 { label: 'Other', value: 'Other' },
+		
       ],
 
 	},
 	{
-		label:"Task Duration in hours",
+        label:"Task Duration in hours",
         name: "duration",
         type: "text",
         placeholder: "10"
@@ -36,13 +39,13 @@ var dialog = {
 	label:"Deadline",
        name: "deadline",
        type: "text",
-       placeholder: "2018-05-07 12:00:00"
+       placeholder: "YYYY-MM-DD HH:MM:SS"
 	},
 	{
 	label:"Priority",
         name: "priority",
         type: "text",
-        placeholder: "1 being highest"
+        placeholder: "(1-5)1 being highest"
 
 	},
 
